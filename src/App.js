@@ -58,10 +58,16 @@ const App = () => {
           <Route path="/signin" element={<SignIn />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/mypage/:userId" element={<MyPage />}></Route>
-          <Route path="/loginforcomment" element={<LoginForComment />}></Route>
-          <Route path="/forentercomment" element={<ForEnterComment />}></Route>
           <Route
-            path="/loadingtologinforcomment"
+            path="/loginforcomment/:id"
+            element={<LoginForComment />}
+          ></Route>
+          <Route
+            path="/forentercomment/:id"
+            element={<ForEnterComment />}
+          ></Route>
+          <Route
+            path="/loadingtologinforcomment/:id"
             element={<LoadingToLoginForComment />}
           ></Route>
           <Route path="/endtocomment" element={<EndToComment />}></Route>
