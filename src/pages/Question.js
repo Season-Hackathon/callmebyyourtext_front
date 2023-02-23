@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { primaryColor } from "../styles/GlobalStyle";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import PrimaryBtn from "../components/Button/PrimaryBtn";
 import Menu from "../assets/images/menu.png";
 import { AuthContext } from "../context/AuthContext";
@@ -23,6 +23,10 @@ const Question = () => {
   const { isLoggedIn } = useContext(AuthContext);
   const userId = localStorage.getItem("id");
   const Token = localStorage.getItem("token");
+  const [comments, setComments] = useState({
+    question: questionId,
+    comment: "",
+  });
 
   // 함수 관리---------------------------------------------------------
   const copyLink = () => {
@@ -40,10 +44,10 @@ const Question = () => {
     }
   };
   // 질문 관리
-  const deleteQuestion = () => {
+  const deleteQuestion = async () => {
     if (window.confirm("해당 질문을 삭제하시겠습니까?")) {
       try {
-        axios.delete(`http://127.0.0.1:8000/questions/${questionId}`, {
+        await axios.delete(`http://127.0.0.1:8000/questions/${questionId}`, {
           withCredentials: true,
           headers: {
             Authorization: `token ${Token}`,
@@ -56,9 +60,33 @@ const Question = () => {
       return;
     }
   };
-
-  const onSubmit = (e) => {
-    alert(e.target);
+  // 답변 관리
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setComments({
+      ...comments,
+      [name]: value,
+    });
+  };
+  const onSubmit = async (e) => {
+    await axios
+      .post(
+        `http://127.0.0.1:8000/questions/${questionId}/comments`,
+        comments,
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `token ${Token}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log(comments);
+      });
   };
   return (
     <>
@@ -73,16 +101,17 @@ const Question = () => {
           autoFocus
           fullWidth
           color="secondary"
-          id="answer"
           label="답변을 입력해주세요."
-          name="answer"
-          autoComplete="answer"
+          id="comment"
+          name="comment"
+          type="comment"
+          autoComplete="comment"
           sx={{
             borderBottom: `1px dashed ${primaryColor}`,
             borderRadius: 3,
             marginBottom: 2,
           }}
-          // onChange={onChange}
+          onChange={onChange}
         />
         <PrimaryBtn btnName={"답변 등록"} onClick={onSubmit}></PrimaryBtn>
         <br />
