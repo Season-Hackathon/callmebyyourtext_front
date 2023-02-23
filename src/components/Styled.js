@@ -79,3 +79,13 @@ export const SubTitle = styled.p`
 export const Bracket = styled.span`
   visibility: hidden;
 `;
+
+export const DeleteText = styled.span`
+  font-size: 12px;
+  opacity: 50%;
+  cursor: pointer;
+  transition: 0.5s;
+  &:hover {
+    color: ${primaryColor};
+  }
+`;

@@ -17,6 +17,7 @@ import {
 const MyPage = ({ props }) => {
   // 변수 관리
   const navigate = useNavigate();
+  const userId = localStorage.getItem("id");
   const userName = localStorage.getItem("name");
   const { setIsLoggedIn } = useContext(AuthContext);
 
@@ -27,10 +28,10 @@ const MyPage = ({ props }) => {
 
   // 모달 인풋 관리
   const goToNewQuestion = () => {
-    navigate("/createquestion");
+    navigate(`/createquestion/${userId}`);
   };
   const goToQuestionList = () => {
-    navigate("/questionlist");
+    navigate(`/questionlist/${userId}`);
   };
 
   // 로그아웃 관리
