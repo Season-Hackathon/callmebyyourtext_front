@@ -113,9 +113,9 @@ export default function ForEnterComment() {
     }
     if (isLoggedIn) {
       comfirmComment();
+    } else {
+      setOpen(true);
     }
-
-    setOpen(true);
   };
   const modalClose = () => setOpen(false);
 
