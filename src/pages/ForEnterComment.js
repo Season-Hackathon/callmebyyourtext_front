@@ -3,10 +3,12 @@ import Header from "./../components/Header/Header";
 import Question from "./../components/Question/Question";
 import Button from "./../components/Button/Button";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "./../context/AuthContext";
 import { TextField } from "@mui/material/";
 import MuiModal from "../components/Modal/MuiModal";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 const Wrapper = styled.section`
   text-align: center;
@@ -46,6 +48,10 @@ const MainTitle = styled.span`
 export default function ForEnterComment() {
   const navigate = useNavigate();
   const { isLoggedIn } = useContext(AuthContext);
+  const pageWriter = localStorage.getItem("pageWriter");
+  const question = localStorage.getItem("question");
+  const { id } = useParams();
+
   // useEffect(() => {
   //   if (isLoggedIn) {
   //     navigate("/", { replace: true });
@@ -73,36 +79,56 @@ export default function ForEnterComment() {
     setAddComment(!addComment);
     setButtonText(addComment ? "답변등록" : "돌아가기");
   };
+
+  // 답변달기 확인 handler
+  const comfirmComment = async (e) => {
+    const question = id;
+    const comment = inputText;
+    const anonymous = isLoggedIn;
+    const newComment = {
+      question,
+      comment,
+      anonymous,
+    };
+    console.log(newComment);
+    axios
+      .post(`http://127.0.0.1:8000/questions/${id}/comments`, newComment)
+      .then((response) => {
+        alert("답변이 달렸습니다.");
+        navigate(`/endtocomment`, { replace: true });
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
+
   // modal event handler
   const modalOpen = () => {
     if (inputText.trim() === "") {
       alert("답변을 입력해주세요");
       return;
     }
-    setOpen(true);
+    if (isLoggedIn) {
+      comfirmComment();
+    }
+
+    setOpen(open);
   };
   const modalClose = () => setOpen(false);
-
-  // 답변달기 확인 handler
-  const comfirmComment = () => {
-    // 백엔드로 답변 보내기
-    alert("답변이 달렸습니다.");
-    navigate("/endtocomment", { replace: true });
-  };
 
   return (
     <>
       <Wrapper>
         <HeaderWrap>
-          <Header user={userName} />
+          <Header user={pageWriter} />
         </HeaderWrap>
         <Main>
           <MainTitle>
-            <b>{userName}</b>님이 올린 질문입니다.
+            <b>{pageWriter}</b>님이 올린 질문입니다.
           </MainTitle>
           <ul>
             <li>
-              <Question value={"나와 닮은 동물은?"} />
+              <Question value={question} />
             </li>
           </ul>
           {addComment && (
@@ -144,19 +170,16 @@ export default function ForEnterComment() {
             )}
           </ButtonWrap>
           {/* 로그인 되어있는 사용자는 바로 다음 페이지로 */}
-          {isLoggedIn ? (
-            comfirmComment
-          ) : (
-            <MuiModal
-              open={open}
-              onClose={modalClose}
-              btnName1={"로그인하기"}
-              btnName2={"답변달기"}
-              onClick1={() => navigate("/loadingtologinforcomment")}
-              onClick2={comfirmComment}
-              text={"로그인하고 답변을 달면 100포인트가 지급됩니다."}
-            />
-          )}
+
+          <MuiModal
+            open={open}
+            onClose={modalClose}
+            btnName1={"로그인하기"}
+            btnName2={"답변달기"}
+            onClick1={() => navigate(`/loadingtologinforcomment/${id}`)}
+            onClick2={comfirmComment}
+            text={"로그인하고 답변을 달면 100포인트가 지급됩니다."}
+          />
         </Main>
       </Wrapper>
     </>

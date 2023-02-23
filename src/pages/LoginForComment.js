@@ -2,13 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import Header from "../components/Header/Header";
 import InputId from "../assets/images/inputId.png";
 import InputPw from "../assets/images/inputPw.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { TextField, Box, Typography } from "@mui/material/";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import styled from "styled-components";
 import PrimaryBtn from "../components/Button/PrimaryBtn";
 import "../styles/LoginForComment.css";
+import { pointColor, primaryColor } from "../styles/GlobalStyle";
 
 const Wrapper = styled.section`
   text-align: center;
@@ -25,6 +26,7 @@ const BtnWrapper = styled.section`
 const TextFieldWrap = styled.div`
   text-align: center;
   display: flex;
+  border-bottom: 1px solid ${primaryColor};
 `;
 
 const Img = styled.img`
@@ -36,10 +38,13 @@ const Img = styled.img`
 export default function LoginForComment() {
   // State-------------------------------------------------------------------
   const navigate = useNavigate();
+  const questionId = localStorage.getItem("questionId");
+  const [pageWriter, setPageWriter] = useState("");
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
   useEffect(() => {
+    setPageWriter(localStorage.getItem("pageWriter"));
     if (isLoggedIn) {
-      navigate("/forentercomment", { replace: true });
+      navigate(`/forentercomment/${questionId}`, { replace: true });
     }
   }, [isLoggedIn]);
 
@@ -55,6 +60,7 @@ export default function LoginForComment() {
       [name]: value,
     });
   };
+  // 로그인 버튼 눌렀을 때 데이터 전송
   const onSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = inputs;
@@ -69,9 +75,10 @@ export default function LoginForComment() {
         localStorage.setItem("auth", true);
         localStorage.setItem("token", response.data.token);
         alert("로그인되었습니다.");
-        navigate("/forentercomment", { replace: true });
+        //  navigate(`/forentercomment/${questionId}`, { replace: true });
       })
       .catch((error) => {
+        alert(error);
         if (error.response.status === 400) {
           alert("잘못된 정보입니다. 다시 시도해주세요.");
         }
@@ -79,14 +86,14 @@ export default function LoginForComment() {
   };
 
   // 익명으로 진행-----------------
-  const handleClick = () => {
-    navigate("/forEnterComment");
+  const handleClickToAnony = () => {
+    navigate(`/forentercomment/${questionId}`);
   };
 
   return (
     <>
       <Wrapper>
-        <Header user={"페이지주인"} />
+        <Header user={pageWriter} />
         <Box
           component="form"
           onSubmit={onSubmit}
@@ -100,14 +107,18 @@ export default function LoginForComment() {
           }}
         >
           <TextFieldWrap
-            style={{ "margin-top": "3rem", width: "90%", display: "flex" }}
+            style={{
+              "margin-top": "3rem",
+              width: "90%",
+              display: "flex",
+            }}
           >
             <Img src={InputId} />
             <TextField
+              disableUnderline={true}
               autoFocus
               required
               fullWidth
-              variant="standard"
               color="secondary"
               type="email"
               id="email"
@@ -123,7 +134,6 @@ export default function LoginForComment() {
             <TextField
               required
               fullWidth
-              variant="standard"
               color="secondary"
               type="password"
               id="password"
@@ -138,7 +148,10 @@ export default function LoginForComment() {
           </BtnWrapper>
         </Box>
         <BtnWrapper style={{ marginTop: "1rem", marginBottom: "3rem" }}>
-          <PrimaryBtn btnName={"그냥하기"} onClick={handleClick}></PrimaryBtn>
+          <PrimaryBtn
+            btnName={"그냥하기"}
+            onClick={handleClickToAnony}
+          ></PrimaryBtn>
         </BtnWrapper>
       </Wrapper>
     </>
