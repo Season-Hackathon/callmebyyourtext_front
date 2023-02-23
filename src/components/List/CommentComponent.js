@@ -5,8 +5,8 @@ import HeartLogo from "../../assets/images/inputId.png";
 import { primaryColor } from "../../styles/GlobalStyle";
 import axios from "axios";
 
-const Answer = ({ questionId, questionText, commentId }) => {
-  const openAnswer = ({ commentId }) => {
+const CommentComponent = ({ questionId, questionText, commentId }) => {
+  const openComment = ({ commentId }) => {
     if (window.confirm("50포인트를 소모하여 해당 답변을 확인하시겠습니까?")) {
       axios
         .post(
@@ -35,11 +35,11 @@ const Answer = ({ questionId, questionText, commentId }) => {
         }}
       >
         <SmallImg src={HeartLogo} />
-        <CursorText onClick={openAnswer}> 익명의 답변 : </CursorText>
+        <CursorText onClick={openComment}> 익명의 답변 : </CursorText>
         {questionText}
       </Box>
     </>
   );
 };
 
-export default Answer;
+export default CommentComponent;
