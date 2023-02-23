@@ -60,6 +60,7 @@ const Question = () => {
       return;
     }
   };
+
   // 답변 관리
   const onChange = (e) => {
     const { name, value } = e.target;
