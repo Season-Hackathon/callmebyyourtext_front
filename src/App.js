@@ -52,7 +52,9 @@ const App = () => {
         <Routes>
           <Route path="*" element={<NotFound />}></Route>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/question" element={<Question />}></Route>
+          <Route path="/signin" element={<SignIn />}></Route>
+          <Route path="/signup" element={<SignUp />}></Route>
+          <Route path="/question/:writerId" element={<Question />}></Route>
           <Route
             path="/questionlist/:userId"
             element={<QuestionList />}
@@ -61,8 +63,6 @@ const App = () => {
             path="/createquestion/:userId"
             element={<CreateQuestion />}
           ></Route>
-          <Route path="/signin" element={<SignIn />}></Route>
-          <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/mypage/:userId" element={<MyPage />}></Route>
           <Route
             path="/loginforcomment/:id"

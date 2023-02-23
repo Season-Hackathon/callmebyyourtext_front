@@ -8,7 +8,7 @@ const Home = () => {
   const navigate = useNavigate();
   const loading = () => {
     setTimeout(() => {
-      navigate("/question");
+      navigate("/signin");
     }, 2000);
   };
 

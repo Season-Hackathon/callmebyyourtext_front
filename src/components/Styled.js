@@ -9,7 +9,7 @@ export const Wrapper = styled.section`
   align-items: center;
 `;
 
-export const Header = styled.p`
+export const Header = styled.span`
   color: ${primaryColor};
   font-size: 16px;
   font-weight: 800;
@@ -19,7 +19,7 @@ export const Header = styled.p`
 export const QuestionBox = styled.section`
   box-shadow: 3px 3px 5px 0px rgb(0 0 0 / 20%);
   border-radius: 5px;
-  max-width: 300px;
+  width: 250px;
   min-height: 100px;
   margin-bottom: 10%;
   padding: 20px;
