@@ -49,6 +49,7 @@ const QuestionList = ({ questionId, questionText, questionAnswer }) => {
       setQuestionArray(getQuestionData.data);
     } catch (error) {
       console.log(error);
+      alert("데이터를 가져오는데 실패했습니다.");
     }
   };
   useEffect(() => {
