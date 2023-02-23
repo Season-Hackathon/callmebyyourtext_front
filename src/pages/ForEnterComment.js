@@ -9,6 +9,7 @@ import { TextField } from "@mui/material/";
 import MuiModal from "../components/Modal/MuiModal";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import { secondaryColor } from "../styles/GlobalStyle";
 
 const Wrapper = styled.section`
   text-align: center;
@@ -43,6 +44,8 @@ const MainTitle = styled.span`
   text-align: start;
   margin: 1rem 0 0 1rem;
   font-size: 0.8rem;
+  font-weight: 500;
+  color: ${secondaryColor};
 `;
 
 export default function ForEnterComment() {
@@ -112,7 +115,7 @@ export default function ForEnterComment() {
       comfirmComment();
     }
 
-    setOpen(open);
+    setOpen(true);
   };
   const modalClose = () => setOpen(false);
 
@@ -159,6 +162,7 @@ export default function ForEnterComment() {
               onClick={toggleAddComment}
               width={addComment ? "150px" : "200px"}
               background={"#F8ECEC"}
+              border={"2px solid"}
             />
             {addComment && (
               <Button
@@ -166,6 +170,7 @@ export default function ForEnterComment() {
                 onClick={modalOpen}
                 width={"150px"}
                 background={"#F8ECEC"}
+                border={"2px solid"}
               />
             )}
           </ButtonWrap>

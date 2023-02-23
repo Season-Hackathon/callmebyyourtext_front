@@ -16,7 +16,7 @@ const modalStyle = {
   boxShadow: 24,
   border: `1px solid ${primaryColor}`,
   p: 4,
-  pb: 2,
+  pb: 1,
 };
 
 const ButtonWrap = styled.div`
@@ -32,11 +32,12 @@ const BottomBtnWrap = styled.div`
 `;
 const BottomBtn = styled.button`
   background: none;
-  border: none;
-  font-size: 0.8rem;
+  font-size: 10px;
   cursor: pointer;
   border-radius: 0.5rem;
-  padding: 0.2rem 1rem;
+  padding: 0.2rem 0.5rem;
+  border: none;
+  color: ${primaryColor};
   &:hover {
     background-color: ${primaryColor};
     color: white;
@@ -77,7 +78,8 @@ export default function MuiModal({
         <Typography
           fontFamily="Noto Sans KR Black"
           id="modal-modal-description"
-          sx={{ mt: 2 }}
+          align="center"
+          sx={{ mt: 2, fontSize: 12 }}
         >
           {text}
         </Typography>

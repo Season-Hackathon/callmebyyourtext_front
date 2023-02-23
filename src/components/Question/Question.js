@@ -5,7 +5,7 @@ const Ques = styled.div`
   background-color: white;
   width: 90%;
   height: 100px;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.4);
   margin: 0 auto;
   display: flex;

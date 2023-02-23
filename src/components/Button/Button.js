@@ -7,13 +7,19 @@ export default function Button({
   width,
   fontSize,
   background,
+  border,
 }) {
   return (
     <button
       className={styles.button}
       onClick={onClick}
       value={value}
-      style={{ width: width, fontSize: fontSize, background: background }}
+      style={{
+        width: width,
+        fontSize: fontSize,
+        background: background,
+        border: border,
+      }}
     >
       {value}
     </button>

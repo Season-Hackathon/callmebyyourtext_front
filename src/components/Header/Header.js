@@ -23,7 +23,7 @@ const TitleWrap = styled.div`
   margin: 0 auto;
   font-size: 0.8rem;
   font-family: "Noto Sans KR Bold";
-  font-weight: 300;
+  font-weight: 500;
   color: ${pointColor};
 `;
 
@@ -32,9 +32,15 @@ const TitleLogo = styled.img`
   height: 30px;
 `;
 const TitleName = styled.span`
-  font-size: 2rem;
-  font-weight: 500;
+  font-size: 1.2rem;
+  font-weight: 700;
   color: ${secondaryColor};
+`;
+
+const TitleSpan = styled.span`
+  color: ${secondaryColor};
+  font-size: 0.6rem;
+  font-weight: 500;
 `;
 
 export default function Header({ user }) {
@@ -42,7 +48,8 @@ export default function Header({ user }) {
     <Head>
       <TitleLogo src={titleLogo} alt="error" />
       <TitleWrap>
-        <TitleName>{user}</TitleName>님 페이지입니다
+        <TitleName>{user}</TitleName>
+        <TitleSpan> 님 페이지입니다</TitleSpan>
       </TitleWrap>
     </Head>
   );
