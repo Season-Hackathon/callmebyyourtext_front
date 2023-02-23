@@ -1,7 +1,11 @@
 import React from "react";
 import titleLogo from "../../assets/images/titleLogo.png";
 import styled from "styled-components";
-import { primaryColor, secondaryColor } from "../../styles/GlobalStyle";
+import {
+  primaryColor,
+  pointColor,
+  secondaryColor,
+} from "../../styles/GlobalStyle";
 
 const Head = styled.header`
   margin: 5rem auto;
@@ -20,7 +24,7 @@ const TitleWrap = styled.div`
   font-size: 0.8rem;
   font-family: "Noto Sans KR Bold";
   font-weight: 300;
-  color: ${secondaryColor};
+  color: ${pointColor};
 `;
 
 const TitleLogo = styled.img`
