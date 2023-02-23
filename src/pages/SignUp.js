@@ -102,7 +102,7 @@ const SignUp = () => {
     setPassword(passwordCurrent);
 
     if (!passwordRegex.test(passwordCurrent)) {
-      setPasswordMessage("숫자+영문자+특수문자 조합 8자리↑");
+      setPasswordMessage("숫자+영문자+특수문자[8글자↑]");
       setIsPassword(false);
     } else {
       setPasswordMessage("비밀번호 보안 높음");
@@ -120,7 +120,7 @@ const SignUp = () => {
         setPassword2Message("비밀번호 입력 일치");
         setIsPassword2(true);
       } else {
-        setPassword2Message("비밀번호가 입력 불일치");
+        setPassword2Message("비밀번호 입력 불일치");
         setIsPassword2(false);
       }
     },
@@ -218,7 +218,7 @@ const SignUp = () => {
               type="password"
               id="password"
               name="password"
-              label="비밀번호 (숫자+영문자+특수문자 8자리 이상)"
+              label="비밀번호"
               sx={{ marginTop: 2 }}
               onChange={onChangePassword1}
               error={password !== "" && !isPassword}
@@ -235,13 +235,14 @@ const SignUp = () => {
               id="password2"
               name="password2"
               label="비밀번호 확인"
-              sx={{ marginTop: 2, marginBottom: 3 }}
+              sx={{ marginTop: 2 }}
               onChange={onChangePassword2}
               error={password2 !== "" && !isPassword2}
             />
             <FormHelperPWCF ispassword2={isPassword2 ? "true" : "false"}>
               {password2Message}
             </FormHelperPWCF>
+            <br />
             <PrimaryBtn btnName={"등록"} type="submit"></PrimaryBtn>
           </FormControl>
         </Box>

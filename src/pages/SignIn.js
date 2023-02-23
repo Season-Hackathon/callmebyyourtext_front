@@ -11,12 +11,14 @@ import { CursorText, Wrapper } from "../components/Styled";
 const SignIn = () => {
   // State-------------------------------------------------------------------
   const navigate = useNavigate();
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const { setIsLoggedIn } = useContext(AuthContext);
+  const userId = localStorage.getItem("id");
+  const auth = localStorage.getItem("auth");
   useEffect(() => {
-    if (isLoggedIn) {
-      navigate("/", { replace: true });
+    if (auth) {
+      navigate(`/mypage/${userId}`, { replace: true });
     }
-  }, [isLoggedIn]);
+  }, [auth]);
 
   // Input 관리--------------------------------------------------------------
   const [inputs, setInputs] = useState({
@@ -49,7 +51,7 @@ const SignIn = () => {
         localStorage.setItem("name", response.data.name);
         localStorage.setItem("token", response.data.token);
         alert("로그인되었습니다.");
-        navigate("/question", { replace: true });
+        navigate(`/mypage/${response.data.id}`, { replace: true });
       })
       .catch((error) => {
         if (error.response.status === 400) {

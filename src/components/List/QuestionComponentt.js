@@ -1,25 +1,56 @@
-import { Box } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import ListBtn from "../Button/ListBtn";
-import { DeleteText } from "../Styled";
+import { Link } from "react-router-dom";
 
-const QuestionComponent = ({ question, questionId, comments }) => {
-  // 모달 관리
-  const [open, setOpen] = useState(false);
-  const modalOpen = () => setOpen(true);
-  const modalClose = () => setOpen(false);
-  // 질문 관리
-  const deleteQuestion = () => {
-    window.confirm("해당 질문을 삭제하시겠습니까?");
-  };
-
+const QuestionComponent = ({ question, questionId, writer }) => {
   return (
     <>
-      <ListBtn btnName={question} onClick={modalOpen}>
-        <Box sx={{ position: "absolute", right: 0, top: 0 }}>
-          <DeleteText onClick={deleteQuestion}>삭제</DeleteText>
+      <Link
+        to={`/question/${questionId}`}
+        state={{ questionId, question, writer }}
+      >
+        <ListBtn btnName={question}></ListBtn>
+      </Link>
+      {/* <Modal
+        open={open}
+        onClose={modalClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={modalStyle}>
+          <Box
+            id="modal-modal-description"
+            sx={{
+              mt: 2,
+              fontSize: 16,
+              fontFamily: "Noto Sans KR Black",
+              borderBottom: `1px solid ${primaryColor}`,
+              marginBottom: 3,
+              paddingBottom: 1,
+              position: "relative",
+            }}
+          >
+            <SmallImg src={HeartLogo} /> {question}
+            <Typography sx={{ position: "absolute", top: 0, right: 0 }}>
+              <DeleteText onClick={deleteQuestion}>삭제</DeleteText>
+            </Typography>
+          </Box>
+          <Typography
+            id="modal-modal-description"
+            sx={{
+              mt: 2,
+              fontSize: 13,
+              fontFamily: "Noto Sans KR Black",
+              opacity: "75%",
+              textAlign: "right",
+              transition: "0.5s",
+              "&:hover": {
+                color: `${primaryColor}`,
+              },
+            }}
+          ></Typography>
         </Box>
-      </ListBtn>
+      </Modal> */}
       <br />
     </>
   );

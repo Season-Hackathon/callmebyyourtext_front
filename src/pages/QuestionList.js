@@ -25,11 +25,10 @@ import PrimaryBtn from "../components/Button/PrimaryBtn";
 //     ],
 //   },
 
-const QuestionList = ({ questionId, questionText, questionAnswer }) => {
+const QuestionList = () => {
   // 변수 관리
   const navigate = useNavigate();
   const userName = localStorage.getItem("name");
-  const { isLoggedIn } = useContext(AuthContext);
   const userId = localStorage.getItem("id");
   const goToCreateQuestion = () => {
     navigate(`/createquestion/${userId}`);
@@ -49,6 +48,7 @@ const QuestionList = ({ questionId, questionText, questionAnswer }) => {
       setQuestionArray(getQuestionData.data);
     } catch (error) {
       console.log(error);
+      alert("데이터를 가져오는데 실패했습니다.");
     }
   };
   useEffect(() => {
@@ -60,7 +60,12 @@ const QuestionList = ({ questionId, questionText, questionAnswer }) => {
       .slice(0)
       .reverse()
       ?.map((q) => (
-        <QuestionComponent key={q.id} questionId={q.id} question={q.question} />
+        <QuestionComponent
+          key={q.id}
+          questionId={q.id}
+          question={q.question}
+          writer={q.writer}
+        />
       )),
   ];
 
