@@ -1,17 +1,30 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import { DeleteText, SmallImg } from "../Styled";
+import { CursorText, DeleteText, SmallImg } from "../Styled";
 import HeartLogo from "../../assets/images/inputId.png";
 import { primaryColor } from "../../styles/GlobalStyle";
+import axios from "axios";
 
-const Answer = ({ questionId, questionText, questionAnswer }) => {
-  const deleteQuestion = () => {
-    window.confirm("해당 질문을 삭제하시겠습니까?");
+const Answer = ({ questionId, questionText, commentId }) => {
+  const openAnswer = ({ commentId }) => {
+    if (window.confirm("50포인트를 소모하여 해당 답변을 확인하시겠습니까?")) {
+      axios
+        .post(
+          `http://127.0.0.1:8000/questions/${questionId}/comments/${commentId}`
+        )
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      return;
+    }
   };
   return (
     <>
       <Box
-        id="modal-modal-description"
         sx={{
           mt: 3,
           fontSize: 16,
@@ -19,24 +32,12 @@ const Answer = ({ questionId, questionText, questionAnswer }) => {
           borderBottom: `1px solid ${primaryColor}`,
           marginBottom: 1,
           paddingBottom: 0.5,
-          position: "relative",
         }}
       >
-        <SmallImg src={HeartLogo} /> {questionText}
-        <Box sx={{ position: "absolute", right: 0, top: 0 }}>
-          <DeleteText onClick={deleteQuestion}>삭제</DeleteText>
-        </Box>
+        <SmallImg src={HeartLogo} />
+        <CursorText onClick={openAnswer}> 익명의 답변 : </CursorText>
+        {questionText}
       </Box>
-      <Typography
-        id="modal-modal-description"
-        sx={{
-          fontSize: 13,
-          fontFamily: "Noto Sans KR Black",
-          opacity: "75%",
-        }}
-      >
-        {questionAnswer}
-      </Typography>
     </>
   );
 };
