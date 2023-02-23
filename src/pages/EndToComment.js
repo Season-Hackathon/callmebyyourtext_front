@@ -32,7 +32,7 @@ export default function EndToComment() {
         onClickBottom={() => {
           console.log(20);
           setOpen(false);
-          navigate("/loadingtologinforcomment");
+          navigate("/");
         }}
       />
     </Wrapper>
