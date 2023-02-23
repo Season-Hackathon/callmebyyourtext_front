@@ -20,6 +20,7 @@ const QuestionComponent = ({ question, questionId, comments }) => {
           <DeleteText onClick={deleteQuestion}>삭제</DeleteText>
         </Box>
       </ListBtn>
+      <br />
     </>
   );
 };

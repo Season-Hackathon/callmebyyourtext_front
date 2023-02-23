@@ -23,9 +23,13 @@ const CreateQuestion = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .post("http://127.0.0.1:8000/questions", question)
+      .post("http://127.0.0.1:8000/questions", question, {
+        withCredentials: true,
+        headers: {
+          Authorization: `token ${Token}`,
+        },
+      })
       .then((response) => {
-        axios.defaults.headers.common["Authorization"] = Token;
         console.log(response);
         navigate(`/questionlist/${Id}`);
       })

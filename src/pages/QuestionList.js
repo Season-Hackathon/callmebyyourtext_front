@@ -11,35 +11,40 @@ import {
 } from "../styles/GlobalStyle";
 import QuestionComponent from "../components/List/QuestionComponentt";
 import axios from "axios";
+import PrimaryBtn from "../components/Button/PrimaryBtn";
+
+// 질문 관리(예시)
+// const questionArray = [
+//   {
+//     id: 1,
+//     question: "test question1",
+//     writer: "amin1",
+//     comments: [
+//       { id: 1, comment: "hello" },
+//       { id: 2, comment: "how" },
+//     ],
+//   },
 
 const QuestionList = ({ questionId, questionText, questionAnswer }) => {
   // 변수 관리
   const navigate = useNavigate();
   const userName = localStorage.getItem("name");
   const { isLoggedIn } = useContext(AuthContext);
-  const Id = localStorage.getItem("id");
+  const userId = localStorage.getItem("id");
+  const goToCreateQuestion = () => {
+    navigate(`/createquestion/${userId}`);
+  };
 
   // 모달 관리
   const [open, setOpen] = useState(false);
   const modalOpen = () => setOpen(true);
   const modalClose = () => setOpen(false);
 
-  // 질문 관리(예시)
-  // const questionArray = [
-  //   {
-  //     id: 1,
-  //     question: "test question1",
-  //     writer: "amin1",
-  //     comments: [
-  //       { id: 1, comment: "hello" },
-  //       { id: 2, comment: "how" },
-  //     ],
-  //   },
   const [questionArray, setQuestionArray] = useState([]);
   const fetchComment = async () => {
     try {
       const getQuestionData = await axios.get(
-        `http://127.0.0.1:8000/${Id}/questionList`
+        `http://127.0.0.1:8000/${userId}/questionList`
       );
       setQuestionArray(getQuestionData.data);
     } catch (error) {
@@ -50,7 +55,14 @@ const QuestionList = ({ questionId, questionText, questionAnswer }) => {
     fetchComment();
   }, []);
 
-  const questionList = [questionArray?.map((q) => <QuestionComponent />)];
+  const questionList = [
+    questionArray
+      .slice(0)
+      .reverse()
+      ?.map((q) => (
+        <QuestionComponent key={q.id} questionId={q.id} question={q.question} />
+      )),
+  ];
 
   return (
     <>
@@ -82,6 +94,12 @@ const QuestionList = ({ questionId, questionText, questionAnswer }) => {
               }}
             >
               등록된 질문이 없습니다.
+              <br />
+              <br />
+              <PrimaryBtn
+                btnName={"질문 만들기"}
+                onClick={goToCreateQuestion}
+              ></PrimaryBtn>
             </Typography>
           ) : (
             [...questionList]
