@@ -1,6 +1,10 @@
 import { Typography, Box, Modal } from "@mui/material";
 import React, { useContext, useState } from "react";
-import { pointColor, primaryColor } from "../styles/GlobalStyle";
+import {
+  pointColor,
+  primaryColor,
+  secondaryColor,
+} from "../styles/GlobalStyle";
 import Typewriter from "typewriter-effect";
 import PrimaryBtn from "../components/Button/PrimaryBtn";
 import HeartLogo from "../assets/images/inputId.png";
@@ -13,13 +17,17 @@ import {
   SmallImg,
   Wrapper,
 } from "../components/Styled";
+import Title from "../components/Title/Title";
 
-const MyPage = ({ props }) => {
+const MyPage = () => {
   // 변수 관리
   const navigate = useNavigate();
   const userId = localStorage.getItem("id");
   const userName = localStorage.getItem("name");
   const { setIsLoggedIn } = useContext(AuthContext);
+  const goToHome = () => {
+    navigate("/");
+  };
 
   // 모달 관리
   const [open, setOpen] = useState(false);
@@ -49,15 +57,20 @@ const MyPage = ({ props }) => {
 
   return (
     <>
+      <Title onClick={goToHome} />
       <Typography
-        variant="h5"
+        variant="h6"
         sx={{
-          color: `${pointColor}`,
-          borderBottom: `1px solid ${primaryColor}`,
-          marginBottom: "30%",
+          color: `${secondaryColor}`,
+          marginBottom: "10%",
+          fontFamily: "Noto Sans KR Black",
+          fontSize: "14px",
+          fontWeight: "600",
+          textAlign: "center",
         }}
       >
-        <SmallImg src={TitleLogo} /> {userName}님의 페이지
+        <SmallImg src={TitleLogo} /> {userName}님의 페이지{" "}
+        <SmallImg src={TitleLogo} />
       </Typography>
       <Wrapper>
         <Box
@@ -65,10 +78,16 @@ const MyPage = ({ props }) => {
             whiteSpace: "pre-wrap",
             fontSize: "13px",
             fontWeight: "600",
-            minHeight: "15vh",
+            textAlign: "center",
+            minWidth: "250px",
+            minHeight: "11vh",
             lineHeight: "1.5",
             color: `${pointColor}`,
             marginBottom: 5,
+            borderTop: `1px dashed ${primaryColor}`,
+            borderBottom: `1px dashed ${primaryColor}`,
+            borderRadius: 3,
+            padding: 3,
           }}
         >
           <Typewriter
@@ -103,8 +122,10 @@ const MyPage = ({ props }) => {
             id="modal-modal-description"
             sx={{
               mt: 2,
-              fontSize: 16,
+              fontSize: 14,
+              fontWeight: 700,
               fontFamily: "Noto Sans KR Black",
+              color: `${secondaryColor}`,
               borderBottom: `1px solid ${primaryColor}`,
               marginBottom: 3,
               cursor: "pointer",
@@ -121,8 +142,10 @@ const MyPage = ({ props }) => {
             id="modal-modal-description"
             sx={{
               mt: 2,
-              fontSize: 16,
+              fontSize: 14,
+              fontWeight: 700,
               fontFamily: "Noto Sans KR Black",
+              color: `${secondaryColor}`,
               borderBottom: `1px solid ${primaryColor}`,
               marginBottom: 3,
               cursor: "pointer",
@@ -139,8 +162,10 @@ const MyPage = ({ props }) => {
             id="modal-modal-description"
             sx={{
               mt: 2,
-              fontSize: 13,
+              fontSize: 12,
+              fontWeight: 700,
               fontFamily: "Noto Sans KR Black",
+              color: `${secondaryColor}`,
               opacity: "75%",
               textAlign: "right",
               transition: "0.5s",

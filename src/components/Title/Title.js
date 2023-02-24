@@ -6,8 +6,10 @@ const TitleText = styled.p`
   font-family: "Noto Sans KR Black";
   font-style: italic;
   font-size: 1.5rem;
+  text-align: center;
   color: ${primaryColor};
   margin-bottom: 0;
+  cursor: pointer;
 `;
 
 const Bold = styled.span`
@@ -15,10 +17,10 @@ const Bold = styled.span`
   font-weight: 900;
 `;
 
-const Title = () => {
+const Title = ({ onClick }) => {
   return (
     <>
-      <TitleText>
+      <TitleText onClick={onClick}>
         Call me by your <Bold>TEXT</Bold>
       </TitleText>
     </>

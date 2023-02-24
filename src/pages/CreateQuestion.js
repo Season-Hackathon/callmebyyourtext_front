@@ -1,16 +1,24 @@
 import { Typography, Box, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { SmallImg, Wrapper } from "../components/Styled";
-import { pointColor, primaryColor } from "../styles/GlobalStyle";
+import {
+  pointColor,
+  primaryColor,
+  secondaryColor,
+} from "../styles/GlobalStyle";
 import TitleLogo from "../assets/images/titleLogo.png";
 import { useNavigate } from "react-router-dom";
 import PrimaryBtn from "../components/Button/PrimaryBtn";
 import axios from "axios";
+import Title from "../components/Title/Title";
 
 const CreateQuestion = () => {
   const navigate = useNavigate();
   const userName = localStorage.getItem("name");
   const [question, setQuestion] = useState("");
+  const goToHome = () => {
+    navigate("/");
+  };
   const onChange = (e) => {
     const { name, value } = e.target;
     setQuestion({
@@ -41,12 +49,16 @@ const CreateQuestion = () => {
   return (
     <>
       <Wrapper>
+        <Title onClick={goToHome} />
         <Typography
-          variant="h5"
+          variant="h6"
           sx={{
-            color: `${pointColor}`,
-            borderBottom: `1px solid ${primaryColor}`,
-            marginBottom: "30%",
+            color: `${secondaryColor}`,
+            marginBottom: "10%",
+            fontFamily: "Noto Sans KR Black",
+            fontSize: "14px",
+            fontWeight: "600",
+            textAlign: "center",
           }}
         >
           <SmallImg src={TitleLogo} /> {userName}님의 질문 만들기

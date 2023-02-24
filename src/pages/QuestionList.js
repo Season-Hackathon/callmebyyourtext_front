@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import { useNavigate, useParams } from "react-router-dom";
 import TitleLogo from "../assets/images/titleLogo.png";
 import { modalStyle, SmallImg, Wrapper } from "../components/Styled";
 import { Box, Modal, Typography } from "@mui/material";
@@ -12,24 +11,14 @@ import {
 import QuestionComponent from "../components/List/QuestionComponentt";
 import axios from "axios";
 import PrimaryBtn from "../components/Button/PrimaryBtn";
-
-// 질문 관리(예시)
-// const questionArray = [
-//   {
-//     id: 1,
-//     question: "test question1",
-//     writer: "amin1",
-//     comments: [
-//       { id: 1, comment: "hello" },
-//       { id: 2, comment: "how" },
-//     ],
-//   },
+import ListBtn from "../components/Button/ListBtn";
 
 const QuestionList = () => {
   // 변수 관리
   const navigate = useNavigate();
   const userName = localStorage.getItem("name");
   const userId = localStorage.getItem("id");
+  const accessId = useParams();
   const goToCreateQuestion = () => {
     navigate(`/createquestion/${userId}`);
   };
@@ -48,7 +37,9 @@ const QuestionList = () => {
       setQuestionArray(getQuestionData.data);
     } catch (error) {
       console.log(error);
-      alert("데이터를 가져오는데 실패했습니다.");
+      alert("데이터를 가져오는데 실패했습니다. 다시 로그인해주세요.");
+      localStorage.clear();
+      navigate("/signin");
     }
   };
   useEffect(() => {
@@ -56,17 +47,14 @@ const QuestionList = () => {
   }, []);
 
   const questionList = [
-    questionArray
-      .slice(0)
-      .reverse()
-      ?.map((q) => (
-        <QuestionComponent
-          key={q.id}
-          questionId={q.id}
-          question={q.question}
-          writer={q.writer}
-        />
-      )),
+    questionArray?.map((q) => (
+      <QuestionComponent
+        key={q.id}
+        questionId={q.id}
+        question={q.question}
+        writer={q.writer}
+      />
+    )),
   ];
 
   return (
@@ -87,6 +75,8 @@ const QuestionList = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            maxHeight: "45vh",
+            overflowY: "auto",
           }}
         >
           {questionArray.length === 0 ? (
@@ -107,7 +97,15 @@ const QuestionList = () => {
               ></PrimaryBtn>
             </Typography>
           ) : (
-            [...questionList]
+            [
+              <ListBtn
+                btnName={"+"}
+                onClick={goToCreateQuestion}
+                key={userId}
+              />,
+              <br key="enter" />,
+              ...questionList,
+            ]
           )}
         </Box>
       </Wrapper>

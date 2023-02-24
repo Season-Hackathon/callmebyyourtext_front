@@ -35,7 +35,6 @@ const App = () => {
     if (JSON.parse(localStorage.getItem("auth")) === true) {
       setIsLoggedIn(true);
     }
-    console.log(isLoggedIn);
   }, [isLoggedIn]);
   return (
     <>
@@ -54,7 +53,7 @@ const App = () => {
           <Route path="/" element={<Home />}></Route>
           <Route path="/signin" element={<SignIn />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
-          <Route path="/question/:writerId" element={<Question />}></Route>
+          <Route path="/question/:questionId" element={<Question />}></Route>
           <Route
             path="/questionlist/:userId"
             element={<QuestionList />}

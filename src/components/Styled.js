@@ -25,16 +25,6 @@ export const QuestionBox = styled.section`
   padding: 20px;
 `;
 
-export const LogIn = styled.p`
-  font-size: 14px;
-  position: fixed;
-  top: 3px;
-  right: 13px;
-  color: ${primaryColor};
-  cursor: pointer;
-  display: ${Auth ? "none" : "inline-block"};
-`;
-
 export const MyPage = styled.img`
   width: auto;
   height: auto;
@@ -66,7 +56,7 @@ export const Img = styled.img`
 `;
 
 export const SmallImg = styled.img`
-  width: 20px;
+  width: 16px;
 `;
 
 export const SubTitle = styled.p`
@@ -81,6 +71,8 @@ export const Bracket = styled.span`
 `;
 
 export const DeleteText = styled.span`
+  position: absolute;
+  right: 0;
   font-size: 12px;
   opacity: 50%;
   cursor: pointer;

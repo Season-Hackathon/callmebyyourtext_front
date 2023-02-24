@@ -7,9 +7,13 @@ const QuestionComponent = ({ question, questionId, writer }) => {
     <>
       <Link
         to={`/question/${questionId}`}
-        state={{ questionId, question, writer }}
+        state={{ question, questionId, writer }}
       >
-        <ListBtn btnName={question}></ListBtn>
+        <ListBtn
+          btnName={
+            question.length > 25 ? question.slice(0, 25) + "..." : question
+          }
+        ></ListBtn>
       </Link>
       {/* <Modal
         open={open}
