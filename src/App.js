@@ -35,7 +35,6 @@ const App = () => {
     if (JSON.parse(localStorage.getItem("auth")) === true) {
       setIsLoggedIn(true);
     }
-    console.log(isLoggedIn);
   }, [isLoggedIn]);
   return (
     <>
