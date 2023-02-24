@@ -25,16 +25,6 @@ export const QuestionBox = styled.section`
   padding: 20px;
 `;
 
-export const LogIn = styled.p`
-  font-size: 14px;
-  position: fixed;
-  top: 3px;
-  right: 13px;
-  color: ${primaryColor};
-  cursor: pointer;
-  display: ${Auth ? "none" : "inline-block"};
-`;
-
 export const MyPage = styled.img`
   width: auto;
   height: auto;
