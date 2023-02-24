@@ -7,7 +7,7 @@ const QuestionComponent = ({ question, questionId, writer }) => {
     <>
       <Link
         to={`/question/${questionId}`}
-        state={{ questionId, question, writer }}
+        state={{ question, questionId, writer }}
       >
         <ListBtn
           btnName={

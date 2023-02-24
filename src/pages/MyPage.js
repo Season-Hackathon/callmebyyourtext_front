@@ -1,6 +1,10 @@
 import { Typography, Box, Modal } from "@mui/material";
 import React, { useContext, useState } from "react";
-import { pointColor, primaryColor } from "../styles/GlobalStyle";
+import {
+  pointColor,
+  primaryColor,
+  secondaryColor,
+} from "../styles/GlobalStyle";
 import Typewriter from "typewriter-effect";
 import PrimaryBtn from "../components/Button/PrimaryBtn";
 import HeartLogo from "../assets/images/inputId.png";
@@ -13,6 +17,7 @@ import {
   SmallImg,
   Wrapper,
 } from "../components/Styled";
+import Title from "../components/Title/Title";
 
 const MyPage = () => {
   // 변수 관리
@@ -49,15 +54,20 @@ const MyPage = () => {
 
   return (
     <>
+      <Title />
       <Typography
-        variant="h5"
+        variant="h6"
         sx={{
-          color: `${pointColor}`,
-          borderBottom: `1px solid ${primaryColor}`,
-          marginBottom: "30%",
+          color: `${secondaryColor}`,
+          marginBottom: "10%",
+          fontFamily: "Noto Sans KR Black",
+          fontSize: "14px",
+          fontWeight: "600",
+          textAlign: "center",
         }}
       >
-        <SmallImg src={TitleLogo} /> {userName}님의 페이지
+        <SmallImg src={TitleLogo} /> {userName}님의 페이지{" "}
+        <SmallImg src={TitleLogo} />
       </Typography>
       <Wrapper>
         <Box
@@ -65,10 +75,16 @@ const MyPage = () => {
             whiteSpace: "pre-wrap",
             fontSize: "13px",
             fontWeight: "600",
+            textAlign: "center",
+            minWidth: "250px",
             minHeight: "15vh",
             lineHeight: "1.5",
             color: `${pointColor}`,
             marginBottom: 5,
+            borderTop: `1px dashed ${primaryColor}`,
+            borderBottom: `1px dashed ${primaryColor}`,
+            borderRadius: 3,
+            padding: 3,
           }}
         >
           <Typewriter

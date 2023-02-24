@@ -56,7 +56,7 @@ export const Img = styled.img`
 `;
 
 export const SmallImg = styled.img`
-  width: 20px;
+  width: 16px;
 `;
 
 export const SubTitle = styled.p`

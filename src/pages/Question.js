@@ -24,7 +24,7 @@ const Question = () => {
   const Auth = localStorage.getItem("auth");
   const Token = localStorage.getItem("token");
   const [comments, setComments] = useState({
-    question: questionId,
+    questionId,
     comment: "",
   });
 
