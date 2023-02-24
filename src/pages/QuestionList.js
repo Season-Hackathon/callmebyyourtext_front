@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
 import TitleLogo from "../assets/images/titleLogo.png";
 import { modalStyle, SmallImg, Wrapper } from "../components/Styled";
 import { Box, Modal, Typography } from "@mui/material";
@@ -12,18 +11,6 @@ import {
 import QuestionComponent from "../components/List/QuestionComponentt";
 import axios from "axios";
 import PrimaryBtn from "../components/Button/PrimaryBtn";
-
-// 질문 관리(예시)
-// const questionArray = [
-//   {
-//     id: 1,
-//     question: "test question1",
-//     writer: "amin1",
-//     comments: [
-//       { id: 1, comment: "hello" },
-//       { id: 2, comment: "how" },
-//     ],
-//   },
 
 const QuestionList = () => {
   // 변수 관리

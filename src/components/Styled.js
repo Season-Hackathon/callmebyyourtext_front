@@ -81,6 +81,8 @@ export const Bracket = styled.span`
 `;
 
 export const DeleteText = styled.span`
+  position: absolute;
+  right: 0;
   font-size: 12px;
   opacity: 50%;
   cursor: pointer;

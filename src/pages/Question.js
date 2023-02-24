@@ -94,8 +94,19 @@ const Question = () => {
       <LogIn onClick={goToSignIn}>로그인</LogIn>
       <MyPage src={Menu} onClick={goToMyPage} />
       <Wrapper>
-        <Header>{writer}님의 질문입니다.</Header>
-        <DeleteText onClick={deleteQuestion}>삭제</DeleteText>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "relative",
+            width: "100%",
+            marginBottom: 1,
+          }}
+        >
+          <Header>{writer}님의 질문입니다.</Header>
+          <DeleteText onClick={deleteQuestion}>삭제</DeleteText>
+        </Box>
         <QuestionBox>{question}</QuestionBox>
         <TextField
           variant="outlined"
