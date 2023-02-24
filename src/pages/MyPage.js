@@ -119,8 +119,10 @@ const MyPage = () => {
             id="modal-modal-description"
             sx={{
               mt: 2,
-              fontSize: 16,
+              fontSize: 14,
+              fontWeight: 700,
               fontFamily: "Noto Sans KR Black",
+              color: `${secondaryColor}`,
               borderBottom: `1px solid ${primaryColor}`,
               marginBottom: 3,
               cursor: "pointer",
@@ -137,8 +139,10 @@ const MyPage = () => {
             id="modal-modal-description"
             sx={{
               mt: 2,
-              fontSize: 16,
+              fontSize: 14,
+              fontWeight: 700,
               fontFamily: "Noto Sans KR Black",
+              color: `${secondaryColor}`,
               borderBottom: `1px solid ${primaryColor}`,
               marginBottom: 3,
               cursor: "pointer",
@@ -155,8 +159,10 @@ const MyPage = () => {
             id="modal-modal-description"
             sx={{
               mt: 2,
-              fontSize: 13,
+              fontSize: 12,
+              fontWeight: 700,
               fontFamily: "Noto Sans KR Black",
+              color: `${secondaryColor}`,
               opacity: "75%",
               textAlign: "right",
               transition: "0.5s",
