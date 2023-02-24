@@ -36,7 +36,9 @@ const QuestionList = () => {
       setQuestionArray(getQuestionData.data);
     } catch (error) {
       console.log(error);
-      alert("데이터를 가져오는데 실패했습니다.");
+      alert("데이터를 가져오는데 실패했습니다. 다시 로그인해주세요.");
+      localStorage.clear();
+      navigate("/signin");
     }
   };
   useEffect(() => {
