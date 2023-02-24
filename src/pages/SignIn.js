@@ -54,7 +54,8 @@ const SignIn = () => {
         navigate(`/mypage/${response.data.id}`, { replace: true });
       })
       .catch((error) => {
-        if (error.response.status === 400) {
+        console.log(error);
+        if (error.response.status === 400 || 500) {
           alert("잘못된 정보입니다. 다시 시도해주세요.");
         }
       });

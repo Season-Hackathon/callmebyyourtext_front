@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { primaryColor } from "../styles/GlobalStyle";
 import { useLocation, useNavigate } from "react-router-dom";
 import PrimaryBtn from "../components/Button/PrimaryBtn";
@@ -15,10 +15,21 @@ import {
 import axios from "axios";
 
 const Question = () => {
+  // const fetchData = async () => {
+  //   try {
+  //     const questionData = await axios.get(`http://127.0.0.1:8000/questions`);
+  //     console.log(questionData);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
   // 변수 관리---------------------------------------------------------
   const navigate = useNavigate();
   const location = useLocation();
-  const { questionId, question, writer } = location.state;
+  const { question, questionId, writer } = location.state;
   const { isLoggedIn } = useContext(AuthContext);
   const userId = localStorage.getItem("id");
   const Auth = localStorage.getItem("auth");

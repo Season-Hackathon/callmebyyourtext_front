@@ -26,7 +26,7 @@ const CreateQuestion = () => {
     });
   };
   const Token = localStorage.getItem("token");
-  const Id = localStorage.getItem("id");
+  const userId = localStorage.getItem("id");
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -39,7 +39,7 @@ const CreateQuestion = () => {
       })
       .then((response) => {
         console.log(response);
-        navigate(`/questionlist/${Id}`);
+        navigate(`/questionlist/${userId}`);
       })
       .catch((error) => {
         console.log(error);
