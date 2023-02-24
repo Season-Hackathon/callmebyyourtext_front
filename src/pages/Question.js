@@ -46,16 +46,19 @@ const Question = () => {
   // 질문 관리
   const deleteQuestion = async () => {
     if (window.confirm("해당 질문을 삭제하시겠습니까?")) {
-      try {
-        await axios.delete(`http://127.0.0.1:8000/questions/${questionId}`, {
+      await axios
+        .delete(`http://127.0.0.1:8000/questions/${questionId}`, {
           withCredentials: true,
           headers: {
             Authorization: `token ${Token}`,
           },
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
         });
-      } catch (error) {
-        console.log(error);
-      }
     } else {
       return;
     }

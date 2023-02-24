@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import TitleLogo from "../assets/images/titleLogo.png";
 import { modalStyle, SmallImg, Wrapper } from "../components/Styled";
 import { Box, Modal, Typography } from "@mui/material";
@@ -17,6 +17,7 @@ const QuestionList = () => {
   const navigate = useNavigate();
   const userName = localStorage.getItem("name");
   const userId = localStorage.getItem("id");
+  const accessId = useParams();
   const goToCreateQuestion = () => {
     navigate(`/createquestion/${userId}`);
   };
@@ -74,6 +75,8 @@ const QuestionList = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            maxHeight: "45vh",
+            overflowY: "auto",
           }}
         >
           {questionArray.length === 0 ? (
