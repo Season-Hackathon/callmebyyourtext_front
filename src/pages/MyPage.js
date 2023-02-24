@@ -25,6 +25,9 @@ const MyPage = () => {
   const userId = localStorage.getItem("id");
   const userName = localStorage.getItem("name");
   const { setIsLoggedIn } = useContext(AuthContext);
+  const goToHome = () => {
+    navigate("/");
+  };
 
   // 모달 관리
   const [open, setOpen] = useState(false);
@@ -54,7 +57,7 @@ const MyPage = () => {
 
   return (
     <>
-      <Title />
+      <Title onClick={goToHome} />
       <Typography
         variant="h6"
         sx={{
