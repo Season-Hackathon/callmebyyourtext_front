@@ -80,6 +80,7 @@ export default function ForEnterComment() {
   // 첫번째 답변등록 toggle로 사용
   const toggleAddComment = () => {
     setAddComment(!addComment);
+    setInputText("");
     setButtonText(addComment ? "답변등록" : "돌아가기");
   };
 
