@@ -5,6 +5,7 @@ import { primaryColor } from "../../styles/GlobalStyle";
 const Button = styled.button`
   width: 250px;
   height: 35px;
+  min-height: 35px;
   border: 1px solid ${primaryColor};
   color: ${primaryColor};
   background-color: transparent;

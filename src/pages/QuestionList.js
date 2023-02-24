@@ -11,6 +11,7 @@ import {
 import QuestionComponent from "../components/List/QuestionComponentt";
 import axios from "axios";
 import PrimaryBtn from "../components/Button/PrimaryBtn";
+import ListBtn from "../components/Button/ListBtn";
 
 const QuestionList = () => {
   // 변수 관리
@@ -46,17 +47,14 @@ const QuestionList = () => {
   }, []);
 
   const questionList = [
-    questionArray
-      .slice(0)
-      .reverse()
-      ?.map((q) => (
-        <QuestionComponent
-          key={q.id}
-          questionId={q.id}
-          question={q.question}
-          writer={q.writer}
-        />
-      )),
+    questionArray?.map((q) => (
+      <QuestionComponent
+        key={q.id}
+        questionId={q.id}
+        question={q.question}
+        writer={q.writer}
+      />
+    )),
   ];
 
   return (
@@ -99,7 +97,15 @@ const QuestionList = () => {
               ></PrimaryBtn>
             </Typography>
           ) : (
-            [...questionList]
+            [
+              <ListBtn
+                btnName={"+"}
+                onClick={goToCreateQuestion}
+                key={userId}
+              />,
+              <br key="enter" />,
+              ...questionList,
+            ]
           )}
         </Box>
       </Wrapper>
