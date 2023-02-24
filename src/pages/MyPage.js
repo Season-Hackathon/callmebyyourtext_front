@@ -77,7 +77,7 @@ const MyPage = () => {
             fontWeight: "600",
             textAlign: "center",
             minWidth: "250px",
-            minHeight: "15vh",
+            minHeight: "11vh",
             lineHeight: "1.5",
             color: `${pointColor}`,
             marginBottom: 5,
