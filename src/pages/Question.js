@@ -4,11 +4,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import PrimaryBtn from "../components/Button/PrimaryBtn";
 import Menu from "../assets/images/menu.png";
 import { AuthContext } from "../context/AuthContext";
-import { Box, TextField } from "@mui/material";
+import { Box, TextField, Typography } from "@mui/material";
 import {
   DeleteText,
   Header,
-  LogIn,
   MyPage,
   QuestionBox,
   Wrapper,
@@ -22,6 +21,7 @@ const Question = () => {
   const { questionId, question, writer } = location.state;
   const { isLoggedIn } = useContext(AuthContext);
   const userId = localStorage.getItem("id");
+  const Auth = localStorage.getItem("auth");
   const Token = localStorage.getItem("token");
   const [comments, setComments] = useState({
     question: questionId,
@@ -94,7 +94,21 @@ const Question = () => {
   };
   return (
     <>
-      <LogIn onClick={goToSignIn}>로그인</LogIn>
+      <Typography
+        sx={{
+          fontSize: "12px",
+          fontWeight: "800",
+          position: "fixed",
+          top: "3px",
+          right: "13px",
+          color: `${primaryColor}`,
+          cursor: "pointer",
+          display: `${Auth ? "none" : "inlineBlock"}`,
+        }}
+        onClick={goToSignIn}
+      >
+        로그인
+      </Typography>
       <MyPage src={Menu} onClick={goToMyPage} />
       <Wrapper>
         <Box
