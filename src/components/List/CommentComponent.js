@@ -29,12 +29,13 @@ const CommentComponent = ({ questionId, comment }) => {
       <Typography
         variant="h6"
         sx={{
+          width: "100%",
           color: `${secondaryColor}`,
           marginBottom: "10%",
           fontFamily: "Noto Sans KR Black",
           fontSize: "14px",
           fontWeight: "600",
-          textAlign: "center",
+          textAlign: "left",
         }}
       >
         <SmallImg src={TitleLogo} /> {comment}

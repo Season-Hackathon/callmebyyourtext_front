@@ -159,17 +159,18 @@ const Question = () => {
         </Box>
         <QuestionBox>{question}</QuestionBox>
         {/* {writer === userName ? "사용자 접근" : "다른 사용자 접근"} */}
-        {commentsArray.length === 0 ? <Typography
-          sx={{
-            fontSize: "14px",
-            fontWeight: "700",
-            textAlign: "center",
-            color: `${secondaryColor}`,
-          }}
-        >
-          등록된 답변이 없습니다.
-        </Typography> : [...commentsList]}
-
+        <Box sx={{ overflowY: "auto", width: "100%", maxHeight: "40vh" }}>
+          {commentsArray.length === 0 ? <Typography
+            sx={{
+              fontSize: "14px",
+              fontWeight: "700",
+              textAlign: "center",
+              color: `${secondaryColor}`,
+            }}
+          >
+            등록된 답변이 없습니다.
+          </Typography> : [...commentsList]}
+        </Box>
         {/* <TextField
           variant="outlined"
           autoFocus
