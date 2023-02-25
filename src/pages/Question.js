@@ -14,6 +14,7 @@ import {
 } from "../components/Styled";
 import axios from "axios";
 import CommentComponent from './../components/List/CommentComponent';
+import { display } from "@mui/system";
 
 const Question = () => {
   // 변수 관리---------------------------------------------------------
@@ -28,7 +29,7 @@ const Question = () => {
   const [comments, setComments] = useState({
     questionId,
     comment: "",
-    anonymous: false,
+    anonymous: true,
   });
 
   // 함수 관리---------------------------------------------------------
@@ -61,6 +62,7 @@ const Question = () => {
         })
         .then((response) => {
           console.log(response);
+          navigate(`/questionlist/${userId}`);
         })
         .catch((error) => {
           console.log(error);
@@ -155,7 +157,7 @@ const Question = () => {
           }}
         >
           <Header>{writer}님의 질문입니다.</Header>
-          <DeleteText onClick={deleteQuestion}>삭제</DeleteText>
+          {writer === userName ? <DeleteText onClick={deleteQuestion}>삭제</DeleteText> : ""}
         </Box>
         <QuestionBox>{question}</QuestionBox>
         {/* {writer === userName ? "사용자 접근" : "다른 사용자 접근"} */}
