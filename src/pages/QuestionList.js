@@ -12,14 +12,15 @@ import axios from "axios";
 import PrimaryBtn from "../components/Button/PrimaryBtn";
 import ListBtn from "../components/Button/ListBtn";
 import QuestionComponent from "../components/List/QuestionComponent";
-import { GoToCreateQuestion } from "../components/Paginations/paginations";
 
 const QuestionList = () => {
   // 변수 관리
   const navigate = useNavigate();
   const userName = localStorage.getItem("name");
   const userId = localStorage.getItem("id");
-  const accessId = useParams();
+  const goToCreateQuestion = () => {
+    navigate(`/createquestion/${userId}`);
+  };
 
   // 모달 관리
   const [open, setOpen] = useState(false);
@@ -27,7 +28,7 @@ const QuestionList = () => {
   const modalClose = () => setOpen(false);
 
   const [questionArray, setQuestionArray] = useState([]);
-  const fetchComment = async () => {
+  const fetchQuestion = async () => {
     try {
       const getQuestionData = await axios.get(
         `http://127.0.0.1:8000/${userId}/questionList`
@@ -41,7 +42,7 @@ const QuestionList = () => {
     }
   };
   useEffect(() => {
-    fetchComment();
+    fetchQuestion();
   }, []);
 
   const questionList = [
@@ -91,14 +92,14 @@ const QuestionList = () => {
               <br />
               <PrimaryBtn
                 btnName={"질문 만들기"}
-                onClick={GoToCreateQuestion}
+                onClick={goToCreateQuestion}
               ></PrimaryBtn>
             </Typography>
           ) : (
             [
               <ListBtn
                 btnName={"+"}
-                onClick={GoToCreateQuestion}
+                onClick={goToCreateQuestion}
                 key={userId}
               />,
               <br key="enter" />,

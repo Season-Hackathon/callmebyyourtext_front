@@ -14,6 +14,9 @@ const SignIn = () => {
   const { setIsLoggedIn } = useContext(AuthContext);
   const userId = localStorage.getItem("id");
   const auth = localStorage.getItem("auth");
+  const goToHome = () => {
+    navigate("/");
+  };
   useEffect(() => {
     if (auth) {
       navigate(`/mypage/${userId}`, { replace: true });
@@ -66,7 +69,7 @@ const SignIn = () => {
   return (
     <>
       <Wrapper>
-        <Title />
+        <Title onClick={goToHome} />
         <Box
           component="form"
           onSubmit={onSubmit}

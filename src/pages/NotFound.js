@@ -3,9 +3,13 @@ import { Img, SubTitle, Wrapper } from "../components/Styled";
 import Title from "../components/Title/Title";
 import Logo from "../assets/images/loadingLogo.png";
 import PrimaryBtn from "../components/Button/PrimaryBtn";
-import { RedirectURL } from "../components/Paginations/paginations";
+import { useNavigate } from "react-router-dom";
 
 const NotFound = () => {
+  const navigate = useNavigate();
+  const redirectURL = () => {
+    navigate("/", { replace: true });
+  };
   return (
     <>
       <Wrapper>
@@ -16,7 +20,7 @@ const NotFound = () => {
           <br />
           다시 시도해주세요.
         </SubTitle>
-        <PrimaryBtn btnName={"돌아가기"} onClick={RedirectURL}></PrimaryBtn>
+        <PrimaryBtn btnName={"돌아가기"} onClick={redirectURL}></PrimaryBtn>
       </Wrapper>
     </>
   );
