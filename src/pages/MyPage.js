@@ -69,7 +69,7 @@ const MyPage = () => {
           textAlign: "center",
         }}
       >
-        <SmallImg src={TitleLogo} /> {userName}님의 페이지{" "}
+        <SmallImg src={TitleLogo} /> {userName}님의 페이지
         <SmallImg src={TitleLogo} />
       </Typography>
       <Wrapper>

@@ -18,6 +18,7 @@ const QuestionList = () => {
   const navigate = useNavigate();
   const userName = localStorage.getItem("name");
   const userId = localStorage.getItem("id");
+  const Token = localStorage.getItem("token");
   const goToCreateQuestion = () => {
     navigate(`/createquestion/${userId}`);
   };
@@ -27,24 +28,33 @@ const QuestionList = () => {
   const modalOpen = () => setOpen(true);
   const modalClose = () => setOpen(false);
 
+  // 상태 관리
   const [questionArray, setQuestionArray] = useState([]);
-  const fetchQuestion = async () => {
+  const [point, setPoint] = useState("");
+  const fetchData = async () => {
     try {
       const getQuestionData = await axios.get(
         `http://127.0.0.1:8000/${userId}/questionList`
       );
+      const getPoint = await axios.get(`http://127.0.0.1:8000/login/profile/${userId}/`, {
+        withCredentials: true,
+        headers: {
+          Authorization: `token ${Token}`,
+        },
+      })
       setQuestionArray(getQuestionData.data);
+      setPoint(getPoint.data.point);
     } catch (error) {
       console.log(error);
-      alert("데이터를 가져오는데 실패했습니다. 다시 로그인해주세요.");
-      localStorage.clear();
-      navigate("/signin");
+      // alert("데이터를 가져오는데 실패했습니다. 다시 로그인해주세요.");
+      // console.clear();
+      // localStorage.clear();
+      // navigate("/signin");
     }
   };
   useEffect(() => {
-    fetchQuestion();
+    fetchData();
   }, []);
-
   const questionList = [
     questionArray?.map((q) => (
       <QuestionComponent
@@ -68,6 +78,19 @@ const QuestionList = () => {
           }}
         >
           <SmallImg src={TitleLogo} /> {userName}님의 질문 리스트
+        </Typography>
+        <Typography
+          variant="h6"
+          sx={{
+            color: `${secondaryColor}`,
+            marginBottom: "10%",
+            fontFamily: "Noto Sans KR Black",
+            fontSize: "14px",
+            fontWeight: "600",
+            textAlign: "center",
+          }}
+        >
+          <SmallImg src={TitleLogo} /> 현재 포인트 : {point}
         </Typography>
         <Box
           sx={{
