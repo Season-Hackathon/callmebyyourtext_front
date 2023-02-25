@@ -14,6 +14,9 @@ const SignIn = () => {
   const { setIsLoggedIn } = useContext(AuthContext);
   const userId = localStorage.getItem("id");
   const auth = localStorage.getItem("auth");
+  const goToHome = () => {
+    navigate("/");
+  };
   useEffect(() => {
     if (auth) {
       navigate(`/mypage/${userId}`, { replace: true });
@@ -55,9 +58,9 @@ const SignIn = () => {
       })
       .catch((error) => {
         console.log(error);
-        if (error.response.status === 400 || 500) {
-          alert("잘못된 정보입니다. 다시 시도해주세요.");
-        }
+        // if (error.response.status === 400 || 500) {
+        //   alert("잘못된 정보입니다. 다시 시도해주세요.");
+        // }
       });
   };
   const goToSignUp = () => {
@@ -66,7 +69,7 @@ const SignIn = () => {
   return (
     <>
       <Wrapper>
-        <Title />
+        <Title onClick={goToHome} />
         <Box
           component="form"
           onSubmit={onSubmit}

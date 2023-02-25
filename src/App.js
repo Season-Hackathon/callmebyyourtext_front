@@ -17,6 +17,7 @@ import CreateQuestion from "./pages/CreateQuestion";
 import EndToComment from "./pages/EndToComment";
 import QuestionList from "./pages/QuestionList";
 import NotFound from "./pages/NotFound";
+import Comments from "./pages/Comments";
 
 const flowerFlake1 = document.createElement("img");
 flowerFlake1.src = "./assets/images/cherryblossom1.png";
@@ -44,7 +45,7 @@ const App = () => {
         changeFrequency={100}
         speed={[1.0, 2.0]}
         wind={[-0.5, 1.5]}
-        // images={springEffect}
+      // images={springEffect}
       />
       <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
         <GlobalStyle />
@@ -54,6 +55,7 @@ const App = () => {
           <Route path="/signin" element={<SignIn />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/question/:questionId" element={<Question />}></Route>
+          <Route path="/comments/:questionId" element={<Comments />}></Route>
           <Route
             path="/questionlist/:userId"
             element={<QuestionList />}

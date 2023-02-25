@@ -8,17 +8,16 @@ import {
   primaryColor,
   secondaryColor,
 } from "../styles/GlobalStyle";
-import QuestionComponent from "../components/List/QuestionComponentt";
 import axios from "axios";
 import PrimaryBtn from "../components/Button/PrimaryBtn";
 import ListBtn from "../components/Button/ListBtn";
+import QuestionComponent from "../components/List/QuestionComponent";
 
 const QuestionList = () => {
   // 변수 관리
   const navigate = useNavigate();
   const userName = localStorage.getItem("name");
   const userId = localStorage.getItem("id");
-  const accessId = useParams();
   const goToCreateQuestion = () => {
     navigate(`/createquestion/${userId}`);
   };
@@ -29,7 +28,7 @@ const QuestionList = () => {
   const modalClose = () => setOpen(false);
 
   const [questionArray, setQuestionArray] = useState([]);
-  const fetchComment = async () => {
+  const fetchQuestion = async () => {
     try {
       const getQuestionData = await axios.get(
         `http://127.0.0.1:8000/${userId}/questionList`
@@ -43,7 +42,7 @@ const QuestionList = () => {
     }
   };
   useEffect(() => {
-    fetchComment();
+    fetchQuestion();
   }, []);
 
   const questionList = [

@@ -2,10 +2,12 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 import { CursorText, DeleteText, SmallImg } from "../Styled";
 import HeartLogo from "../../assets/images/inputId.png";
-import { primaryColor } from "../../styles/GlobalStyle";
+import TitleLogo from "../../assets/images/titleLogo.png";
+import { primaryColor, secondaryColor } from "../../styles/GlobalStyle";
 import axios from "axios";
 
-const CommentComponent = ({ questionId, questionText, commentId }) => {
+const CommentComponent = ({ questionId, comment }) => {
+  const userName = localStorage.getItem("name");
   const openComment = ({ commentId }) => {
     if (window.confirm("50포인트를 소모하여 해당 답변을 확인하시겠습니까?")) {
       axios
@@ -24,7 +26,21 @@ const CommentComponent = ({ questionId, questionText, commentId }) => {
   };
   return (
     <>
-      <Box
+      <Typography
+        variant="h6"
+        sx={{
+          width: "100%",
+          color: `${secondaryColor}`,
+          marginBottom: "10%",
+          fontFamily: "Noto Sans KR Black",
+          fontSize: "14px",
+          fontWeight: "600",
+          textAlign: "left",
+        }}
+      >
+        <SmallImg src={TitleLogo} /> {comment}
+      </Typography>
+      {/* <Box
         sx={{
           mt: 3,
           fontSize: 16,
@@ -37,7 +53,7 @@ const CommentComponent = ({ questionId, questionText, commentId }) => {
         <SmallImg src={HeartLogo} />
         <CursorText onClick={openComment}> 익명의 답변 : </CursorText>
         {questionText}
-      </Box>
+      </Box> */}
     </>
   );
 };

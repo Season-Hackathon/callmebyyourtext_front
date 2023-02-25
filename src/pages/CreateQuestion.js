@@ -16,9 +16,11 @@ const CreateQuestion = () => {
   const navigate = useNavigate();
   const userName = localStorage.getItem("name");
   const [question, setQuestion] = useState("");
+
   const goToHome = () => {
     navigate("/");
   };
+
   const onChange = (e) => {
     const { name, value } = e.target;
     setQuestion({

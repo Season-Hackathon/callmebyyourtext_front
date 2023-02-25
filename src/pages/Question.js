@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { primaryColor } from "../styles/GlobalStyle";
+import { primaryColor, secondaryColor } from "../styles/GlobalStyle";
 import { useLocation, useNavigate } from "react-router-dom";
 import PrimaryBtn from "../components/Button/PrimaryBtn";
 import Menu from "../assets/images/menu.png";
@@ -13,30 +13,22 @@ import {
   Wrapper,
 } from "../components/Styled";
 import axios from "axios";
+import CommentComponent from './../components/List/CommentComponent';
 
 const Question = () => {
-  // const fetchData = async () => {
-  //   try {
-  //     const questionData = await axios.get(`http://127.0.0.1:8000/questions`);
-  //     console.log(questionData);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
   // 변수 관리---------------------------------------------------------
   const navigate = useNavigate();
   const location = useLocation();
   const { question, questionId, writer } = location.state;
   const { isLoggedIn } = useContext(AuthContext);
   const userId = localStorage.getItem("id");
+  const userName = localStorage.getItem("name");
   const Auth = localStorage.getItem("auth");
   const Token = localStorage.getItem("token");
   const [comments, setComments] = useState({
     questionId,
     comment: "",
+    anonymous: false,
   });
 
   // 함수 관리---------------------------------------------------------
@@ -44,16 +36,19 @@ const Question = () => {
     navigator.clipboard.writeText(window.document.location.href);
     alert("주소가 복사되었습니다.");
   };
+
+  const goToMyPage = () => {
+    if (Auth) {
+      navigate(`/mypage/${userId}`);
+    } else {
+      localStorage.clear();
+      return alert("로그인 후 이용해주세요.");
+    }
+  }
   const goToSignIn = () => {
     navigate("/signin");
   };
-  const goToMyPage = () => {
-    if (isLoggedIn) {
-      navigate(`/mypage/${userId}`);
-    } else {
-      return alert("로그인 후 이용해주세요.");
-    }
-  };
+
   // 질문 관리
   const deleteQuestion = async () => {
     if (window.confirm("해당 질문을 삭제하시겠습니까?")) {
@@ -75,7 +70,34 @@ const Question = () => {
     }
   };
 
-  // 답변 관리
+  // 답변 관리-------------------------------------------------------
+  const [commentsArray, setCommentsArray] = useState([]);
+  const fetchComments = async () => {
+    try {
+      const commentsData = await axios.get(`http://127.0.0.1:8000/questions/${questionId}`);
+      setCommentsArray(commentsData.data.comments);
+    } catch (error) {
+      console.log(error);
+      alert("데이터를 가져오는데 실패했습니다. 다시 로그인해주세요.");
+      localStorage.clear();
+      navigate("/", { replace: true })
+    }
+  };
+  useEffect(() => {
+    fetchComments();
+  }, []);
+  const commentsList = [
+    commentsArray?.map((c) => (
+      <CommentComponent
+        key={c.id}
+        questionId={c.id}
+        comment={c.comment}
+        writer={c.writer}
+      />
+    )),
+  ];
+
+  // 답변 인풋 관리
   const onChange = (e) => {
     const { name, value } = e.target;
     setComments({
@@ -136,7 +158,20 @@ const Question = () => {
           <DeleteText onClick={deleteQuestion}>삭제</DeleteText>
         </Box>
         <QuestionBox>{question}</QuestionBox>
-        <TextField
+        {/* {writer === userName ? "사용자 접근" : "다른 사용자 접근"} */}
+        <Box sx={{ overflowY: "auto", width: "100%", maxHeight: "40vh" }}>
+          {commentsArray.length === 0 ? <Typography
+            sx={{
+              fontSize: "14px",
+              fontWeight: "700",
+              textAlign: "center",
+              color: `${secondaryColor}`,
+            }}
+          >
+            등록된 답변이 없습니다.
+          </Typography> : [...commentsList]}
+        </Box>
+        {/* <TextField
           variant="outlined"
           autoFocus
           fullWidth
@@ -152,15 +187,15 @@ const Question = () => {
             marginBottom: 2,
           }}
           onChange={onChange}
-        />
-        <PrimaryBtn btnName={"답변 등록"} onClick={onSubmit}></PrimaryBtn>
-        <br />
+        /> */}
+        {/* <PrimaryBtn btnName={"답변 등록"} onClick={onSubmit}></PrimaryBtn> */}
+        {/* <br />
         <PrimaryBtn
           btnName={"SNS 공유하기"}
           onClick={() => alert("준비 중입니다.")}
         ></PrimaryBtn>
         <br />
-        <PrimaryBtn btnName={"주소 복사"} onClick={copyLink}></PrimaryBtn>
+        <PrimaryBtn btnName={"주소 복사"} onClick={copyLink}></PrimaryBtn> */}
       </Wrapper>
     </>
   );
