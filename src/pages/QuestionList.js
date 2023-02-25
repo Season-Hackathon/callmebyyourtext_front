@@ -8,10 +8,11 @@ import {
   primaryColor,
   secondaryColor,
 } from "../styles/GlobalStyle";
-import QuestionComponent from "../components/List/QuestionComponentt";
 import axios from "axios";
 import PrimaryBtn from "../components/Button/PrimaryBtn";
 import ListBtn from "../components/Button/ListBtn";
+import QuestionComponent from "../components/List/QuestionComponent";
+import { GoToCreateQuestion } from "../components/Paginations/paginations";
 
 const QuestionList = () => {
   // 변수 관리
@@ -19,9 +20,6 @@ const QuestionList = () => {
   const userName = localStorage.getItem("name");
   const userId = localStorage.getItem("id");
   const accessId = useParams();
-  const goToCreateQuestion = () => {
-    navigate(`/createquestion/${userId}`);
-  };
 
   // 모달 관리
   const [open, setOpen] = useState(false);
@@ -93,14 +91,14 @@ const QuestionList = () => {
               <br />
               <PrimaryBtn
                 btnName={"질문 만들기"}
-                onClick={goToCreateQuestion}
+                onClick={GoToCreateQuestion}
               ></PrimaryBtn>
             </Typography>
           ) : (
             [
               <ListBtn
                 btnName={"+"}
-                onClick={goToCreateQuestion}
+                onClick={GoToCreateQuestion}
                 key={userId}
               />,
               <br key="enter" />,

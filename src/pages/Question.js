@@ -13,6 +13,7 @@ import {
   Wrapper,
 } from "../components/Styled";
 import axios from "axios";
+import { GoToMyPage, GoToSignIn } from "../components/Paginations/paginations";
 
 const Question = () => {
   // const fetchData = async () => {
@@ -44,16 +45,7 @@ const Question = () => {
     navigator.clipboard.writeText(window.document.location.href);
     alert("주소가 복사되었습니다.");
   };
-  const goToSignIn = () => {
-    navigate("/signin");
-  };
-  const goToMyPage = () => {
-    if (isLoggedIn) {
-      navigate(`/mypage/${userId}`);
-    } else {
-      return alert("로그인 후 이용해주세요.");
-    }
-  };
+
   // 질문 관리
   const deleteQuestion = async () => {
     if (window.confirm("해당 질문을 삭제하시겠습니까?")) {
@@ -116,11 +108,11 @@ const Question = () => {
           cursor: "pointer",
           display: `${Auth ? "none" : "inlineBlock"}`,
         }}
-        onClick={goToSignIn}
+        onClick={GoToSignIn}
       >
         로그인
       </Typography>
-      <MyPage src={Menu} onClick={goToMyPage} />
+      <MyPage src={Menu} onClick={GoToMyPage} />
       <Wrapper>
         <Box
           sx={{

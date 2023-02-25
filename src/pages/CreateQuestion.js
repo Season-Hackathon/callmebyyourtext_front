@@ -11,14 +11,13 @@ import { useNavigate } from "react-router-dom";
 import PrimaryBtn from "../components/Button/PrimaryBtn";
 import axios from "axios";
 import Title from "../components/Title/Title";
+import { GoToHome } from "../components/Paginations/paginations";
 
 const CreateQuestion = () => {
   const navigate = useNavigate();
   const userName = localStorage.getItem("name");
   const [question, setQuestion] = useState("");
-  const goToHome = () => {
-    navigate("/");
-  };
+
   const onChange = (e) => {
     const { name, value } = e.target;
     setQuestion({
@@ -49,7 +48,7 @@ const CreateQuestion = () => {
   return (
     <>
       <Wrapper>
-        <Title onClick={goToHome} />
+        <Title onClick={GoToHome} />
         <Typography
           variant="h6"
           sx={{

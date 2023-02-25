@@ -18,6 +18,7 @@ import {
   Wrapper,
 } from "../components/Styled";
 import Title from "../components/Title/Title";
+import { GoToHome } from "../components/Paginations/paginations";
 
 const MyPage = () => {
   // 변수 관리
@@ -25,9 +26,7 @@ const MyPage = () => {
   const userId = localStorage.getItem("id");
   const userName = localStorage.getItem("name");
   const { setIsLoggedIn } = useContext(AuthContext);
-  const goToHome = () => {
-    navigate("/");
-  };
+
 
   // 모달 관리
   const [open, setOpen] = useState(false);
@@ -57,7 +56,7 @@ const MyPage = () => {
 
   return (
     <>
-      <Title onClick={goToHome} />
+      <Title onClick={GoToHome} />
       <Typography
         variant="h6"
         sx={{
