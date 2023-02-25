@@ -173,7 +173,7 @@ const Question = () => {
             등록된 답변이 없습니다.
           </Typography> : [...commentsList]}
         </Box>
-        {/* <TextField
+        {writer === userName ? "" : <TextField
           variant="outlined"
           autoFocus
           fullWidth
@@ -189,10 +189,10 @@ const Question = () => {
             marginBottom: 2,
           }}
           onChange={onChange}
-        /> */}
-        {/* <PrimaryBtn btnName={"답변 등록"} onClick={onSubmit}></PrimaryBtn> */}
-        {/* <br />
-        <PrimaryBtn
+        />}
+        {writer === userName ? "" : <PrimaryBtn btnName={"답변 등록"} onClick={onSubmit}></PrimaryBtn>}
+
+        {/* <PrimaryBtn
           btnName={"SNS 공유하기"}
           onClick={() => alert("준비 중입니다.")}
         ></PrimaryBtn>
