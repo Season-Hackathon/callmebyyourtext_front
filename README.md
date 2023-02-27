@@ -14,6 +14,8 @@
 
 ## TEAM Composition
 
+`Team Leader` : 오준서
+
 `UX/UX Design` : 남효진\
 `Frontend` : 오준서, 김연출, 허윤아\
 `Backend` : 김지민, 정택원
