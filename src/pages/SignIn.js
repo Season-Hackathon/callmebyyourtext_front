@@ -91,6 +91,7 @@ const SignIn = () => {
             name="email"
             label="이메일"
             onChange={onChange}
+            sx={{ marginBottom: 1.5 }}
           />
           <TextField
             required
