@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Title from "../components/Title/Title";
 import {
   TextField,
   FormControl,
@@ -9,10 +8,11 @@ import {
   Typography,
 } from "@mui/material/";
 import styled from "styled-components";
-import { primaryColor } from "../styles/GlobalStyle";
-import PrimaryBtn from "../components/Button/PrimaryBtn";
+import { primaryColor } from "styles/GlobalStyle";
+import PrimaryBtn from "components/Button/PrimaryBtn";
+import Title from "components/Title/Title";
 import axios from "axios";
-import { Wrapper } from "../components/Styled";
+import { Wrapper } from "components/Styled";
 
 // FormHelper--------------------------------------------------------------------------
 const FormHelperEmails = styled(FormHelperText)`

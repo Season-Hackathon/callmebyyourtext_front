@@ -4,20 +4,20 @@ import {
   pointColor,
   primaryColor,
   secondaryColor,
-} from "../styles/GlobalStyle";
+} from "styles/GlobalStyle";
 import Typewriter from "typewriter-effect";
-import PrimaryBtn from "../components/Button/PrimaryBtn";
-import HeartLogo from "../assets/images/inputId.png";
-import TitleLogo from "../assets/images/titleLogo.png";
-import { AuthContext } from "../context/AuthContext";
+import PrimaryBtn from "components/Button/PrimaryBtn";
+import HeartLogo from "assets/images/inputId.png";
+import TitleLogo from "assets/images/titleLogo.png";
+import { AuthContext } from "context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import {
   CursorText,
   modalStyle,
   SmallImg,
   Wrapper,
-} from "../components/Styled";
-import Title from "../components/Title/Title";
+} from "components/Styled";
+import Title from "components/Title/Title";
 
 const MyPage = () => {
   // 변수 관리
