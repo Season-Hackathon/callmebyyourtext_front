@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import Title from "../components/Title/Title";
+import Title from "components/Title/Title";
 import { TextField, Box, Typography } from "@mui/material/";
-import PrimaryBtn from "../components/Button/PrimaryBtn";
-import { secondaryColor } from "../styles/GlobalStyle";
+import PrimaryBtn from "components/Button/PrimaryBtn";
+import { secondaryColor } from "styles/GlobalStyle";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { AuthContext } from "../context/AuthContext";
-import { CursorText, Wrapper } from "../components/Styled";
+import { AuthContext } from "context/AuthContext";
+import { CursorText, Wrapper } from "components/Styled";
 
 const SignIn = () => {
   // State-------------------------------------------------------------------
