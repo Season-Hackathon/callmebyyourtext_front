@@ -1,17 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import TitleLogo from "../assets/images/titleLogo.png";
-import { modalStyle, SmallImg, Wrapper } from "../components/Styled";
+import TitleLogo from "assets/images/titleLogo.png";
+import { modalStyle, SmallImg, Wrapper } from "components/Styled";
 import { Box, Modal, Typography } from "@mui/material";
 import {
   pointColor,
   primaryColor,
   secondaryColor,
-} from "../styles/GlobalStyle";
+} from "styles/GlobalStyle";
 import axios from "axios";
-import PrimaryBtn from "../components/Button/PrimaryBtn";
-import ListBtn from "../components/Button/ListBtn";
-import QuestionComponent from "../components/List/QuestionComponent";
+import PrimaryBtn from "components/Button/PrimaryBtn";
+import ListBtn from "components/Button/ListBtn";
+import QuestionComponent from "components/List/QuestionComponent";
 
 const QuestionList = () => {
   // 변수 관리
