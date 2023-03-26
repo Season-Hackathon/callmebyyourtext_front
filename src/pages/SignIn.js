@@ -45,17 +45,15 @@ const SignIn = () => {
       password,
     };
     await axios
-      .post('http://127.0.0.1:8000/login/login/', user, {
-        withCredentials: true,
-      })
+      .post('http://127.0.0.1:8000/login/login/', user)
       .then((response) => {
         console.log(response);
         setIsLoggedIn(true);
         localStorage.setItem('auth', true);
         localStorage.setItem('id', response.data.id);
         localStorage.setItem('name', response.data.name);
-        localStorage.setItem('accessToken', response.data.access_token);
-        localStorage.setItem('refreshToken', response.data.refresh_token);
+        localStorage.setItem('access_token', response.data.access_token);
+        localStorage.setItem('refresh_token', response.data.refresh_token);
         alert('로그인되었습니다.');
         navigate(`/mypage/${response.data.id}`, { replace: true });
       })
