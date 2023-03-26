@@ -42,7 +42,7 @@ footer, header, hgroup, main, menu, nav, section {
   font-style: normal;
 }
 * {
-  font-family: "AppleSDGothicNeoR" !important;
+  font-family: "AppleSDGothicNeoR", 'Noto Sans KR Black' !important;
   box-sizing: border-box;
 }
 
