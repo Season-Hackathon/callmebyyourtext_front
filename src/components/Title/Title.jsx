@@ -6,9 +6,10 @@ const TitleText = styled.p`
   font-family: 'Noto Sans KR Black';
   font-style: italic;
   font-size: 1.5rem;
+  font-weight: 600;
   text-align: center;
   color: ${primaryColor};
-  margin-bottom: 0;
+  margin-bottom: 3%;
   cursor: pointer;
 `;
 

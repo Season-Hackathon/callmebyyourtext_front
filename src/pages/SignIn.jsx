@@ -6,7 +6,7 @@ import { secondaryColor } from 'GlobalStyle';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from 'context/AuthContext';
-import { CursorText, Wrapper } from 'components/Styled';
+import { CursorText, Wrapper } from 'components/ComponentStyled';
 import { setCookie } from 'components/cookie';
 
 const SignIn = () => {

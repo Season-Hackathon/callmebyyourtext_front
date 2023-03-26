@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
-import { CursorText, DeleteText, SmallImg } from '../Styled';
+import { CursorText, DeleteText, SmallImg } from '../ComponentStyled';
 import HeartLogo from '../../assets/images/inputId.png';
 import TitleLogo from '../../assets/images/titleLogo.png';
 import { primaryColor, secondaryColor } from '../../GlobalStyle';

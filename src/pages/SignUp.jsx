@@ -12,7 +12,7 @@ import { primaryColor } from 'GlobalStyle';
 import PrimaryBtn from 'components/Button/PrimaryBtn';
 import Title from 'components/Title/Title';
 import axios from 'axios';
-import { Wrapper } from 'components/Styled';
+import { Wrapper } from 'components/ComponentStyled';
 
 // FormHelper--------------------------------------------------------------------------
 const FormHelperEmails = styled(FormHelperText)`

@@ -1,14 +1,21 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import Logo from "../assets/images/loadingLogo.png";
-import Title from "../components/Title/Title";
-import { Bracket, Img, SubTitle, Wrapper } from "../components/Styled";
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Logo from '../assets/images/loadingLogo.png';
+import { Bracket, Img, SubTitle, Wrapper } from '../components/ComponentStyled';
+import { primaryColor } from 'GlobalStyle';
+import LandingTitle from 'components/Title/LandingTitle';
 
 const Home = () => {
+  const body = document.querySelector('body');
+  body.style.backgroundColor = `${primaryColor}`;
+  body.classList.add('.fadeOut');
+
   const navigate = useNavigate();
   const loading = () => {
     setTimeout(() => {
-      navigate("/signin");
+      navigate('/signin');
+      body.style.backgroundColor = 'white';
+      body.classList.remove('.fadeOut');
     }, 2000);
   };
 
@@ -23,7 +30,7 @@ const Home = () => {
     <>
       <Wrapper>
         <Img src={Logo} alt="error" />
-        <Title />
+        <LandingTitle />
         <SubTitle>
           나의 (<Bracket>빈칸</Bracket>), 당신의 ____
         </SubTitle>

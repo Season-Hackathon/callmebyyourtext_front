@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-import { primaryColor, secondaryColor } from '../GlobalStyle';
-
-const Auth = JSON.parse(localStorage.getItem('auth'));
+import { primaryColor } from '../GlobalStyle';
 
 export const Wrapper = styled.section`
   display: flex;
@@ -30,7 +28,7 @@ export const MyPage = styled.img`
   height: auto;
   cursor: pointer;
   position: absolute;
-  top: 50px;
+  top: 30px;
   right: 13px;
 `;
 
@@ -53,6 +51,7 @@ export const modalStyle = {
 
 export const Img = styled.img`
   width: auto;
+  margin-bottom: 15%;
 `;
 
 export const SmallImg = styled.img`
@@ -60,10 +59,9 @@ export const SmallImg = styled.img`
 `;
 
 export const SubTitle = styled.p`
-  font-family: 'Noto Sans KR Bold';
-  font-size: 0.8rem;
-  font-weight: 900;
-  color: ${secondaryColor};
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #e8e8e8;
 `;
 
 export const Bracket = styled.span`

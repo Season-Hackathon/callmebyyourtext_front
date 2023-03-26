@@ -1,32 +1,37 @@
 import { Box } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Menu from "../assets/images/menu.png";
-import { Header, MyPage, QuestionBox, Wrapper } from '../components/Styled';
+import Menu from '../assets/images/menu.png';
+import {
+  Header,
+  MyPage,
+  QuestionBox,
+  Wrapper,
+} from '../components/ComponentStyled';
 
 const Comments = () => {
   const navigate = useNavigate();
-  const Auth = localStorage.getItem("auth");
-  const userId = localStorage.getItem("id");
+  const Auth = localStorage.getItem('auth');
+  const userId = localStorage.getItem('id');
   const goToMyPage = () => {
     if (Auth) {
       navigate(`/mypage/${userId}`);
     } else {
       localStorage.clear();
-      return alert("로그인 후 이용해주세요.");
+      return alert('로그인 후 이용해주세요.');
     }
-  }
+  };
   return (
     <>
       <MyPage src={Menu} onClick={goToMyPage} />
       <Wrapper>
         <Box
           sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            position: "relative",
-            width: "100%",
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            position: 'relative',
+            width: '100%',
             marginBottom: 1,
           }}
         >
@@ -43,7 +48,7 @@ const Comments = () => {
         <PrimaryBtn btnName={"주소 복사"} onClick={copyLink}></PrimaryBtn> */}
       </Wrapper>
     </>
-  )
+  );
 };
 
 export default Comments;

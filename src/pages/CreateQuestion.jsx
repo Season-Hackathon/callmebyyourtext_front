@@ -1,6 +1,6 @@
 import { Typography, Box, TextField } from '@mui/material';
 import React, { useState } from 'react';
-import { SmallImg, Wrapper } from '../components/Styled';
+import { SmallImg, Wrapper } from '../components/ComponentStyled';
 import { pointColor, primaryColor, secondaryColor } from '../GlobalStyle';
 import TitleLogo from '../assets/images/titleLogo.png';
 import { useNavigate } from 'react-router-dom';
@@ -24,7 +24,6 @@ const CreateQuestion = () => {
     });
   };
   const accessToken = localStorage.getItem('access_token');
-  const refreshToken = localStorage.getItem('refresh_token');
   const userId = localStorage.getItem('id');
 
   const onSubmit = async (e) => {
@@ -47,7 +46,7 @@ const CreateQuestion = () => {
 
   return (
     <>
-      <Wrapper>
+      <Wrapper className="fadeIn">
         <Title onClick={goToHome} />
         <Typography
           variant="h6"
@@ -74,6 +73,7 @@ const CreateQuestion = () => {
           <TextField
             required
             fullWidth
+            variant="standard"
             color="secondary"
             minRows={5}
             id="question"
@@ -84,6 +84,7 @@ const CreateQuestion = () => {
             sx={{
               border: `1px dotted ${primaryColor}`,
               borderTop: 'none',
+              borderBottom: 'none',
               borderRadius: 2,
               width: '250px',
               marginBottom: 3,

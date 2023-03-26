@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import TitleLogo from 'assets/images/titleLogo.png';
-import { modalStyle, SmallImg, Wrapper } from 'components/Styled';
+import { modalStyle, SmallImg, Wrapper } from 'components/ComponentStyled';
 import { Box, Modal, Typography } from '@mui/material';
 import { pointColor, primaryColor, secondaryColor } from 'GlobalStyle';
 import axios from 'axios';
@@ -58,7 +58,7 @@ const QuestionList = () => {
     questionArray?.map((q) => (
       <QuestionComponent
         key={q.id}
-        questionId={q.id}
+        questionId={q.questionId}
         question={q.question}
         writer={q.writer}
       />
@@ -67,11 +67,12 @@ const QuestionList = () => {
 
   return (
     <>
-      <Wrapper>
+      <Wrapper className="fadeIn">
         <Typography
-          variant="h5"
+          variant="h6"
           sx={{
-            color: `${pointColor}`,
+            color: `${primaryColor}`,
+            fontWeight: 600,
             borderBottom: `1px solid ${primaryColor}`,
             marginBottom: '10%',
           }}
@@ -83,7 +84,6 @@ const QuestionList = () => {
           sx={{
             color: `${secondaryColor}`,
             marginBottom: '10%',
-            // fontFamily: 'Noto Sans KR Black',
             fontSize: '14px',
             fontWeight: '600',
             textAlign: 'center',

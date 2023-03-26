@@ -7,7 +7,12 @@ import HeartLogo from 'assets/images/inputId.png';
 import TitleLogo from 'assets/images/titleLogo.png';
 import { AuthContext } from 'context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { CursorText, modalStyle, SmallImg, Wrapper } from 'components/Styled';
+import {
+  CursorText,
+  modalStyle,
+  SmallImg,
+  Wrapper,
+} from 'components/ComponentStyled';
 import Title from 'components/Title/Title';
 
 const MyPage = () => {
@@ -48,8 +53,9 @@ const MyPage = () => {
 
   return (
     <>
-      <Title onClick={goToHome} />
+      <Title onClick={goToHome} className="fadeIn" />
       <Typography
+        className="fadeIn"
         variant="h6"
         sx={{
           color: `${secondaryColor}`,
@@ -63,7 +69,7 @@ const MyPage = () => {
         <SmallImg src={TitleLogo} /> {userName}님의 페이지
         <SmallImg src={TitleLogo} />
       </Typography>
-      <Wrapper>
+      <Wrapper className="fadeIn">
         <Box
           sx={{
             whiteSpace: 'pre-wrap',
@@ -71,7 +77,7 @@ const MyPage = () => {
             fontWeight: '600',
             textAlign: 'center',
             minWidth: '250px',
-            minHeight: '11vh',
+            minHeight: '15vh',
             lineHeight: '1.5',
             color: `${pointColor}`,
             marginBottom: 5,

@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { primaryColor, secondaryColor } from '../GlobalStyle';
 import { useLocation, useNavigate } from 'react-router-dom';
 import PrimaryBtn from '../components/Button/PrimaryBtn';
 import Menu from '../assets/images/menu.png';
-import { AuthContext } from '../context/AuthContext';
 import { Box, TextField, Typography } from '@mui/material';
 import {
   DeleteText,
@@ -11,17 +10,15 @@ import {
   MyPage,
   QuestionBox,
   Wrapper,
-} from '../components/Styled';
+} from '../components/ComponentStyled';
 import axios from 'axios';
 import CommentComponent from '../components/List/CommentComponent';
-import { display } from '@mui/system';
 
 const Question = () => {
   // 변수 관리---------------------------------------------------------
   const navigate = useNavigate();
   const location = useLocation();
   const { question, questionId, writer } = location.state;
-  const { isLoggedIn } = useContext(AuthContext);
   const userId = localStorage.getItem('id');
   const userName = localStorage.getItem('name');
   const Auth = localStorage.getItem('auth');
