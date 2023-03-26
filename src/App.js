@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { GlobalStyle } from './styles/GlobalStyle';
+import { GlobalStyle } from './GlobalStyle';
 import { AuthContext } from './context/AuthContext';
+import { CookiesProvider } from 'react-cookie';
 import Home from './pages/Home';
 import Question from './pages/Question';
 import SignIn from './pages/SignIn';
@@ -41,26 +42,28 @@ const App = () => {
         wind={[-0.5, 1.5]}
         // images={springEffect}
       />
-      <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-        <GlobalStyle />
-        <Routes>
-          <Route path="*" element={<NotFound />}></Route>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/signin" element={<SignIn />}></Route>
-          <Route path="/signup" element={<SignUp />}></Route>
-          <Route path="/question/:questionId" element={<Question />}></Route>
-          <Route path="/comments/:questionId" element={<Comments />}></Route>
-          <Route
-            path="/questionlist/:userId"
-            element={<QuestionList />}
-          ></Route>
-          <Route
-            path="/createquestion/:userId"
-            element={<CreateQuestion />}
-          ></Route>
-          <Route path="/mypage/:userId" element={<MyPage />}></Route>
-        </Routes>
-      </AuthContext.Provider>
+      <CookiesProvider>
+        <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+          <GlobalStyle />
+          <Routes>
+            <Route path="*" element={<NotFound />}></Route>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/signin" element={<SignIn />}></Route>
+            <Route path="/signup" element={<SignUp />}></Route>
+            <Route path="/question/:questionId" element={<Question />}></Route>
+            <Route path="/comments/:questionId" element={<Comments />}></Route>
+            <Route
+              path="/questionlist/:userId"
+              element={<QuestionList />}
+            ></Route>
+            <Route
+              path="/createquestion/:userId"
+              element={<CreateQuestion />}
+            ></Route>
+            <Route path="/mypage/:userId" element={<MyPage />}></Route>
+          </Routes>
+        </AuthContext.Provider>
+      </CookiesProvider>
     </>
   );
 };

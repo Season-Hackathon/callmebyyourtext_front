@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import { primaryColor } from "../../styles/GlobalStyle";
+import React from 'react';
+import styled from 'styled-components';
+import { primaryColor } from '../../GlobalStyle';
 
 const TitleText = styled.p`
-  font-family: "Noto Sans KR Black";
+  font-family: 'Noto Sans KR Black';
   font-style: italic;
   font-size: 1.5rem;
   text-align: center;
@@ -13,7 +13,7 @@ const TitleText = styled.p`
 `;
 
 const Bold = styled.span`
-  font-family: "Noto Sans KR Bold";
+  font-family: 'Noto Sans KR Bold';
   font-weight: 900;
 `;
 
