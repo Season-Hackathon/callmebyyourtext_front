@@ -1,21 +1,21 @@
-import React, { useContext, useEffect, useState } from "react";
-import Title from "components/Title/Title";
-import { TextField, Box, Typography } from "@mui/material/";
-import PrimaryBtn from "components/Button/PrimaryBtn";
-import { secondaryColor } from "styles/GlobalStyle";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { AuthContext } from "context/AuthContext";
-import { CursorText, Wrapper } from "components/Styled";
+import React, { useContext, useEffect, useState } from 'react';
+import Title from 'components/Title/Title';
+import { TextField, Box, Typography } from '@mui/material/';
+import PrimaryBtn from 'components/Button/PrimaryBtn';
+import { secondaryColor } from 'styles/GlobalStyle';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { AuthContext } from 'context/AuthContext';
+import { CursorText, Wrapper } from 'components/Styled';
 
 const SignIn = () => {
   // State-------------------------------------------------------------------
   const navigate = useNavigate();
   const { setIsLoggedIn } = useContext(AuthContext);
-  const userId = localStorage.getItem("id");
-  const auth = localStorage.getItem("auth");
+  const userId = localStorage.getItem('id');
+  const auth = localStorage.getItem('auth');
   const goToHome = () => {
-    navigate("/");
+    navigate('/');
   };
   useEffect(() => {
     if (auth) {
@@ -25,8 +25,8 @@ const SignIn = () => {
 
   // Input 관리--------------------------------------------------------------
   const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -45,15 +45,18 @@ const SignIn = () => {
       password,
     };
     await axios
-      .post("http://127.0.0.1:8000/login/login/", user)
+      .post('http://127.0.0.1:8000/login/login/', user, {
+        withCredentials: true,
+      })
       .then((response) => {
         console.log(response);
         setIsLoggedIn(true);
-        localStorage.setItem("auth", true);
-        localStorage.setItem("id", response.data.id);
-        localStorage.setItem("name", response.data.name);
-        localStorage.setItem("token", response.data.token);
-        alert("로그인되었습니다.");
+        localStorage.setItem('auth', true);
+        localStorage.setItem('id', response.data.id);
+        localStorage.setItem('name', response.data.name);
+        localStorage.setItem('accessToken', response.data.access_token);
+        localStorage.setItem('refreshToken', response.data.refresh_token);
+        alert('로그인되었습니다.');
         navigate(`/mypage/${response.data.id}`, { replace: true });
       })
       .catch((error) => {
@@ -64,7 +67,7 @@ const SignIn = () => {
       });
   };
   const goToSignUp = () => {
-    navigate("/signup");
+    navigate('/signup');
   };
   return (
     <>
@@ -74,8 +77,8 @@ const SignIn = () => {
           component="form"
           onSubmit={onSubmit}
           sx={{
-            display: "flex",
-            flexDirection: "column",
+            display: 'flex',
+            flexDirection: 'column',
             marginTop: 5,
             marginBottom: 2,
           }}
@@ -108,17 +111,17 @@ const SignIn = () => {
             fontFamily="Noto Sans KR Black"
             color={secondaryColor}
             sx={{
-              fontSize: "12px",
-              textAlign: "right",
+              fontSize: '12px',
+              textAlign: 'right',
               marginTop: 1,
               marginBottom: 3,
             }}
           >
             <CursorText onClick={goToSignUp}>회원가입</CursorText>
           </Typography>
-          <PrimaryBtn btnName={"Login"}></PrimaryBtn>
+          <PrimaryBtn btnName={'Login'}></PrimaryBtn>
         </Box>
-        <PrimaryBtn btnName={"Google"}></PrimaryBtn>
+        <PrimaryBtn btnName={'Google'}></PrimaryBtn>
       </Wrapper>
     </>
   );
