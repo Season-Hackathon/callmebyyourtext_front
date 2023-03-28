@@ -77,7 +77,7 @@ const MyPage = () => {
             fontWeight: '600',
             textAlign: 'center',
             minWidth: '250px',
-            minHeight: '15vh',
+            minHeight: '17vh',
             lineHeight: '1.5',
             color: `${pointColor}`,
             marginBottom: 5,
@@ -96,9 +96,9 @@ const MyPage = () => {
                 .pauseFor(500)
                 .typeString('산들바람, ')
                 .pauseFor(500)
-                .typeString('불어오는 개강')
+                .typeString('불어오는 중간고사')
                 .pauseFor(700)
-                .deleteChars(2)
+                .deleteChars(4)
                 .typeString('<strong>따스한 봄</strong>.\n\n')
                 .pauseFor(1000)
                 .typeString("<strong>당신</strong>은 어떤 사람인가요?'")

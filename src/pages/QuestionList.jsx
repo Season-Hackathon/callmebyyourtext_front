@@ -77,7 +77,8 @@ const QuestionList = () => {
             marginBottom: '10%',
           }}
         >
-          <SmallImg src={TitleLogo} /> {userName}님의 질문 리스트
+          <SmallImg src={TitleLogo} /> {userName}님의
+          (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
         </Typography>
         <Typography
           variant="h6"
@@ -89,7 +90,7 @@ const QuestionList = () => {
             textAlign: 'center',
           }}
         >
-          <SmallImg src={TitleLogo} /> 현재 포인트 : {point}
+          현재 포인트 : {point}
         </Typography>
         <Box
           sx={{
