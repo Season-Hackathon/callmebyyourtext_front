@@ -128,21 +128,6 @@ const Question = () => {
   };
   return (
     <>
-      <Typography
-        sx={{
-          fontSize: '12px',
-          fontWeight: '800',
-          position: 'fixed',
-          top: '3px',
-          right: '13px',
-          color: `${primaryColor}`,
-          cursor: 'pointer',
-          display: `${Auth ? 'none' : 'inlineBlock'}`,
-        }}
-        onClick={goToSignIn}
-      >
-        로그인
-      </Typography>
       <MyPage src={Menu} onClick={goToMyPage} />
       <Wrapper>
         <Box

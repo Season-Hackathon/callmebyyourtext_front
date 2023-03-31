@@ -15,10 +15,12 @@ export const Header = styled.span`
 `;
 
 export const QuestionBox = styled.section`
-  box-shadow: 3px 3px 5px 0px rgb(0 0 0 / 20%);
-  border-radius: 5px;
   width: 250px;
   min-height: 100px;
+  overflow: hidden;
+  word-wrap: break-word;
+  box-shadow: 3px 3px 5px 0px rgb(0 0 0 / 20%);
+  border-radius: 5px;
   margin-bottom: 10%;
   padding: 20px;
 `;
