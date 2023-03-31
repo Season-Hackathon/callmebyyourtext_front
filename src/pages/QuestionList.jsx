@@ -78,7 +78,7 @@ const QuestionList = () => {
           }}
         >
           <SmallImg src={TitleLogo} /> {userName}님의
-          (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
+          (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
         </Typography>
         <Typography
           variant="h6"
@@ -97,6 +97,7 @@ const QuestionList = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            width: '110%',
             maxHeight: '45vh',
             overflowY: 'auto',
           }}

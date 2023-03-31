@@ -11,7 +11,7 @@ const QuestionComponent = ({ question, questionId, writer }) => {
       >
         <ListBtn
           btnName={
-            question.length > 25 ? question.slice(0, 25) + '...' : question
+            question.length > 20 ? question.slice(0, 20) + '...' : question
           }
         ></ListBtn>
       </Link>
