@@ -1,21 +1,42 @@
-import { Box, Typography } from '@mui/material';
-import React from 'react';
-import { CursorText, DeleteText, SmallImg } from '../ComponentStyled';
-import HeartLogo from '../../assets/images/inputId.png';
+import { Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { SmallImg } from '../ComponentStyled';
 import TitleLogo from '../../assets/images/titleLogo.png';
 import { primaryColor, secondaryColor } from '../../GlobalStyle';
 import axios from 'axios';
 
-const CommentComponent = ({ questionId, comment }) => {
-  const userName = localStorage.getItem('name');
+const CommentComponent = ({
+  comment,
+  commentId,
+  questionId,
+  openUser,
+  writer,
+}) => {
+  console.log(
+    'commentId',
+    commentId,
+    'questionId',
+    questionId,
+    'openUser',
+    openUser
+  );
+  const [open, setOpen] = useState(false);
+  const userId = localStorage.getItem('id');
+  const accessToken = localStorage.getItem('access_token');
   const openComment = ({ commentId }) => {
     if (window.confirm('50포인트를 소모하여 해당 답변을 확인하시겠습니까?')) {
       axios
-        .post(
-          `http://127.0.0.1:8000/questions/${questionId}/comments/${commentId}`
-        )
+        .get(`http://127.0.0.1:8000/questions/16/comments/7`, {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
         .then((response) => {
           console.log(response);
+          if (userId === response.data.open_user[0].id) {
+            setOpen(true);
+          }
         })
         .catch((error) => {
           console.log(error);
@@ -24,36 +45,46 @@ const CommentComponent = ({ questionId, comment }) => {
       return;
     }
   };
+  // CI 7 / QU 16
   return (
     <>
-      <Typography
-        variant="h6"
-        sx={{
-          width: '100%',
-          color: `${secondaryColor}`,
-          marginBottom: '10%',
-          fontFamily: 'Noto Sans KR Black',
-          fontSize: '14px',
-          fontWeight: '600',
-          textAlign: 'left',
-        }}
-      >
-        <SmallImg src={TitleLogo} /> {comment}
-      </Typography>
-      {/* <Box
-        sx={{
-          mt: 3,
-          fontSize: 16,
-          fontFamily: "Noto Sans KR Black",
-          borderBottom: `1px solid ${primaryColor}`,
-          marginBottom: 1,
-          paddingBottom: 0.5,
-        }}
-      >
-        <SmallImg src={HeartLogo} />
-        <CursorText onClick={openComment}> 익명의 답변 : </CursorText>
-        {questionText}
-      </Box> */}
+      {open === false ? (
+        <Typography
+          variant="h6"
+          sx={{
+            width: '100%',
+            color: `${secondaryColor}`,
+            marginBottom: '10%',
+            fontFamily: 'Noto Sans KR Black',
+            fontSize: '14px',
+            fontWeight: '600',
+            textAlign: 'left',
+            borderRadius: '10px',
+            cursor: 'pointer',
+            '&:hover': {
+              color: `${primaryColor}`,
+            },
+          }}
+          onClick={openComment}
+        >
+          <SmallImg src={TitleLogo} /> 비공개 답변입니다.
+        </Typography>
+      ) : (
+        <Typography
+          variant="h6"
+          sx={{
+            width: '100%',
+            color: `${secondaryColor}`,
+            marginBottom: '10%',
+            fontFamily: 'Noto Sans KR Black',
+            fontSize: '14px',
+            fontWeight: '600',
+            textAlign: 'left',
+          }}
+        >
+          <SmallImg src={TitleLogo} /> {comment}
+        </Typography>
+      )}
     </>
   );
 };

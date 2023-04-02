@@ -2,17 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { primaryColor, secondaryColor } from '../GlobalStyle';
 import { useLocation, useNavigate } from 'react-router-dom';
 import PrimaryBtn from '../components/Button/PrimaryBtn';
-import Menu from '../assets/images/menu.png';
 import { Box, TextField, Typography } from '@mui/material';
 import {
   DeleteText,
   Header,
-  MyPage,
   QuestionBox,
   Wrapper,
 } from '../components/ComponentStyled';
 import axios from 'axios';
 import CommentComponent from '../components/List/CommentComponent';
+import Title from 'components/Title/Title';
 
 const Question = () => {
   // 변수 관리---------------------------------------------------------
@@ -21,8 +20,8 @@ const Question = () => {
   const { question, questionId, writer } = location.state;
   const userId = localStorage.getItem('id');
   const userName = localStorage.getItem('name');
-  const Auth = localStorage.getItem('auth');
   const accessToken = localStorage.getItem('access_token');
+  const [point, setPoint] = useState('');
   const [comments, setComments] = useState({
     questionId,
     comment: '',
@@ -34,17 +33,8 @@ const Question = () => {
     navigator.clipboard.writeText(window.document.location.href);
     alert('주소가 복사되었습니다.');
   };
-
-  const goToMyPage = () => {
-    if (Auth) {
-      navigate(`/mypage/${userId}`);
-    } else {
-      localStorage.clear();
-      return alert('로그인 후 이용해주세요.');
-    }
-  };
-  const goToSignIn = () => {
-    navigate('/signin');
+  const goToHome = () => {
+    navigate('/');
   };
 
   // 질문 관리
@@ -77,6 +67,16 @@ const Question = () => {
         `http://127.0.0.1:8000/questions/${questionId}`
       );
       setCommentsArray(commentsData.data.comments);
+      const getPoint = await axios.get(
+        `http://127.0.0.1:8000/login/profile/${userId}/`,
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      setPoint(getPoint.data.point);
     } catch (error) {
       console.log(error);
       // alert('데이터를 가져오는데 실패했습니다. 다시 로그인해주세요.');
@@ -90,8 +90,10 @@ const Question = () => {
   const commentsList = [
     commentsArray?.map((c) => (
       <CommentComponent
-        key={c.id}
-        questionId={c.id}
+        key={c.commentid}
+        openUser={c.open_user[0]}
+        questionId={c.questionId}
+        commentId={c.commentId}
         comment={c.comment}
         writer={c.writer}
       />
@@ -128,7 +130,7 @@ const Question = () => {
   };
   return (
     <>
-      <MyPage src={Menu} onClick={goToMyPage} />
+      <Title onClick={goToHome} />
       <Wrapper>
         <Box
           sx={{
@@ -147,6 +149,18 @@ const Question = () => {
             ''
           )}
         </Box>
+        <Typography
+          variant="h6"
+          sx={{
+            color: `${secondaryColor}`,
+            marginBottom: '10%',
+            fontSize: '14px',
+            fontWeight: '600',
+            textAlign: 'center',
+          }}
+        >
+          현재 포인트 : {point}
+        </Typography>
         <QuestionBox>{question}</QuestionBox>
         {/* {writer === userName ? "사용자 접근" : "다른 사용자 접근"} */}
         <Box sx={{ overflowY: 'auto', width: '100%', maxHeight: '40vh' }}>
@@ -168,36 +182,53 @@ const Question = () => {
         {writer === userName ? (
           ''
         ) : (
-          <TextField
-            variant="outlined"
-            autoFocus
-            fullWidth
-            color="secondary"
-            label="답변을 입력해주세요."
-            id="comment"
-            name="comment"
-            type="comment"
-            autoComplete="comment"
-            sx={{
-              borderBottom: `1px dashed ${primaryColor}`,
-              borderRadius: 3,
-              marginBottom: 2,
-            }}
-            onChange={onChange}
-          />
+          <>
+            <TextField
+              variant="outlined"
+              autoFocus
+              fullWidth
+              color="secondary"
+              label="답변을 입력해주세요."
+              id="comment"
+              name="comment"
+              type="comment"
+              autoComplete="comment"
+              sx={{
+                borderBottom: `1px dashed ${primaryColor}`,
+                borderRadius: 3,
+                marginBottom: 2,
+              }}
+              onChange={onChange}
+            />
+            <PrimaryBtn btnName={'답변 등록'} onClick={onSubmit}></PrimaryBtn>
+          </>
         )}
-        {writer === userName ? (
-          ''
-        ) : (
-          <PrimaryBtn btnName={'답변 등록'} onClick={onSubmit}></PrimaryBtn>
-        )}
-
-        {/* <PrimaryBtn
-          btnName={"SNS 공유하기"}
-          onClick={() => alert("준비 중입니다.")}
+        {/* 임시 답변 등록 인풋 --------------------------------- */}
+        <TextField
+          variant="outlined"
+          autoFocus
+          fullWidth
+          color="secondary"
+          label="답변을 입력해주세요."
+          id="comment"
+          name="comment"
+          type="comment"
+          autoComplete="comment"
+          sx={{
+            borderBottom: `1px solid ${primaryColor}`,
+            borderRadius: 1,
+            marginBottom: 2,
+          }}
+          onChange={onChange}
+        />
+        <PrimaryBtn btnName={'답변 등록'} onClick={onSubmit}></PrimaryBtn>
+        {/* -------------------------------------------------- */}
+        <PrimaryBtn
+          btnName={'SNS 공유하기'}
+          onClick={() => alert('준비 중입니다.')}
         ></PrimaryBtn>
         <br />
-        <PrimaryBtn btnName={"주소 복사"} onClick={copyLink}></PrimaryBtn> */}
+        <PrimaryBtn btnName={'주소 복사'} onClick={copyLink}></PrimaryBtn>
       </Wrapper>
     </>
   );
