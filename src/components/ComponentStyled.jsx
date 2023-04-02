@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { primaryColor } from '../GlobalStyle';
+import { pointColor, primaryColor } from '../GlobalStyle';
 
 export const Wrapper = styled.section`
   display: flex;
@@ -63,7 +63,8 @@ export const SmallImg = styled.img`
 export const SubTitle = styled.p`
   font-size: 0.85rem;
   font-weight: 500;
-  color: #e8e8e8;
+  color: ${pointColor};
+  margin-bottom: 5%;
 `;
 
 export const Bracket = styled.span`

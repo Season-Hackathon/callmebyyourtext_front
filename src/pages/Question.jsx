@@ -14,50 +14,21 @@ import CommentComponent from '../components/List/CommentComponent';
 import Title from 'components/Title/Title';
 
 const Question = () => {
-  // 변수 관리---------------------------------------------------------
+  // 변수 관리-------------------------------------------------------
   const navigate = useNavigate();
   const location = useLocation();
   const { question, questionId, writer } = location.state;
   const userId = localStorage.getItem('id');
   const userName = localStorage.getItem('name');
   const accessToken = localStorage.getItem('access_token');
+
+  // 상태 관리-------------------------------------------------------
   const [point, setPoint] = useState('');
   const [comments, setComments] = useState({
     questionId,
     comment: '',
     anonymous: true,
   });
-
-  // 함수 관리---------------------------------------------------------
-  const copyLink = () => {
-    navigator.clipboard.writeText(window.document.location.href);
-    alert('주소가 복사되었습니다.');
-  };
-  const goToHome = () => {
-    navigate('/');
-  };
-
-  // 질문 관리
-  const deleteQuestion = async () => {
-    if (window.confirm('해당 질문을 삭제하시겠습니까?')) {
-      await axios
-        .delete(`http://127.0.0.1:8000/questions/${questionId}`, {
-          withCredentials: true,
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        })
-        .then((response) => {
-          console.log(response);
-          navigate(`/questionlist/${userId}`);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      return;
-    }
-  };
 
   // 답변 관리-------------------------------------------------------
   const [commentsArray, setCommentsArray] = useState([]);
@@ -84,6 +55,8 @@ const Question = () => {
       // navigate('/', { replace: true });
     }
   };
+
+  // 렌더링 관리----------------------------------------------------
   useEffect(() => {
     fetchComments();
   }, []);
@@ -123,11 +96,46 @@ const Question = () => {
       )
       .then((response) => {
         console.log(response);
+        setComments({
+          ...comments,
+          comment: '',
+        });
+        alert('답변이 정상적으로 등록되었습니다.');
       })
       .catch((error) => {
         console.log(error);
-        console.log(comments);
       });
+  };
+
+  // 함수 관리-------------------------------------------------------
+  const copyLink = () => {
+    navigator.clipboard.writeText(window.document.location.href);
+    alert('주소가 복사되었습니다.');
+  };
+  const goToHome = () => {
+    navigate('/');
+  };
+
+  // 질문 삭제 관리--------------------------------------------------
+  const deleteQuestion = async () => {
+    if (window.confirm('해당 질문을 삭제하시겠습니까?')) {
+      await axios
+        .delete(`http://127.0.0.1:8000/questions/${questionId}`, {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+          navigate(`/questionlist/${userId}`);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      return;
+    }
   };
   return (
     <>

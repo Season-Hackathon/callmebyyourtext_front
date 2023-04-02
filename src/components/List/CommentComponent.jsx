@@ -20,9 +20,14 @@ const CommentComponent = ({
     'openUser',
     openUser
   );
+  // 상태 관리 --------------------------------------------
   const [open, setOpen] = useState(false);
+
+  // 변수 관리 --------------------------------------------
   const userId = localStorage.getItem('id');
   const accessToken = localStorage.getItem('access_token');
+
+  // 함수 관리 --------------------------------------------
   const openComment = ({ commentId }) => {
     if (window.confirm('50포인트를 소모하여 해당 답변을 확인하시겠습니까?')) {
       axios
