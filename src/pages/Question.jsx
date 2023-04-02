@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { primaryColor, secondaryColor } from '../GlobalStyle';
 import { useLocation, useNavigate } from 'react-router-dom';
 import PrimaryBtn from '../components/Button/PrimaryBtn';
@@ -32,7 +32,7 @@ const Question = () => {
 
   // 답변 관리-------------------------------------------------------
   const [commentsArray, setCommentsArray] = useState([]);
-  const fetchComments = async () => {
+  const fetchComments = useCallback(async () => {
     try {
       const commentsData = await axios.get(
         `http://127.0.0.1:8000/questions/${questionId}`
@@ -52,9 +52,10 @@ const Question = () => {
       console.log(error);
       // alert('데이터를 가져오는데 실패했습니다. 다시 로그인해주세요.');
       // localStorage.clear();
+      // console.clear();
       // navigate('/', { replace: true });
     }
-  };
+  }, [commentsArray]);
 
   // 렌더링 관리----------------------------------------------------
   useEffect(() => {
@@ -137,7 +138,7 @@ const Question = () => {
       return;
     }
   };
-  console.log(comments.comment);
+
   return (
     <>
       <Title onClick={goToHome} />
