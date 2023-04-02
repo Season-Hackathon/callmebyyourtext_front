@@ -42,6 +42,17 @@ footer, header, hgroup, main, menu, nav, section {
   font-style: normal;
 }
 
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background: #fff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: ${primaryColor};  
+  border-radius: 10px;
+}
+
 @keyframes fadeIn {
   from {opacity: 0;}
   to {opacity: 1;}   

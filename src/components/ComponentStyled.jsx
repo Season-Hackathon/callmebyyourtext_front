@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { primaryColor } from '../GlobalStyle';
+import { pointColor, primaryColor } from '../GlobalStyle';
 
 export const Wrapper = styled.section`
   display: flex;
@@ -15,10 +15,12 @@ export const Header = styled.span`
 `;
 
 export const QuestionBox = styled.section`
-  box-shadow: 3px 3px 5px 0px rgb(0 0 0 / 20%);
-  border-radius: 5px;
   width: 250px;
   min-height: 100px;
+  overflow: hidden;
+  word-wrap: break-word;
+  box-shadow: 3px 3px 5px 0px rgb(0 0 0 / 20%);
+  border-radius: 5px;
   margin-bottom: 10%;
   padding: 20px;
 `;
@@ -61,7 +63,8 @@ export const SmallImg = styled.img`
 export const SubTitle = styled.p`
   font-size: 0.85rem;
   font-weight: 500;
-  color: #e8e8e8;
+  color: ${pointColor};
+  margin-bottom: 5%;
 `;
 
 export const Bracket = styled.span`

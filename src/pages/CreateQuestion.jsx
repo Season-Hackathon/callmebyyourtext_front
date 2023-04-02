@@ -1,12 +1,13 @@
 import { Typography, Box, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import { SmallImg, Wrapper } from '../components/ComponentStyled';
-import { pointColor, primaryColor, secondaryColor } from '../GlobalStyle';
+import { primaryColor, secondaryColor } from '../GlobalStyle';
 import TitleLogo from '../assets/images/titleLogo.png';
 import { useNavigate } from 'react-router-dom';
 import PrimaryBtn from '../components/Button/PrimaryBtn';
 import axios from 'axios';
 import Title from '../components/Title/Title';
+import { getCookie } from 'components/cookie';
 
 const CreateQuestion = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const CreateQuestion = () => {
     });
   };
   const accessToken = localStorage.getItem('access_token');
+  const refreshToken = getCookie('refresh_token');
   const userId = localStorage.getItem('id');
 
   const onSubmit = async (e) => {

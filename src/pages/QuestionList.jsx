@@ -57,7 +57,7 @@ const QuestionList = () => {
   const questionList = [
     questionArray?.map((q) => (
       <QuestionComponent
-        key={q.id}
+        key={q.questionId}
         questionId={q.questionId}
         question={q.question}
         writer={q.writer}
@@ -77,7 +77,8 @@ const QuestionList = () => {
             marginBottom: '10%',
           }}
         >
-          <SmallImg src={TitleLogo} /> {userName}님의 질문 리스트
+          <SmallImg src={TitleLogo} /> {userName}님의
+          (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
         </Typography>
         <Typography
           variant="h6"
@@ -89,13 +90,14 @@ const QuestionList = () => {
             textAlign: 'center',
           }}
         >
-          <SmallImg src={TitleLogo} /> 현재 포인트 : {point}
+          현재 포인트 : {point}
         </Typography>
         <Box
           sx={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            width: '110%',
             maxHeight: '45vh',
             overflowY: 'auto',
           }}
