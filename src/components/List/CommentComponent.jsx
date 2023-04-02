@@ -28,15 +28,18 @@ const CommentComponent = ({
   const accessToken = localStorage.getItem('access_token');
 
   // 함수 관리 --------------------------------------------
-  const openComment = ({ commentId }) => {
+  const openComment = () => {
     if (window.confirm('50포인트를 소모하여 해당 답변을 확인하시겠습니까?')) {
       axios
-        .get(`http://127.0.0.1:8000/questions/16/comments/7`, {
-          withCredentials: true,
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        })
+        .get(
+          `http://127.0.0.1:8000/questions/${questionId}/comments/${commentId}`,
+          {
+            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        )
         .then((response) => {
           console.log(response);
           if (userId === response.data.open_user[0].id) {

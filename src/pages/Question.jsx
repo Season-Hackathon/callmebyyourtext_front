@@ -59,7 +59,7 @@ const Question = () => {
   // 렌더링 관리----------------------------------------------------
   useEffect(() => {
     fetchComments();
-  }, []);
+  }, [comments]);
   const commentsList = [
     commentsArray?.map((c) => (
       <CommentComponent
@@ -137,6 +137,7 @@ const Question = () => {
       return;
     }
   };
+  console.log(comments.comment);
   return (
     <>
       <Title onClick={goToHome} />
@@ -172,7 +173,7 @@ const Question = () => {
         </Typography>
         <QuestionBox>{question}</QuestionBox>
         {/* {writer === userName ? "사용자 접근" : "다른 사용자 접근"} */}
-        <Box sx={{ overflowY: 'auto', width: '100%', maxHeight: '40vh' }}>
+        <Box sx={{ overflowY: 'auto', width: '100%', maxHeight: '30vh' }}>
           {commentsArray.length === 0 ? (
             <Typography
               sx={{
@@ -229,10 +230,10 @@ const Question = () => {
             fullWidth
             color="secondary"
             label="답변을 입력해주세요."
+            value={comments.comment}
             id="comment"
             name="comment"
-            type="comment"
-            autoComplete="comment"
+            type="text"
             sx={{
               marginBottom: 2,
             }}

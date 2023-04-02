@@ -49,7 +49,7 @@ footer, header, hgroup, main, menu, nav, section {
 }
 
 *::-webkit-scrollbar-thumb {
-  background: ${primaryColor};
+  background: ${primaryColor};  
   border-radius: 10px;
 }
 
