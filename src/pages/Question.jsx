@@ -90,7 +90,7 @@ const Question = () => {
   const commentsList = [
     commentsArray?.map((c) => (
       <CommentComponent
-        key={c.commentid}
+        key={c.commentId}
         openUser={c.open_user[0]}
         questionId={c.questionId}
         commentId={c.commentId}
@@ -109,6 +109,7 @@ const Question = () => {
     });
   };
   const onSubmit = async (e) => {
+    e.preventDefault();
     await axios
       .post(
         `http://127.0.0.1:8000/questions/${questionId}/comments`,
@@ -204,24 +205,34 @@ const Question = () => {
           </>
         )}
         {/* 임시 답변 등록 인풋 --------------------------------- */}
-        <TextField
-          variant="outlined"
-          autoFocus
-          fullWidth
-          color="secondary"
-          label="답변을 입력해주세요."
-          id="comment"
-          name="comment"
-          type="comment"
-          autoComplete="comment"
+        <Box
+          component="form"
+          onSubmit={onSubmit}
           sx={{
-            borderBottom: `1px solid ${primaryColor}`,
-            borderRadius: 1,
-            marginBottom: 2,
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
-          onChange={onChange}
-        />
-        <PrimaryBtn btnName={'답변 등록'} onClick={onSubmit}></PrimaryBtn>
+        >
+          <TextField
+            variant="outlined"
+            autoFocus
+            fullWidth
+            color="secondary"
+            label="답변을 입력해주세요."
+            id="comment"
+            name="comment"
+            type="comment"
+            autoComplete="comment"
+            sx={{
+              marginBottom: 2,
+            }}
+            onChange={onChange}
+          />
+          <PrimaryBtn btnName={'답변 등록'}></PrimaryBtn>
+        </Box>
+        <br />
         {/* -------------------------------------------------- */}
         <PrimaryBtn
           btnName={'SNS 공유하기'}

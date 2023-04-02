@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { SmallImg } from '../ComponentStyled';
 import TitleLogo from '../../assets/images/titleLogo.png';
 import { primaryColor, secondaryColor } from '../../GlobalStyle';
@@ -45,7 +45,6 @@ const CommentComponent = ({
       return;
     }
   };
-  // CI 7 / QU 16
   return (
     <>
       {open === false ? (
@@ -89,4 +88,4 @@ const CommentComponent = ({
   );
 };
 
-export default CommentComponent;
+export default memo(CommentComponent);
