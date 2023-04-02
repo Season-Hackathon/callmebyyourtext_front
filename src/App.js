@@ -51,7 +51,6 @@ const App = () => {
             <Route path="/signin" element={<SignIn />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/question/:questionId" element={<Question />}></Route>
-            <Route path="/comments/:questionId" element={<Comments />}></Route>
             <Route
               path="/questionlist/:userId"
               element={<QuestionList />}

@@ -57,7 +57,7 @@ const QuestionList = () => {
   const questionList = [
     questionArray?.map((q) => (
       <QuestionComponent
-        key={q.id}
+        key={q.questionId}
         questionId={q.questionId}
         question={q.question}
         writer={q.writer}
