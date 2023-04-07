@@ -70,6 +70,7 @@ const Question = () => {
         commentId={c.commentId}
         comment={c.comment}
         writer={c.writer}
+        point={point}
       />
     )),
   ];
@@ -215,7 +216,7 @@ const Question = () => {
           </>
         )}
         {/* 임시 답변 등록 인풋 --------------------------------- */}
-        <Box
+        {/* <Box
           component="form"
           onSubmit={onSubmit}
           sx={{
@@ -242,8 +243,9 @@ const Question = () => {
           />
           <PrimaryBtn btnName={'답변 등록'}></PrimaryBtn>
         </Box>
-        <br />
+        <br /> */}
         {/* -------------------------------------------------- */}
+        <br />
         <PrimaryBtn
           btnName={'SNS 공유하기'}
           onClick={() => alert('준비 중입니다.')}

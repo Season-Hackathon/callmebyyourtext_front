@@ -19,10 +19,18 @@ export const QuestionBox = styled.section`
   min-height: 100px;
   overflow: hidden;
   word-wrap: break-word;
-  box-shadow: 3px 3px 5px 0px rgb(0 0 0 / 20%);
-  border-radius: 5px;
+  border: 2px solid ${primaryColor};
+  border-radius: 10px;
   margin-bottom: 10%;
   padding: 20px;
+`;
+
+export const CommentBox = styled.section`
+  width: 250px;
+  height: auto;
+  padding: 2%;
+  overflow: hidden;
+  word-wrap: break-word;
 `;
 
 export const MyPage = styled.img`
