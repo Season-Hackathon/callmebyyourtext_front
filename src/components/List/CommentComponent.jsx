@@ -13,14 +13,14 @@ const CommentComponent = ({
   writer,
   point,
 }) => {
-  console.log(
-    'commentId',
-    commentId,
-    'questionId',
-    questionId,
-    'openUser',
-    openUser
-  );
+  // console.log(
+  //   'commentId',
+  //   commentId,
+  //   'questionId',
+  //   questionId,
+  //   'openUser',
+  //   openUser
+  // );
   // 상태 관리 --------------------------------------------
   const [isOpen, setIsOpen] = useState(openUser);
   const [pointRefresh, setPointRefresh] = useState(point);
