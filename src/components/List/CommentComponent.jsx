@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import React, { memo, useState } from 'react';
-import { SmallImg } from '../ComponentStyled';
+import { CommentBox, SmallImg } from '../ComponentStyled';
 import TitleLogo from '../../assets/images/titleLogo.png';
 import { primaryColor, secondaryColor } from '../../GlobalStyle';
 import axios from 'axios';
@@ -80,7 +80,8 @@ const CommentComponent = ({
             textAlign: 'left',
           }}
         >
-          <SmallImg src={TitleLogo} /> {comment}
+          <SmallImg src={TitleLogo} />
+          <CommentBox>익명 답변 : {comment}</CommentBox>
         </Typography>
       ) : (
         <Typography

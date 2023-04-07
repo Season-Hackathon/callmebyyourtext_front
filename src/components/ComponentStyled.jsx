@@ -25,6 +25,14 @@ export const QuestionBox = styled.section`
   padding: 20px;
 `;
 
+export const CommentBox = styled.section`
+  width: 250px;
+  height: auto;
+  padding: 2%;
+  overflow: hidden;
+  word-wrap: break-word;
+`;
+
 export const MyPage = styled.img`
   width: auto;
   height: auto;
