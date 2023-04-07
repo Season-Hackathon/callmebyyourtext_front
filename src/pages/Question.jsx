@@ -70,6 +70,7 @@ const Question = () => {
         commentId={c.commentId}
         comment={c.comment}
         writer={c.writer}
+        point={point}
       />
     )),
   ];
