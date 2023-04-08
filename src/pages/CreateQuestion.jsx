@@ -7,7 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import PrimaryBtn from '../components/Button/PrimaryBtn';
 import axios from 'axios';
 import Title from '../components/Title/Title';
-import { getCookie } from 'components/cookie';
+import { getCookie } from 'components/Cookie';
+import { Instance } from 'components/Instance';
 
 const CreateQuestion = () => {
   const navigate = useNavigate();
