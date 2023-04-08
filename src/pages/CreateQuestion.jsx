@@ -8,6 +8,7 @@ import PrimaryBtn from '../components/Button/PrimaryBtn';
 import axios from 'axios';
 import Title from '../components/Title/Title';
 import { getCookie } from 'components/Cookie';
+import { Instance } from 'components/Instance';
 
 const CreateQuestion = () => {
   const navigate = useNavigate();
