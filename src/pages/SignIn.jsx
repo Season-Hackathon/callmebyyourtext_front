@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from 'context/AuthContext';
 import { CursorText, Wrapper } from 'components/ComponentStyled';
-import { setCookie } from 'components/cookie';
+import { setCookie } from 'components/Cookie';
 
 const SignIn = () => {
   // State-------------------------------------------------------------------
