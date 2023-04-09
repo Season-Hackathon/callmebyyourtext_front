@@ -198,24 +198,34 @@ const Question = () => {
           ''
         ) : (
           <>
-            <TextField
-              variant="outlined"
-              autoFocus
-              fullWidth
-              color="secondary"
-              label="답변을 입력해주세요."
-              id="comment"
-              name="comment"
-              type="comment"
-              autoComplete="comment"
+            <Box
+              component="form"
+              onSubmit={onSubmit}
               sx={{
-                borderBottom: `1px dashed ${primaryColor}`,
-                borderRadius: 3,
-                marginBottom: 2,
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
               }}
-              onChange={onChange}
-            />
-            <PrimaryBtn btnName={'답변 등록'} onClick={onSubmit}></PrimaryBtn>
+            >
+              <TextField
+                variant="outlined"
+                autoFocus
+                fullWidth
+                color="secondary"
+                label="답변을 입력해주세요."
+                value={comments.comment}
+                id="comment"
+                name="comment"
+                type="text"
+                sx={{
+                  borderRadius: 3,
+                  margin: '10% 0',
+                }}
+                onChange={onChange}
+              />
+              <PrimaryBtn btnName={'답변 등록'}></PrimaryBtn>
+            </Box>
           </>
         )}
         {/* 임시 답변 등록 인풋 --------------------------------- */}
@@ -240,8 +250,9 @@ const Question = () => {
             name="comment"
             type="text"
             sx={{
-              marginBottom: 2,
-            }}
+                borderRadius: 3,
+                margin: '10% 0',
+              }}
             onChange={onChange}
           />
           <PrimaryBtn btnName={'답변 등록'}></PrimaryBtn>

@@ -81,7 +81,9 @@ const CommentComponent = ({
           }}
         >
           <SmallImg src={TitleLogo} />
-          <CommentBox>익명 답변 : {comment}</CommentBox>
+          <CommentBox>
+            <span>익명 답변 : {comment}</span>
+          </CommentBox>
         </Typography>
       ) : (
         <Typography
