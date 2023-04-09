@@ -21,7 +21,7 @@ export const QuestionBox = styled.section`
   word-wrap: break-word;
   border: 2px solid ${primaryColor};
   border-radius: 10px;
-  margin-bottom: 10%;
+  margin: 10% 0;
   padding: 20px;
 `;
 

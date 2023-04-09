@@ -161,18 +161,21 @@ const Question = () => {
             ''
           )}
         </Box>
-        <Typography
-          variant="h6"
-          sx={{
-            color: `${secondaryColor}`,
-            marginBottom: '10%',
-            fontSize: '14px',
-            fontWeight: '600',
-            textAlign: 'center',
-          }}
-        >
-          현재 포인트 : {point}
-        </Typography>
+        {writer === userName ? (
+          <Typography
+            variant="h6"
+            sx={{
+              color: `${secondaryColor}`,
+              fontSize: '14px',
+              fontWeight: '600',
+              textAlign: 'center',
+            }}
+          >
+            현재 포인트 : {point}
+          </Typography>
+        ) : (
+          ''
+        )}
         <QuestionBox>{question}</QuestionBox>
         {/* {writer === userName ? "사용자 접근" : "다른 사용자 접근"} */}
         <Box sx={{ overflowY: 'auto', width: '100%', maxHeight: '30vh' }}>
