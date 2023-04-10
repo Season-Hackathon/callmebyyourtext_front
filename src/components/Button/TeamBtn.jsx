@@ -5,9 +5,9 @@ import { primaryColor } from '../../GlobalStyle';
 const Button = styled.button`
   width: 200px;
   height: 35px;
-  border: 1px solid ${primaryColor};
-  color: ${primaryColor};
-  background-color: unset;
+  border: 1px solid white;
+  color: white;
+  background-color: transparent;
   border-radius: 5px;
   transition: 0.3s;
   &:hover {
@@ -17,7 +17,7 @@ const Button = styled.button`
   }
 `;
 
-const PrimaryBtn = ({ btnName, onClick, type }) => {
+const TeamBtn = ({ btnName, onClick, type }) => {
   return (
     <Button onClick={onClick} type={type}>
       {btnName}
@@ -25,4 +25,4 @@ const PrimaryBtn = ({ btnName, onClick, type }) => {
   );
 };
 
-export default PrimaryBtn;
+export default TeamBtn;

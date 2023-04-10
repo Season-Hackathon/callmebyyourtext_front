@@ -1,9 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
-import AppleSDGothicNeoR from './assets/fonts/AppleSDGothicNeoR.ttf';
+import AppleSDGothicNeoB from './assets/fonts/AppleSDGothicNeoB.ttf';
+import AppleSDGothicNeoM from './assets/fonts/AppleSDGothicNeoM.ttf';
 
-export const primaryColor = '#D07C81';
-export const secondaryColor = '#79756E';
-export const pointColor = '#613B3E';
+export const primaryColor = '#0D87AD';
+export const secondaryColor = '#FFAF81';
+export const pointColor = '#2D2D2D';
+export const bgColor = '#133337';
 export const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -36,21 +38,31 @@ footer, header, hgroup, main, menu, nav, section {
     display: none;
 }
 @font-face {
-  font-family: "AppleSDGothicNeoR";
-  src: url(${AppleSDGothicNeoR});
+  font-family: "AppleSDGothicNeoM";
+  src: url(${AppleSDGothicNeoM});
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "AppleSDGothicNeoB";
+  src: url(${AppleSDGothicNeoB});
   font-weight: normal;
   font-style: normal;
 }
 
 *::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-  background: #fff;
+  width: 2px;
+  height: 2px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background: ${primaryColor};  
+  background: ${pointColor};  
   border-radius: 10px;
+}
+
+*::selection {
+  color: black;
+  background: #daa520;
 }
 
 @keyframes fadeIn {
@@ -82,17 +94,16 @@ footer, header, hgroup, main, menu, nav, section {
 }
 
 * {
-  font-family: "AppleSDGothicNeoR", 'Noto Sans KR Black' !important;
+  font-family: "AppleSDGothicNeoM", 'Noto Sans KR Black' !important;
   box-sizing: border-box;
 }
 
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
-  overflow-y: scroll;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0;
 }
 

@@ -1,12 +1,10 @@
 import { Typography, Box, TextField } from '@mui/material';
 import React, { useState } from 'react';
-import { SmallImg, Wrapper } from '../components/ComponentStyled';
-import { primaryColor, secondaryColor } from '../GlobalStyle';
-import TitleLogo from '../assets/images/titleLogo.png';
+import { Container, TitleBox } from '../components/ComponentStyled';
+import { primaryColor } from '../GlobalStyle';
 import { useNavigate } from 'react-router-dom';
 import PrimaryBtn from '../components/Button/PrimaryBtn';
 import axios from 'axios';
-import Title from '../components/Title/Title';
 import { getCookie } from 'components/Cookie';
 import { Instance } from 'components/Instance';
 
@@ -31,13 +29,12 @@ const CreateQuestion = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios
-      .post('http://127.0.0.1:8000/questions', question, {
-        withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
+    await Instance.post('http://127.0.0.1:8000/questions', question, {
+      withCredentials: true,
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
       .then((response) => {
         console.log(response);
         navigate(`/questionlist/${userId}`);
@@ -49,20 +46,21 @@ const CreateQuestion = () => {
 
   return (
     <>
-      <Wrapper className="fadeIn">
-        <Title onClick={goToHome} />
+      <Container className="fadeIn">
+        <TitleBox onClick={goToHome}></TitleBox>
         <Typography
           variant="h6"
           sx={{
-            color: `${secondaryColor}`,
-            marginBottom: '10%',
-            // fontFamily: 'Noto Sans KR Black',
+            width: '300px',
+            display: 'flex',
+            justifyContent: 'flex-start',
+            color: `${primaryColor}`,
             fontSize: '14px',
             fontWeight: '600',
-            textAlign: 'center',
+            margin: '40px 0 15px 0',
           }}
         >
-          <SmallImg src={TitleLogo} /> {userName}님의 질문 만들기
+          {userName}님의 질문 만들기
         </Typography>
         <Box
           component="form"
@@ -76,26 +74,22 @@ const CreateQuestion = () => {
           <TextField
             required
             fullWidth
-            variant="standard"
-            color="secondary"
+            variant="outlined"
+            color="info"
             minRows={5}
             id="question"
             name="question"
-            label="새로운 질문"
+            label="질문을 입력해주세요."
             multiline
             onChange={onChange}
             sx={{
-              border: `1px dotted ${primaryColor}`,
-              borderTop: 'none',
-              borderBottom: 'none',
-              borderRadius: 2,
-              width: '250px',
+              width: '300px',
               marginBottom: 3,
             }}
           />
           <PrimaryBtn btnName={'등록'} type="submit"></PrimaryBtn>
         </Box>
-      </Wrapper>
+      </Container>
     </>
   );
 };

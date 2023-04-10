@@ -8,6 +8,7 @@ export const Instance = axios.create({
   baseURL: 'http://127.0.0.1:8000',
   headers: {
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': 'http://localhost:8000',
     Authorization: `Bearer ${ACCESS_TOKEN}`,
     withCredentials: true,
   },
@@ -42,15 +43,19 @@ Instance.interceptors.response.use(
     const originalRequest = error.config;
 
     // 만료된 access token이면서 refresh token이 유효한 경우
-    if (error.response?.status === 500) {
+    if (
+      error.response?.status === 401 &&
+      error.response?.statusText === 'Unauthorized' &&
+      error.response?.data?.detail === 'Token expired'
+    ) {
       try {
-        const response = await axios.post(
+        const reIssue = await axios.post(
           'http://127.0.0.1:8000/login/token/refresh/',
           {
             refresh: REFRESH_TOKEN,
           }
         );
-        const newAccessToken = response.data.access;
+        const newAccessToken = reIssue.data.access;
         localStorage.removeItem('access_token');
         localStorage.setItem('access_token', newAccessToken);
         axios.defaults.headers.common[

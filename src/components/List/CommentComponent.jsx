@@ -2,8 +2,10 @@ import { Typography } from '@mui/material';
 import React, { memo, useState } from 'react';
 import { CommentBox, SmallImg } from '../ComponentStyled';
 import TitleLogo from '../../assets/images/titleLogo.png';
-import { primaryColor, secondaryColor } from '../../GlobalStyle';
+import { pointColor, primaryColor, secondaryColor } from '../../GlobalStyle';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLock, faUserSecret } from '@fortawesome/free-solid-svg-icons';
 
 const CommentComponent = ({
   comment,
@@ -72,29 +74,28 @@ const CommentComponent = ({
           variant="h6"
           sx={{
             width: '100%',
-            color: `${secondaryColor}`,
-            marginBottom: '10%',
-            fontFamily: 'Noto Sans KR Black',
+            color: `${primaryColor}`,
+            marginBottom: 3,
             fontSize: '14px',
             fontWeight: '600',
             textAlign: 'left',
           }}
         >
-          <SmallImg src={TitleLogo} />
-          <CommentBox>익명 답변 : {comment}</CommentBox>
+          <CommentBox>
+            <FontAwesomeIcon icon={faUserSecret} />{' '}
+            <span>익명 답변 : {comment}</span>
+          </CommentBox>
         </Typography>
       ) : (
         <Typography
           variant="h6"
           sx={{
             width: '100%',
-            color: `${secondaryColor}`,
-            marginBottom: '10%',
-            fontFamily: 'Noto Sans KR Black',
+            color: `${pointColor}`,
+            marginBottom: 3,
             fontSize: '14px',
             fontWeight: '600',
             textAlign: 'left',
-            borderRadius: '10px',
             cursor: 'pointer',
             '&:hover': {
               color: `${primaryColor}`,
@@ -102,7 +103,9 @@ const CommentComponent = ({
           }}
           onClick={openComment}
         >
-          <SmallImg src={TitleLogo} /> 비공개 답변입니다.
+          <CommentBox>
+            <FontAwesomeIcon icon={faLock} /> <span>비공개 답변입니다.</span>
+          </CommentBox>
         </Typography>
       )}
     </>

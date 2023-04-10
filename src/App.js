@@ -13,6 +13,8 @@ import CreateQuestion from './pages/CreateQuestion';
 import QuestionList from './pages/QuestionList';
 import NotFound from './pages/NotFound';
 import Comments from './pages/Comments';
+import Guide from 'pages/Guide';
+import About from 'pages/About';
 
 const flowerFlake1 = document.createElement('img');
 flowerFlake1.src = './assets/images/cherryblossom1.png';
@@ -48,8 +50,11 @@ const App = () => {
           <Routes>
             <Route path="*" element={<NotFound />}></Route>
             <Route path="/" element={<Home />}></Route>
-            <Route path="/signin" element={<SignIn />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
+            <Route path="/signin" element={<SignIn />}></Route>
+            <Route path="/mypage/:userId" element={<MyPage />}></Route>
+            <Route path="/guide" element={<Guide />}></Route>
+            <Route path="/about" element={<About />}></Route>
             <Route path="/question/:questionId" element={<Question />}></Route>
             <Route
               path="/questionlist/:userId"
@@ -59,7 +64,6 @@ const App = () => {
               path="/createquestion/:userId"
               element={<CreateQuestion />}
             ></Route>
-            <Route path="/mypage/:userId" element={<MyPage />}></Route>
           </Routes>
         </AuthContext.Provider>
       </CookiesProvider>
