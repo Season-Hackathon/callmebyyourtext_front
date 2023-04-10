@@ -179,7 +179,7 @@ const Question = () => {
         </Box>
         <QuestionBox>{question}</QuestionBox>
         {/* {writer === userName ? "사용자 접근" : "다른 사용자 접근"} */}
-        <Box sx={{ overflowY: 'auto', width: '100%', maxHeight: '30vh' }}>
+        <Box sx={{ overflowY: 'auto', width: '350px', maxHeight: '20vh' }}>
           {commentsArray.length === 0 ? (
             <Typography
               sx={{
@@ -195,7 +195,7 @@ const Question = () => {
             [...commentsList]
           )}
         </Box>
-        {writer === userName ? (
+        {writer !== userName ? (
           ''
         ) : (
           <>
@@ -203,7 +203,7 @@ const Question = () => {
               component="form"
               onSubmit={onSubmit}
               sx={{
-                width: '100%',
+                width: '350px',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -213,7 +213,7 @@ const Question = () => {
                 variant="outlined"
                 autoFocus
                 fullWidth
-                color="secondary"
+                color="info"
                 label="답변을 입력해주세요."
                 value={comments.comment}
                 id="comment"
@@ -221,7 +221,7 @@ const Question = () => {
                 type="text"
                 sx={{
                   borderRadius: 3,
-                  margin: '10% 0',
+                  margin: '20px 0 20px 0',
                 }}
                 onChange={onChange}
               />
@@ -229,37 +229,6 @@ const Question = () => {
             </Box>
           </>
         )}
-        {/* 임시 답변 등록 인풋 --------------------------------- */}
-        {/* <Box
-          component="form"
-          onSubmit={onSubmit}
-          sx={{
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <TextField
-            variant="outlined"
-            autoFocus
-            fullWidth
-            color="secondary"
-            label="답변을 입력해주세요."
-            value={comments.comment}
-            id="comment"
-            name="comment"
-            type="text"
-            sx={{
-                borderRadius: 3,
-                margin: '10% 0',
-              }}
-            onChange={onChange}
-          />
-          <PrimaryBtn btnName={'답변 등록'}></PrimaryBtn>
-        </Box>
-        <br /> */}
-        {/* -------------------------------------------------- */}
         <br />
         <PrimaryBtn
           btnName={'SNS 공유하기'}

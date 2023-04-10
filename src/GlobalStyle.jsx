@@ -51,12 +51,12 @@ footer, header, hgroup, main, menu, nav, section {
 }
 
 *::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 2px;
+  height: 2px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background: #fff;  
+  background: ${pointColor};  
   border-radius: 10px;
 }
 

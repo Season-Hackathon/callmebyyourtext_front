@@ -29,6 +29,13 @@ export const Item = styled.div`
   color: ${primaryColor};
   font-size: 18px;
   font-weight: 550;
+
+  // PC 화면
+  @media screen and (min-width: 1024px) {
+  }
+  // 모바일 스타일
+  @media screen and (max-width: 767px) {
+  }
 `;
 
 export const Header = styled.span`
@@ -59,12 +66,6 @@ export const TitleBox = styled.section`
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
-  // PC 화면
-  @media screen and (min-width: 1024px) {
-  }
-  // 모바일 스타일
-  @media screen and (max-width: 500px) {
-  }
 `;
 
 export const QuestionBox = styled.section`
@@ -79,9 +80,9 @@ export const QuestionBox = styled.section`
 `;
 
 export const CommentBox = styled.section`
-  width: 250px;
+  width: 350px;
   height: auto;
-  padding: 2%;
+  padding: 1%;
   overflow: hidden;
   word-wrap: break-word;
 `;
@@ -142,6 +143,12 @@ export const SmallImg = styled.img`
 export const SubTitle = styled.p`
   font-size: 0.85rem;
   font-weight: 500;
+  color: #fff;
+`;
+
+export const SubTitle404 = styled.p`
+  font-size: 0.85rem;
+  font-weight: 600;
   color: ${pointColor};
 `;
 

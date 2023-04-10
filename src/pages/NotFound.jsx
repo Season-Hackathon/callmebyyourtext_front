@@ -1,5 +1,9 @@
 import React from 'react';
-import { SubTitle, Container, TitleBox } from '../components/ComponentStyled';
+import {
+  Container,
+  TitleBox,
+  SubTitle404,
+} from '../components/ComponentStyled';
 import PrimaryBtn from '../components/Button/PrimaryBtn';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,11 +18,11 @@ const NotFound = () => {
         <TitleBox onClick={redirectURL}></TitleBox>
         <br />
         <br />
-        <SubTitle>
+        <SubTitle404>
           존재하지 않는 페이지입니다.
           <br />
           다시 시도해주세요.
-        </SubTitle>
+        </SubTitle404>
         <br />
         <br />
         <PrimaryBtn btnName={'돌아가기'} onClick={redirectURL}></PrimaryBtn>

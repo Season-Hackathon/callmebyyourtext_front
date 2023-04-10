@@ -6,7 +6,6 @@ import {
   Item,
 } from 'components/ComponentStyled';
 import Likelion from '../assets/images/LIKELION.png';
-
 import { useNavigate } from 'react-router-dom';
 import { Typography } from '@mui/material';
 import TeamBtn from 'components/Button/TeamBtn';
