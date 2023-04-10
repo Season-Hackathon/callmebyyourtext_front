@@ -53,11 +53,13 @@ const CreateQuestion = () => {
         <Typography
           variant="h6"
           sx={{
+            width: '300px',
+            display: 'flex',
+            justifyContent: 'flex-start',
             color: `${primaryColor}`,
-            marginTop: 5,
             fontSize: '14px',
             fontWeight: '600',
-            textAlign: 'center',
+            margin: '40px 0 15px 0',
           }}
         >
           {userName}님의 질문 만들기
@@ -79,7 +81,7 @@ const CreateQuestion = () => {
             minRows={5}
             id="question"
             name="question"
-            label="새로운 질문"
+            label="질문을 입력해주세요."
             multiline
             onChange={onChange}
             sx={{
