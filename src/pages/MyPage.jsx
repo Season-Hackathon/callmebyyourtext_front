@@ -6,13 +6,18 @@ import PrimaryBtn from 'components/Button/PrimaryBtn';
 import { AuthContext } from 'context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import {
-  CursorText,
   modalStyle,
   Container,
   TitleBox,
+  LogOutBox,
 } from 'components/ComponentStyled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faList } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPlus,
+  faList,
+  faCircleInfo,
+  faUserSecret,
+} from '@fortawesome/free-solid-svg-icons';
 
 const MyPage = () => {
   // 변수 관리
@@ -30,6 +35,12 @@ const MyPage = () => {
   const modalClose = () => setOpen(false);
 
   // 모달 인풋 관리
+  const goToGuide = () => {
+    navigate(`/guide`);
+  };
+  const goToAbout = () => {
+    navigate(`/about`);
+  };
   const goToNewQuestion = () => {
     navigate(`/createquestion/${userId}`);
   };
@@ -123,16 +134,40 @@ const MyPage = () => {
             id="modal-modal-description"
             sx={{
               mt: 2,
-              fontSize: 14,
+              display: 'flex',
+              justifyContent: 'flex-start',
+              gap: 2,
+              width: '150px',
+              fontSize: 15,
               fontWeight: 700,
-              fontFamily: 'Noto Sans KR Black',
               color: `${primaryColor}`,
-              borderBottom: `1px solid ${primaryColor}`,
               marginBottom: 3,
               cursor: 'pointer',
               transition: '0.5s',
               '&:hover': {
-                color: `${primaryColor}`,
+                color: `${secondaryColor}`,
+              },
+            }}
+            onClick={goToGuide}
+          >
+            <FontAwesomeIcon icon={faCircleInfo} /> 서비스 사용 안내
+          </Typography>
+          <Typography
+            id="modal-modal-description"
+            sx={{
+              mt: 2,
+              display: 'flex',
+              justifyContent: 'flex-start',
+              gap: 2,
+              width: '150px',
+              fontSize: 15,
+              fontWeight: 700,
+              color: `${primaryColor}`,
+              marginBottom: 3,
+              cursor: 'pointer',
+              transition: '0.5s',
+              '&:hover': {
+                color: `${secondaryColor}`,
               },
             }}
             onClick={goToNewQuestion}
@@ -143,16 +178,18 @@ const MyPage = () => {
             id="modal-modal-description"
             sx={{
               mt: 2,
-              fontSize: 14,
+              display: 'flex',
+              justifyContent: 'flex-start',
+              gap: 2,
+              width: '150px',
+              fontSize: 15,
               fontWeight: 700,
-              fontFamily: 'Noto Sans KR Black',
               color: `${primaryColor}`,
-              borderBottom: `1px solid ${primaryColor}`,
               marginBottom: 3,
               cursor: 'pointer',
               transition: '0.5s',
               '&:hover': {
-                color: `${primaryColor}`,
+                color: `${secondaryColor}`,
               },
             }}
             onClick={goToQuestionList}
@@ -163,22 +200,46 @@ const MyPage = () => {
             id="modal-modal-description"
             sx={{
               mt: 2,
-              fontSize: 12,
+              display: 'flex',
+              justifyContent: 'flex-start',
+              gap: 2,
+              width: '150px',
+              fontSize: 15,
               fontWeight: 700,
-              fontFamily: 'Noto Sans KR Black',
-              color: `${secondaryColor}`,
-              opacity: '75%',
-              textAlign: 'right',
+              color: `${primaryColor}`,
+              marginBottom: 3,
+              cursor: 'pointer',
               transition: '0.5s',
               '&:hover': {
-                color: `${primaryColor}`,
+                color: `${secondaryColor}`,
               },
             }}
+            onClick={goToAbout}
           >
-            <CursorText>
-              <span onClick={logout}>로그아웃</span>
-            </CursorText>
+            <FontAwesomeIcon icon={faUserSecret} /> ABOUT
           </Typography>
+          <LogOutBox>
+            <Typography
+              id="modal-modal-description"
+              sx={{
+                position: 'absolute',
+                bottom: 20,
+                right: 25,
+                fontSize: 12,
+                fontWeight: 700,
+                color: `${primaryColor}`,
+                opacity: '75%',
+                cursor: 'pointer',
+                transition: '0.5s',
+                '&:hover': {
+                  color: `${secondaryColor}`,
+                },
+              }}
+              onClick={logout}
+            >
+              로그아웃
+            </Typography>
+          </LogOutBox>
         </Box>
       </Modal>
     </>

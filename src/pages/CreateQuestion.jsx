@@ -1,6 +1,6 @@
 import { Typography, Box, TextField } from '@mui/material';
 import React, { useState } from 'react';
-import { SmallImg, Container } from '../components/ComponentStyled';
+import { SmallImg, Container, TitleBox } from '../components/ComponentStyled';
 import { primaryColor, secondaryColor } from '../GlobalStyle';
 import TitleLogo from '../assets/images/titleLogo.png';
 import { useNavigate } from 'react-router-dom';
@@ -49,19 +49,18 @@ const CreateQuestion = () => {
   return (
     <>
       <Container className="fadeIn">
-        <Title onClick={goToHome} />
+        <TitleBox onClick={goToHome}></TitleBox>
         <Typography
           variant="h6"
           sx={{
-            color: `${secondaryColor}`,
-            marginBottom: '10%',
-            // fontFamily: 'Noto Sans KR Black',
+            color: `${primaryColor}`,
+            marginTop: 5,
             fontSize: '14px',
             fontWeight: '600',
             textAlign: 'center',
           }}
         >
-          <SmallImg src={TitleLogo} /> {userName}님의 질문 만들기
+          {userName}님의 질문 만들기
         </Typography>
         <Box
           component="form"
@@ -75,8 +74,8 @@ const CreateQuestion = () => {
           <TextField
             required
             fullWidth
-            variant="standard"
-            color="secondary"
+            variant="outlined"
+            color="info"
             minRows={5}
             id="question"
             name="question"
@@ -84,11 +83,7 @@ const CreateQuestion = () => {
             multiline
             onChange={onChange}
             sx={{
-              border: `1px dotted ${primaryColor}`,
-              borderTop: 'none',
-              borderBottom: 'none',
-              borderRadius: 2,
-              width: '250px',
+              width: '300px',
               marginBottom: 3,
             }}
           />

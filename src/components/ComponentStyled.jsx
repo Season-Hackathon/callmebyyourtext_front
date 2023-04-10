@@ -55,6 +55,13 @@ export const CommentBox = styled.section`
   word-wrap: break-word;
 `;
 
+export const LogOutBox = styled.section`
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: flex-end;
+`;
+
 export const MyPage = styled.img`
   width: auto;
   height: auto;
@@ -68,16 +75,18 @@ export const CursorText = styled.span`
   cursor: pointer;
 `;
 
+// Modal----------------------------------------------
 export const modalStyle = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
+  alignItems: 'center',
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 350,
-  height: 400,
+  width: 325,
+  height: 350,
   bgcolor: 'background.paper',
   border: `1px solid ${primaryColor}`,
   borderRadius: 3,
@@ -85,6 +94,7 @@ export const modalStyle = {
   p: 4,
 };
 
+// Image---------------------------------------------
 export const Img = styled.img`
   width: auto;
   margin-bottom: 15%;
