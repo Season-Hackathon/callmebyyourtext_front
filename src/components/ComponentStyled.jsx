@@ -16,7 +16,6 @@ export const Header = styled.span`
   color: ${primaryColor};
   font-size: 16px;
   font-weight: 800;
-  border-bottom: 1px solid ${primaryColor};
 `;
 
 export const TitleBox = styled.section`
@@ -36,13 +35,13 @@ export const TitleBox = styled.section`
 `;
 
 export const QuestionBox = styled.section`
-  width: 250px;
-  min-height: 100px;
+  width: 350px;
+  min-height: 200px;
   overflow: hidden;
   word-wrap: break-word;
-  border: 2px solid ${primaryColor};
-  border-radius: 10px;
-  margin: 10% 0;
+  border-left: 5px solid ${primaryColor};
+  border-right: 5px solid ${primaryColor};
+  margin: 10px 0 50px 0;
   padding: 20px;
 `;
 
@@ -117,7 +116,9 @@ export const Bracket = styled.span`
 export const DeleteText = styled.span`
   position: absolute;
   right: 0;
+  bottom: 0;
   font-size: 12px;
+  font-weight: 700;
   opacity: 50%;
   cursor: pointer;
   transition: 0.5s;

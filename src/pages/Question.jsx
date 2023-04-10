@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { primaryColor, secondaryColor } from '../GlobalStyle';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { pointColor, primaryColor, secondaryColor } from '../GlobalStyle';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import PrimaryBtn from '../components/Button/PrimaryBtn';
 import { Box, TextField, Typography } from '@mui/material';
 import {
@@ -12,13 +12,15 @@ import {
 import axios from 'axios';
 import CommentComponent from '../components/List/CommentComponent';
 import Title from 'components/Title/Title';
+import { TitleBox } from 'components/ComponentStyled';
 
 const Question = () => {
   // 변수 관리-------------------------------------------------------
   const navigate = useNavigate();
   const location = useLocation();
-  const { question, questionId, writer } = location.state;
+  const { question, writer } = location.state;
   const userId = localStorage.getItem('id');
+  const { questionId } = useParams();
   const userName = localStorage.getItem('name');
   const accessToken = localStorage.getItem('access_token');
 
@@ -142,33 +144,16 @@ const Question = () => {
 
   return (
     <>
-      <Title onClick={goToHome} />
       <Container>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            position: 'relative',
-            width: '100%',
-            marginBottom: 1,
-          }}
-        >
-          <Header>{writer}님의 질문입니다.</Header>
-          {writer === userName ? (
-            <DeleteText onClick={deleteQuestion}>삭제</DeleteText>
-          ) : (
-            ''
-          )}
-        </Box>
+        <TitleBox onClick={goToHome}></TitleBox>
         {writer === userName ? (
           <Typography
             variant="h6"
             sx={{
-              color: `${secondaryColor}`,
+              color: `${pointColor}`,
               fontSize: '14px',
               fontWeight: '600',
-              textAlign: 'center',
+              marginTop: 1,
             }}
           >
             현재 포인트 : {point}
@@ -176,6 +161,23 @@ const Question = () => {
         ) : (
           ''
         )}
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            position: 'relative',
+            width: '350px',
+            marginTop: 5,
+          }}
+        >
+          <Header>{writer}님의 질문</Header>
+          {writer === userName ? (
+            <DeleteText onClick={deleteQuestion}>삭제</DeleteText>
+          ) : (
+            ''
+          )}
+        </Box>
         <QuestionBox>{question}</QuestionBox>
         {/* {writer === userName ? "사용자 접근" : "다른 사용자 접근"} */}
         <Box sx={{ overflowY: 'auto', width: '100%', maxHeight: '30vh' }}>
@@ -185,7 +187,7 @@ const Question = () => {
                 fontSize: '14px',
                 fontWeight: '700',
                 textAlign: 'center',
-                color: `${secondaryColor}`,
+                color: `${pointColor}`,
               }}
             >
               등록된 답변이 없습니다.
