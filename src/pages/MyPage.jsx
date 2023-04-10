@@ -76,7 +76,7 @@ const MyPage = () => {
             fontSize: '14px',
             fontWeight: '600',
             color: `${primaryColor}`,
-            padding: '1.3%',
+            padding: '13px',
             marginBottom: 5,
             border: `4px solid ${primaryColor}`,
             borderTop: 'none',

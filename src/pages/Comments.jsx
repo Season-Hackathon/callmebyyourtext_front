@@ -1,13 +1,7 @@
 import { Box } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Menu from '../assets/images/menu.png';
-import {
-  Header,
-  MyPage,
-  QuestionBox,
-  Container,
-} from '../components/ComponentStyled';
+import { Header, QuestionBox, Container } from '../components/ComponentStyled';
 
 const Comments = () => {
   const navigate = useNavigate();
@@ -23,7 +17,6 @@ const Comments = () => {
   };
   return (
     <>
-      <MyPage src={Menu} onClick={goToMyPage} />
       <Container>
         <Box
           sx={{

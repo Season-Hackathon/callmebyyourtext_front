@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
-import AppleSDGothicNeoR from './assets/fonts/AppleSDGothicNeoR.ttf';
+import AppleSDGothicNeoB from './assets/fonts/AppleSDGothicNeoB.ttf';
+import AppleSDGothicNeoM from './assets/fonts/AppleSDGothicNeoM.ttf';
 
 export const primaryColor = '#0D87AD';
 export const secondaryColor = '#FFAF81';
@@ -37,8 +38,14 @@ footer, header, hgroup, main, menu, nav, section {
     display: none;
 }
 @font-face {
-  font-family: "AppleSDGothicNeoR";
-  src: url(${AppleSDGothicNeoR});
+  font-family: "AppleSDGothicNeoM";
+  src: url(${AppleSDGothicNeoM});
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "AppleSDGothicNeoB";
+  src: url(${AppleSDGothicNeoB});
   font-weight: normal;
   font-style: normal;
 }
@@ -82,7 +89,7 @@ footer, header, hgroup, main, menu, nav, section {
 }
 
 * {
-  font-family: "AppleSDGothicNeoR", 'Noto Sans KR Black' !important;
+  font-family: "AppleSDGothicNeoM", 'Noto Sans KR Black' !important;
   box-sizing: border-box;
 }
 

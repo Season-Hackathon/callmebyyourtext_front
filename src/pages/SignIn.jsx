@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Title from 'components/Title/Title';
 import { TextField, Box, Typography } from '@mui/material/';
 import PrimaryBtn from 'components/Button/PrimaryBtn';
-import { pointColor, primaryColor, secondaryColor } from 'GlobalStyle';
+import { primaryColor } from 'GlobalStyle';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from 'context/AuthContext';

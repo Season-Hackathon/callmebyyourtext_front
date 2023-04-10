@@ -1,12 +1,10 @@
 import { Typography, Box, TextField } from '@mui/material';
 import React, { useState } from 'react';
-import { SmallImg, Container, TitleBox } from '../components/ComponentStyled';
-import { primaryColor, secondaryColor } from '../GlobalStyle';
-import TitleLogo from '../assets/images/titleLogo.png';
+import { Container, TitleBox } from '../components/ComponentStyled';
+import { primaryColor } from '../GlobalStyle';
 import { useNavigate } from 'react-router-dom';
 import PrimaryBtn from '../components/Button/PrimaryBtn';
 import axios from 'axios';
-import Title from '../components/Title/Title';
 import { getCookie } from 'components/Cookie';
 import { Instance } from 'components/Instance';
 

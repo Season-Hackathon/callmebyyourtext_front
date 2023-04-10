@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { pointColor, primaryColor } from '../GlobalStyle';
+import { primaryColor } from '../GlobalStyle';
 import landingTitle from '../assets/images/landingTitle.png';
-import ocean from '../assets/images/ocean.jpg';
 
 export const Container = styled.div`
   width: 99vw;
@@ -12,12 +11,39 @@ export const Container = styled.div`
   align-items: center;
 `;
 
+export const DarkContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: ${primaryColor};
+  font-size: 18px;
+  font-weight: 550;
+`;
+
 export const Header = styled.span`
   color: ${primaryColor};
   font-size: 16px;
   font-weight: 800;
 `;
 
+export const MyPage = styled.img`
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  position: absolute;
+  top: 30px;
+  right: 13px;
+`;
+
+export const CursorText = styled.span`
+  cursor: pointer;
+`;
+
+// Box--------------------------------------------
 export const TitleBox = styled.section`
   width: 350px;
   min-height: 50px;
@@ -60,19 +86,6 @@ export const LogOutBox = styled.section`
   justify-content: flex-end;
 `;
 
-export const MyPage = styled.img`
-  width: auto;
-  height: auto;
-  cursor: pointer;
-  position: absolute;
-  top: 30px;
-  right: 13px;
-`;
-
-export const CursorText = styled.span`
-  cursor: pointer;
-`;
-
 // Modal----------------------------------------------
 export const modalStyle = {
   display: 'flex',
@@ -93,6 +106,13 @@ export const modalStyle = {
 };
 
 // Image---------------------------------------------
+export const ImageBox = styled.img`
+  width: 250px;
+  height: 250px;
+  cursor: pointer;
+  border: 1px solid linear;
+`;
+
 export const Img = styled.img`
   width: auto;
   margin-bottom: 15%;
@@ -105,8 +125,7 @@ export const SmallImg = styled.img`
 export const SubTitle = styled.p`
   font-size: 0.85rem;
   font-weight: 500;
-  color: #fff;
-  margin-bottom: 5%;
+  color: white;
 `;
 
 export const Bracket = styled.span`

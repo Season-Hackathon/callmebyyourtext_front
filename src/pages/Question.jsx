@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { pointColor, primaryColor, secondaryColor } from '../GlobalStyle';
+import { pointColor } from '../GlobalStyle';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import PrimaryBtn from '../components/Button/PrimaryBtn';
 import { Box, TextField, Typography } from '@mui/material';
@@ -11,7 +11,6 @@ import {
 } from '../components/ComponentStyled';
 import axios from 'axios';
 import CommentComponent from '../components/List/CommentComponent';
-import Title from 'components/Title/Title';
 import { TitleBox } from 'components/ComponentStyled';
 
 const Question = () => {
