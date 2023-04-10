@@ -1,21 +1,18 @@
 import { Typography, Box, Modal } from '@mui/material';
 import React, { useContext, useState } from 'react';
-import { bgColor, pointColor, primaryColor, secondaryColor } from 'GlobalStyle';
+import { pointColor, primaryColor, secondaryColor } from 'GlobalStyle';
 import Typewriter from 'typewriter-effect';
 import PrimaryBtn from 'components/Button/PrimaryBtn';
-import HeartLogo from 'assets/images/inputId.png';
 import { AuthContext } from 'context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import {
   CursorText,
   modalStyle,
-  SmallImg,
   Container,
   TitleBox,
 } from 'components/ComponentStyled';
-import styled from 'styled-components';
-
-const NameBox = styled.section``;
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faList } from '@fortawesome/free-solid-svg-icons';
 
 const MyPage = () => {
   // 변수 관리
@@ -69,7 +66,7 @@ const MyPage = () => {
             fontWeight: '600',
             color: `${primaryColor}`,
             padding: '1.3%',
-            marginBottom: '10%',
+            marginBottom: 5,
             border: `4px solid ${primaryColor}`,
             borderTop: 'none',
             borderBottom: 'none',
@@ -129,7 +126,7 @@ const MyPage = () => {
               fontSize: 14,
               fontWeight: 700,
               fontFamily: 'Noto Sans KR Black',
-              color: `${secondaryColor}`,
+              color: `${primaryColor}`,
               borderBottom: `1px solid ${primaryColor}`,
               marginBottom: 3,
               cursor: 'pointer',
@@ -140,7 +137,7 @@ const MyPage = () => {
             }}
             onClick={goToNewQuestion}
           >
-            <SmallImg src={HeartLogo} /> 새로운 질문 만들기
+            <FontAwesomeIcon icon={faPlus} /> 새로운 질문 만들기
           </Typography>
           <Typography
             id="modal-modal-description"
@@ -149,7 +146,7 @@ const MyPage = () => {
               fontSize: 14,
               fontWeight: 700,
               fontFamily: 'Noto Sans KR Black',
-              color: `${secondaryColor}`,
+              color: `${primaryColor}`,
               borderBottom: `1px solid ${primaryColor}`,
               marginBottom: 3,
               cursor: 'pointer',
@@ -160,7 +157,7 @@ const MyPage = () => {
             }}
             onClick={goToQuestionList}
           >
-            <SmallImg src={HeartLogo} /> 내 질문 리스트 보기
+            <FontAwesomeIcon icon={faList} /> 내 질문 리스트 보기
           </Typography>
           <Typography
             id="modal-modal-description"

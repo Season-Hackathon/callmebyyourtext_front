@@ -4,12 +4,13 @@ import landingTitle from '../assets/images/landingTitle.png';
 import ocean from '../assets/images/ocean.jpg';
 
 export const Container = styled.div`
-  width: 50vw;
+  width: 99vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: 1px solid black;
 `;
 
 export const Header = styled.span`
@@ -68,11 +69,15 @@ export const CursorText = styled.span`
 `;
 
 export const modalStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 250,
+  width: 350,
+  height: 400,
   bgcolor: 'background.paper',
   border: `1px solid ${primaryColor}`,
   borderRadius: 3,
