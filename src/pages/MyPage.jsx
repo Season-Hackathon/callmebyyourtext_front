@@ -1,19 +1,21 @@
 import { Typography, Box, Modal } from '@mui/material';
 import React, { useContext, useState } from 'react';
-import { pointColor, primaryColor, secondaryColor } from 'GlobalStyle';
+import { bgColor, pointColor, primaryColor, secondaryColor } from 'GlobalStyle';
 import Typewriter from 'typewriter-effect';
 import PrimaryBtn from 'components/Button/PrimaryBtn';
 import HeartLogo from 'assets/images/inputId.png';
-import TitleLogo from 'assets/images/titleLogo.png';
 import { AuthContext } from 'context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import {
   CursorText,
   modalStyle,
   SmallImg,
-  Wrapper,
+  Container,
+  TitleBox,
 } from 'components/ComponentStyled';
-import Title from 'components/Title/Title';
+import styled from 'styled-components';
+
+const NameBox = styled.section``;
 
 const MyPage = () => {
   // 변수 관리
@@ -53,23 +55,28 @@ const MyPage = () => {
 
   return (
     <>
-      <Title onClick={goToHome} className="fadeIn" />
-      <Typography
-        className="fadeIn"
-        variant="h6"
-        sx={{
-          color: `${secondaryColor}`,
-          marginBottom: '10%',
-          fontFamily: 'Noto Sans KR Black',
-          fontSize: '14px',
-          fontWeight: '600',
-          textAlign: 'center',
-        }}
-      >
-        <SmallImg src={TitleLogo} /> {userName}님의 페이지
-        <SmallImg src={TitleLogo} />
-      </Typography>
-      <Wrapper className="fadeIn">
+      <Container className="fadeIn">
+        <TitleBox onClick={goToHome}></TitleBox>
+        <br />
+        <Typography
+          className="fadeIn"
+          variant="h6"
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            height: '20px',
+            fontSize: '14px',
+            fontWeight: '600',
+            color: `${primaryColor}`,
+            padding: '1.3%',
+            marginBottom: '10%',
+            border: `4px solid ${primaryColor}`,
+            borderTop: 'none',
+            borderBottom: 'none',
+          }}
+        >
+          {userName}님의 페이지
+        </Typography>
         <Box
           sx={{
             whiteSpace: 'pre-wrap',
@@ -81,8 +88,8 @@ const MyPage = () => {
             lineHeight: '1.5',
             color: `${pointColor}`,
             marginBottom: 5,
-            borderTop: `1px dashed ${primaryColor}`,
-            borderBottom: `1px dashed ${primaryColor}`,
+            borderTop: `1px dashed ${pointColor}`,
+            borderBottom: `1px dashed ${pointColor}`,
             borderRadius: 3,
             padding: 3,
           }}
@@ -107,7 +114,7 @@ const MyPage = () => {
           />
         </Box>
         <PrimaryBtn btnName={'더 알아보기'} onClick={modalOpen}></PrimaryBtn>
-      </Wrapper>
+      </Container>
       <Modal
         open={open}
         onClose={modalClose}

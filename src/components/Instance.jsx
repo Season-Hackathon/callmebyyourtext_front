@@ -8,6 +8,7 @@ export const Instance = axios.create({
   baseURL: 'http://127.0.0.1:8000',
   headers: {
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': 'http://localhost:8000',
     Authorization: `Bearer ${ACCESS_TOKEN}`,
     withCredentials: true,
   },

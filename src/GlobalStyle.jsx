@@ -1,9 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 import AppleSDGothicNeoR from './assets/fonts/AppleSDGothicNeoR.ttf';
 
-export const primaryColor = '#D07C81';
-export const secondaryColor = '#79756E';
-export const pointColor = '#613B3E';
+export const primaryColor = '#0D87AD';
+export const secondaryColor = '#FFAF81';
+export const pointColor = '#2D2D2D';
+export const bgColor = '#133337';
 export const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -49,7 +50,7 @@ footer, header, hgroup, main, menu, nav, section {
 }
 
 *::-webkit-scrollbar-thumb {
-  background: ${primaryColor};  
+  background: #fff;  
   border-radius: 10px;
 }
 

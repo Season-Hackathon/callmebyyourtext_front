@@ -1,5 +1,5 @@
 import React from 'react';
-import { Img, SubTitle, Wrapper } from '../components/ComponentStyled';
+import { Img, SubTitle, Container } from '../components/ComponentStyled';
 import Title from '../components/Title/Title';
 import Logo from '../assets/images/loadingLogo.png';
 import PrimaryBtn from '../components/Button/PrimaryBtn';
@@ -12,7 +12,7 @@ const NotFound = () => {
   };
   return (
     <>
-      <Wrapper>
+      <Container>
         <Img src={Logo} alt="error" />
         <Title />
         <SubTitle>
@@ -21,7 +21,7 @@ const NotFound = () => {
           다시 시도해주세요.
         </SubTitle>
         <PrimaryBtn btnName={'돌아가기'} onClick={redirectURL}></PrimaryBtn>
-      </Wrapper>
+      </Container>
     </>
   );
 };

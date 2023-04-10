@@ -1,16 +1,22 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Logo from '../assets/images/loadingLogo.png';
-import { Bracket, Img, SubTitle, Wrapper } from '../components/ComponentStyled';
-import { primaryColor } from 'GlobalStyle';
-import LandingTitle from 'components/Title/LandingTitle';
+import {
+  Bracket,
+  SubTitle,
+  Container,
+  TitleBox,
+} from '../components/ComponentStyled';
+import { bgColor } from 'GlobalStyle';
 
 const Home = () => {
   const body = document.querySelector('body');
-  body.style.backgroundColor = `${primaryColor}`;
+  body.style.backgroundColor = bgColor;
   body.classList.add('.fadeOut');
 
   const navigate = useNavigate();
+  const goToHome = () => {
+    navigate('/');
+  };
   const loading = () => {
     setTimeout(() => {
       navigate('/signin');
@@ -28,13 +34,13 @@ const Home = () => {
 
   return (
     <>
-      <Wrapper>
-        <Img src={Logo} alt="error" />
-        <LandingTitle />
+      <Container>
+        <TitleBox onClick={goToHome}></TitleBox>
+        <br />
         <SubTitle>
           나의 (<Bracket>빈칸</Bracket>), 당신의 ____
         </SubTitle>
-      </Wrapper>
+      </Container>
     </>
   );
 };

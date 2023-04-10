@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { GlobalStyle } from './GlobalStyle';
+import { GlobalStyle, primaryColor } from './GlobalStyle';
 import { AuthContext } from './context/AuthContext';
 import { CookiesProvider } from 'react-cookie';
 import Home from './pages/Home';

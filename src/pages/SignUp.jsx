@@ -12,7 +12,7 @@ import { primaryColor } from 'GlobalStyle';
 import PrimaryBtn from 'components/Button/PrimaryBtn';
 import Title from 'components/Title/Title';
 import axios from 'axios';
-import { Wrapper } from 'components/ComponentStyled';
+import { Container } from 'components/ComponentStyled';
 
 // FormHelper--------------------------------------------------------------------------
 const FormHelperEmails = styled(FormHelperText)`
@@ -154,7 +154,7 @@ const SignUp = () => {
 
   return (
     <>
-      <Wrapper>
+      <Container>
         <Title />
         <Typography
           fontFamily="Noto Sans KR Bold"
@@ -246,7 +246,7 @@ const SignUp = () => {
             <PrimaryBtn btnName={'등록'} type="submit"></PrimaryBtn>
           </FormControl>
         </Box>
-      </Wrapper>
+      </Container>
     </>
   );
 };

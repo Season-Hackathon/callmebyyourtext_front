@@ -83,6 +83,7 @@ const CommentComponent = ({
           <SmallImg src={TitleLogo} />
           <CommentBox>
             <span>익명 답변 : {comment}</span>
+            <span></span>
           </CommentBox>
         </Typography>
       ) : (

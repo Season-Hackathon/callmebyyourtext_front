@@ -7,7 +7,7 @@ import {
   DeleteText,
   Header,
   QuestionBox,
-  Wrapper,
+  Container,
 } from '../components/ComponentStyled';
 import axios from 'axios';
 import CommentComponent from '../components/List/CommentComponent';
@@ -143,7 +143,7 @@ const Question = () => {
   return (
     <>
       <Title onClick={goToHome} />
-      <Wrapper>
+      <Container>
         <Box
           sx={{
             display: 'flex',
@@ -266,7 +266,7 @@ const Question = () => {
         ></PrimaryBtn>
         <br />
         <PrimaryBtn btnName={'주소 복사'} onClick={copyLink}></PrimaryBtn>
-      </Wrapper>
+      </Container>
     </>
   );
 };

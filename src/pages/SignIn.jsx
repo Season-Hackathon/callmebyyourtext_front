@@ -6,7 +6,7 @@ import { secondaryColor } from 'GlobalStyle';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from 'context/AuthContext';
-import { CursorText, Wrapper } from 'components/ComponentStyled';
+import { CursorText, Container } from 'components/ComponentStyled';
 import { setCookie } from 'components/Cookie';
 
 const SignIn = () => {
@@ -71,7 +71,7 @@ const SignIn = () => {
   };
   return (
     <>
-      <Wrapper>
+      <Container>
         <Title onClick={goToHome} />
         <Box
           component="form"
@@ -122,7 +122,7 @@ const SignIn = () => {
           <PrimaryBtn btnName={'Login'}></PrimaryBtn>
         </Box>
         <PrimaryBtn btnName={'Google'}></PrimaryBtn>
-      </Wrapper>
+      </Container>
     </>
   );
 };

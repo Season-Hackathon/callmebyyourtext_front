@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import TitleLogo from 'assets/images/titleLogo.png';
-import { modalStyle, SmallImg, Wrapper } from 'components/ComponentStyled';
+import { modalStyle, SmallImg, Container } from 'components/ComponentStyled';
 import { Box, Modal, Typography } from '@mui/material';
 import { pointColor, primaryColor, secondaryColor } from 'GlobalStyle';
 import axios from 'axios';
@@ -67,7 +67,7 @@ const QuestionList = () => {
 
   return (
     <>
-      <Wrapper className="fadeIn">
+      <Container className="fadeIn">
         <Typography
           variant="h6"
           sx={{
@@ -131,7 +131,7 @@ const QuestionList = () => {
             ]
           )}
         </Box>
-      </Wrapper>
+      </Container>
       <Modal
         open={open}
         onClose={modalClose}

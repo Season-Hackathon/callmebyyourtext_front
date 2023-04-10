@@ -6,7 +6,7 @@ import {
   Header,
   MyPage,
   QuestionBox,
-  Wrapper,
+  Container,
 } from '../components/ComponentStyled';
 
 const Comments = () => {
@@ -24,7 +24,7 @@ const Comments = () => {
   return (
     <>
       <MyPage src={Menu} onClick={goToMyPage} />
-      <Wrapper>
+      <Container>
         <Box
           sx={{
             display: 'flex',
@@ -46,7 +46,7 @@ const Comments = () => {
         ></PrimaryBtn>
         <br />
         <PrimaryBtn btnName={"주소 복사"} onClick={copyLink}></PrimaryBtn> */}
-      </Wrapper>
+      </Container>
     </>
   );
 };

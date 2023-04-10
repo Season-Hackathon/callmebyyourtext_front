@@ -1,6 +1,6 @@
 import { Typography, Box, TextField } from '@mui/material';
 import React, { useState } from 'react';
-import { SmallImg, Wrapper } from '../components/ComponentStyled';
+import { SmallImg, Container } from '../components/ComponentStyled';
 import { primaryColor, secondaryColor } from '../GlobalStyle';
 import TitleLogo from '../assets/images/titleLogo.png';
 import { useNavigate } from 'react-router-dom';
@@ -31,13 +31,12 @@ const CreateQuestion = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios
-      .post('http://127.0.0.1:8000/questions', question, {
-        withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
+    await Instance.post('http://127.0.0.1:8000/questions', question, {
+      withCredentials: true,
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
       .then((response) => {
         console.log(response);
         navigate(`/questionlist/${userId}`);
@@ -49,7 +48,7 @@ const CreateQuestion = () => {
 
   return (
     <>
-      <Wrapper className="fadeIn">
+      <Container className="fadeIn">
         <Title onClick={goToHome} />
         <Typography
           variant="h6"
@@ -95,7 +94,7 @@ const CreateQuestion = () => {
           />
           <PrimaryBtn btnName={'등록'} type="submit"></PrimaryBtn>
         </Box>
-      </Wrapper>
+      </Container>
     </>
   );
 };

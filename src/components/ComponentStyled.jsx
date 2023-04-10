@@ -1,9 +1,14 @@
 import styled from 'styled-components';
 import { pointColor, primaryColor } from '../GlobalStyle';
+import landingTitle from '../assets/images/landingTitle.png';
+import ocean from '../assets/images/ocean.jpg';
 
-export const Wrapper = styled.section`
+export const Container = styled.div`
+  width: 50vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 `;
 
@@ -12,6 +17,22 @@ export const Header = styled.span`
   font-size: 16px;
   font-weight: 800;
   border-bottom: 1px solid ${primaryColor};
+`;
+
+export const TitleBox = styled.section`
+  width: 350px;
+  min-height: 50px;
+  background-image: url(${landingTitle});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  // PC 화면
+  @media screen and (min-width: 1024px) {
+  }
+  // 모바일 스타일
+  @media screen and (max-width: 500px) {
+  }
 `;
 
 export const QuestionBox = styled.section`
@@ -71,7 +92,7 @@ export const SmallImg = styled.img`
 export const SubTitle = styled.p`
   font-size: 0.85rem;
   font-weight: 500;
-  color: ${pointColor};
+  color: #fff;
   margin-bottom: 5%;
 `;
 
