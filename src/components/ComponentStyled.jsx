@@ -14,6 +14,13 @@ export const Container = styled.div`
 export const DarkContainer = styled.div`
   width: 100vw;
   height: 100vh;
+  background-color: black;
+  color: ${primaryColor};
+`;
+
+export const Item = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -84,6 +91,16 @@ export const LogOutBox = styled.section`
   height: auto;
   display: flex;
   justify-content: flex-end;
+`;
+
+export const ButtonBox = styled.section`
+  width: 500px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 `;
 
 // Modal----------------------------------------------

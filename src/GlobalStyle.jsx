@@ -60,6 +60,11 @@ footer, header, hgroup, main, menu, nav, section {
   border-radius: 10px;
 }
 
+*::selection {
+  color: black;
+  background: #daa520;
+}
+
 @keyframes fadeIn {
   from {opacity: 0;}
   to {opacity: 1;}   
