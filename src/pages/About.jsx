@@ -16,6 +16,25 @@ const About = () => {
   const goToHome = () => {
     navigate('/');
   };
+  const goToDongguk = () => {
+    window.open('https://www.instagram.com/likelion_dongguk/', '_blank');
+  };
+  const goToSungkyul = () => {
+    window.open('https://www.instagram.com/likelion_sku/', '_blank');
+  };
+  const goToDongDuk = () => {
+    window.open('https://www.instagram.com/dongduk_likelion/', '_blank');
+  };
+  const goToSanmyung = () => {
+    window.open('https://www.instagram.com/likelion_smu/', '_blank');
+  };
+  const goToSungshin = () => {
+    window.open('https://www.instagram.com/likelion_sswu/', '_blank');
+  };
+  const goToHallym = () => {
+    window.open('https://www.instagram.com/likelion_hallym/', '_blank');
+  };
+
   return (
     <>
       <DarkContainer className="fadeIn">
@@ -25,7 +44,7 @@ const About = () => {
             variant="h6"
             sx={{ fontWeight: '900', fontStyle: 'italic', color: 'white' }}
           >
-            멋쟁이사자처럼 벚꽃톤 프로젝트 Call me by your TEXT
+            멋쟁이사자처럼 벚꽃톤 프로젝트 'Call me by your TEXT'
           </Typography>
           <br />
           <Typography
@@ -55,12 +74,24 @@ const About = () => {
             TEAM_6 Contributor
           </Typography>
           <ButtonBox>
-            <TeamBtn btnName="LIKELION_DONGGUK"></TeamBtn>
-            <TeamBtn btnName="LIKELION_SUNGKYUL"></TeamBtn>
-            <TeamBtn btnName="LIKELION_DONGDUK_W"></TeamBtn>
-            <TeamBtn btnName="LIKELION_SANGMYUNG"></TeamBtn>
-            <TeamBtn btnName="LIKELION_SUNGSHIN_W"></TeamBtn>
-            <TeamBtn btnName="LIKELION_HALLYM"></TeamBtn>
+            <TeamBtn btnName="LIKELION_DONGGUK" onClick={goToDongguk}></TeamBtn>
+            <TeamBtn
+              btnName="LIKELION_SUNGKYUL"
+              onClick={goToSungkyul}
+            ></TeamBtn>
+            <TeamBtn
+              btnName="LIKELION_DONGDUK_W"
+              onClick={goToDongDuk}
+            ></TeamBtn>
+            <TeamBtn
+              btnName="LIKELION_SANGMYUNG"
+              onClick={goToSanmyung}
+            ></TeamBtn>
+            <TeamBtn
+              btnName="LIKELION_SUNGSHIN_W"
+              onClick={goToSungshin}
+            ></TeamBtn>
+            <TeamBtn btnName="LIKELION_HALLYM" onClick={goToHallym}></TeamBtn>
           </ButtonBox>
         </Item>
       </DarkContainer>

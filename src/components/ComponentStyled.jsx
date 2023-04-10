@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { primaryColor } from '../GlobalStyle';
+import { pointColor, primaryColor } from '../GlobalStyle';
 import landingTitle from '../assets/images/landingTitle.png';
 
 export const Container = styled.div`
@@ -142,7 +142,7 @@ export const SmallImg = styled.img`
 export const SubTitle = styled.p`
   font-size: 0.85rem;
   font-weight: 500;
-  color: white;
+  color: ${pointColor};
 `;
 
 export const Bracket = styled.span`

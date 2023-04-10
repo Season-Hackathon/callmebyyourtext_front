@@ -1,7 +1,5 @@
 import React from 'react';
-import { Img, SubTitle, Container } from '../components/ComponentStyled';
-import Title from '../components/Title/Title';
-import Logo from '../assets/images/loadingLogo.png';
+import { SubTitle, Container, TitleBox } from '../components/ComponentStyled';
 import PrimaryBtn from '../components/Button/PrimaryBtn';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,13 +11,16 @@ const NotFound = () => {
   return (
     <>
       <Container>
-        <Img src={Logo} alt="error" />
-        <Title />
+        <TitleBox onClick={redirectURL}></TitleBox>
+        <br />
+        <br />
         <SubTitle>
           존재하지 않는 페이지입니다.
           <br />
           다시 시도해주세요.
         </SubTitle>
+        <br />
+        <br />
         <PrimaryBtn btnName={'돌아가기'} onClick={redirectURL}></PrimaryBtn>
       </Container>
     </>
