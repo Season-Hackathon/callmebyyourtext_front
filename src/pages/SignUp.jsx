@@ -10,9 +10,8 @@ import {
 import styled from 'styled-components';
 import { primaryColor } from 'GlobalStyle';
 import PrimaryBtn from 'components/Button/PrimaryBtn';
-import Title from 'components/Title/Title';
 import axios from 'axios';
-import { Container } from 'components/ComponentStyled';
+import { Container, TitleBox } from 'components/ComponentStyled';
 
 // FormHelper--------------------------------------------------------------------------
 const FormHelperEmails = styled(FormHelperText)`
@@ -20,28 +19,28 @@ const FormHelperEmails = styled(FormHelperText)`
   margin-left: 0 !important;
   font-weight: 700 !important;
   color: ${(props) =>
-    props.isemail === 'true' ? '#71c4eb' : `${primaryColor}`} !important;
+    props.isemail === 'true' ? `${primaryColor}` : `#823434`} !important;
 `;
 const FormHelperNames = styled(FormHelperText)`
   width: 100%;
   margin-left: 0 !important;
   font-weight: 700 !important;
   color: ${(props) =>
-    props.isname === 'true' ? '#71c4eb' : `${primaryColor}`} !important;
+    props.isname === 'true' ? `${primaryColor}` : `#823434`} !important;
 `;
 const FormHelperPWs = styled(FormHelperText)`
   width: 100%;
   margin-left: 0 !important;
   font-weight: 700 !important;
   color: ${(props) =>
-    props.ispassword === 'true' ? '#71c4eb' : `${primaryColor}`} !important;
+    props.ispassword === 'true' ? `${primaryColor}` : `#823434`} !important;
 `;
 const FormHelperPWCF = styled(FormHelperText)`
   width: 100%;
   margin-left: 0 !important;
   font-weight: 700 !important;
   color: ${(props) =>
-    props.ispassword2 === 'true' ? '#71c4eb' : `${primaryColor}`} !important;
+    props.ispassword2 === 'true' ? `${primaryColor}` : `#823434`} !important;
 `;
 
 const SignUp = () => {
@@ -155,12 +154,11 @@ const SignUp = () => {
   return (
     <>
       <Container>
-        <Title />
+        <TitleBox></TitleBox>
         <Typography
-          fontFamily="Noto Sans KR Bold"
           color={primaryColor}
           sx={{
-            fontSize: '12px',
+            fontSize: '14px',
             fontWeight: '900',
             marginTop: 1,
           }}
@@ -171,9 +169,6 @@ const SignUp = () => {
           component="form"
           onSubmit={onSubmit}
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
             marginTop: 3,
           }}
         >
@@ -183,7 +178,7 @@ const SignUp = () => {
               required
               fullWidth
               variant="standard"
-              color="secondary"
+              color="info"
               type="email"
               id="email"
               name="email"
@@ -198,12 +193,12 @@ const SignUp = () => {
               required
               fullWidth
               variant="standard"
-              color="secondary"
+              color="info"
               type="name"
               id="name"
               name="name"
               label="이름"
-              sx={{ marginTop: 2 }}
+              sx={{ marginTop: 3 }}
               onChange={onChangeName}
               error={name !== '' && !isName}
             />
@@ -214,12 +209,12 @@ const SignUp = () => {
               required
               fullWidth
               variant="standard"
-              color="secondary"
+              color="info"
               type="password"
               id="password"
               name="password"
               label="비밀번호"
-              sx={{ marginTop: 2 }}
+              sx={{ marginTop: 3 }}
               onChange={onChangePassword1}
               error={password !== '' && !isPassword}
             />
@@ -230,12 +225,12 @@ const SignUp = () => {
               required
               fullWidth
               variant="standard"
-              color="secondary"
+              color="info"
               type="password"
               id="password2"
               name="password2"
               label="비밀번호 확인"
-              sx={{ marginTop: 2 }}
+              sx={{ marginTop: 3 }}
               onChange={onChangePassword2}
               error={password2 !== '' && !isPassword2}
             />

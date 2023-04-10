@@ -2,11 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import Title from 'components/Title/Title';
 import { TextField, Box, Typography } from '@mui/material/';
 import PrimaryBtn from 'components/Button/PrimaryBtn';
-import { secondaryColor } from 'GlobalStyle';
+import { pointColor, primaryColor, secondaryColor } from 'GlobalStyle';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from 'context/AuthContext';
-import { CursorText, Container } from 'components/ComponentStyled';
+import { CursorText, Container, TitleBox } from 'components/ComponentStyled';
 import { setCookie } from 'components/Cookie';
 
 const SignIn = () => {
@@ -72,7 +72,7 @@ const SignIn = () => {
   return (
     <>
       <Container>
-        <Title onClick={goToHome} />
+        <TitleBox onClick={goToHome}></TitleBox>
         <Box
           component="form"
           onSubmit={onSubmit}
@@ -88,7 +88,7 @@ const SignIn = () => {
             required
             fullWidth
             variant="standard"
-            color="secondary"
+            color="info"
             type="email"
             id="email"
             name="email"
@@ -100,7 +100,7 @@ const SignIn = () => {
             required
             fullWidth
             variant="standard"
-            color="secondary"
+            color="info"
             type="password"
             id="password"
             name="password"
@@ -108,8 +108,7 @@ const SignIn = () => {
             onChange={onChange}
           />
           <Typography
-            fontFamily="Noto Sans KR Black"
-            color={secondaryColor}
+            color={primaryColor}
             sx={{
               fontSize: '12px',
               textAlign: 'right',
