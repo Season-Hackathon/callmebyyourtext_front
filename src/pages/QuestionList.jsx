@@ -9,21 +9,26 @@ import ListBtn from 'components/Button/ListBtn';
 import QuestionComponent from 'components/List/QuestionComponent';
 
 const QuestionList = () => {
-  // 변수 관리
+  // 변수 관리-----------------------------------------
   const navigate = useNavigate();
   const userName = localStorage.getItem('name');
   const { userId } = useParams();
   const accessToken = localStorage.getItem('access_token');
+
+  // 페이지 이동 관리-----------------------------------
   const goToCreateQuestion = () => {
     navigate(`/createquestion/${userId}`);
   };
+  const goToHome = () => {
+    navigate('/');
+  };
 
-  // 모달 관리
+  // 모달 관리-----------------------------------------
   const [open, setOpen] = useState(false);
   const modalOpen = () => setOpen(true);
   const modalClose = () => setOpen(false);
 
-  // 상태 관리
+  // 상태 관리-----------------------------------------
   const [questionArray, setQuestionArray] = useState([]);
   const [point, setPoint] = useState('');
   const fetchData = async () => {
@@ -67,7 +72,7 @@ const QuestionList = () => {
   return (
     <>
       <Container className="fadeIn">
-        <TitleBox></TitleBox>
+        <TitleBox onClick={goToHome}></TitleBox>
         <Typography
           variant="h6"
           sx={{
@@ -106,7 +111,7 @@ const QuestionList = () => {
                 fontSize: '14px',
                 fontWeight: '700',
                 textAlign: 'center',
-                color: `${secondaryColor}`,
+                color: `${pointColor}`,
               }}
             >
               등록된 질문이 없습니다.

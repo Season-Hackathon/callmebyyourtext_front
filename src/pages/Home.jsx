@@ -12,6 +12,7 @@ const Home = () => {
   const body = document.querySelector('body');
   body.style.backgroundColor = bgColor;
   body.classList.add('.fadeOut');
+  body.style.setProperty('--scrollbar', 'red');
 
   const navigate = useNavigate();
   const goToHome = () => {

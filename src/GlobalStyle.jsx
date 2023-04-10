@@ -46,7 +46,6 @@ footer, header, hgroup, main, menu, nav, section {
 *::-webkit-scrollbar {
   width: 5px;
   height: 5px;
-  background: #fff;
 }
 
 *::-webkit-scrollbar-thumb {
@@ -88,6 +87,8 @@ footer, header, hgroup, main, menu, nav, section {
 }
 
 body {
+  width: 100vw;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
