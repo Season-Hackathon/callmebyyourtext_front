@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import TitleLogo from 'assets/images/titleLogo.png';
-import { modalStyle, SmallImg, Container } from 'components/ComponentStyled';
+import { modalStyle, Container, TitleBox } from 'components/ComponentStyled';
 import { Box, Modal, Typography } from '@mui/material';
 import { pointColor, primaryColor, secondaryColor } from 'GlobalStyle';
 import axios from 'axios';
@@ -13,7 +12,7 @@ const QuestionList = () => {
   // 변수 관리
   const navigate = useNavigate();
   const userName = localStorage.getItem('name');
-  const userId = localStorage.getItem('id');
+  const { userId } = useParams();
   const accessToken = localStorage.getItem('access_token');
   const goToCreateQuestion = () => {
     navigate(`/createquestion/${userId}`);
@@ -68,23 +67,22 @@ const QuestionList = () => {
   return (
     <>
       <Container className="fadeIn">
+        <TitleBox></TitleBox>
         <Typography
           variant="h6"
           sx={{
             color: `${primaryColor}`,
             fontWeight: 600,
-            borderBottom: `1px solid ${primaryColor}`,
-            marginBottom: '10%',
+            marginTop: 5,
           }}
         >
-          <SmallImg src={TitleLogo} /> {userName}님의
-          (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
+          {userName}님의 (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
         </Typography>
         <Typography
           variant="h6"
           sx={{
-            color: `${secondaryColor}`,
-            marginBottom: '10%',
+            color: `${pointColor}`,
+            marginBottom: 5,
             fontSize: '14px',
             fontWeight: '600',
             textAlign: 'center',
