@@ -1,37 +1,15 @@
 import React from 'react';
-import { ButtonBox, DarkContainer, ImageBox } from 'components/ComponentStyled';
+import {
+  AboutBody,
+  AboutHeader,
+  ButtonBox,
+  DarkContainer,
+  ImageBox,
+} from 'components/ComponentStyled';
 import Likelion from '../assets/images/LIKELION.png';
 import { useNavigate } from 'react-router-dom';
 import { Typography } from '@mui/material';
 import TeamBtn from 'components/Button/TeamBtn';
-import styled from 'styled-components';
-
-const AboutHeader = styled.h6`
-  font-size: 18px;
-  font-weight: 900;
-  font-style: italic;
-  color: white;
-  @media screen and (max-width: 476px) {
-    font-size: 90%;
-  }
-  @media screen and (max-width: 386px) {
-    font-size: 80%;
-  }
-`;
-
-const AboutBody = styled.p`
-  border: 5px solid white;
-  border-top: none;
-  border-bottom: none;
-  padding: 30px;
-  font-size: 1rem;
-  line-height: 45px;
-  @media screen and (max-width: 540px) {
-    width: 90%;
-    font-size: 0.9rem;
-    line-height: 40px;
-  }
-`;
 
 const About = () => {
   const navigate = useNavigate();
@@ -61,6 +39,7 @@ const About = () => {
     <>
       <DarkContainer className="fadeIn">
         <ImageBox src={Likelion} alt="LIKELION" onClick={goToHome} />
+        <br /> <br />
         <AboutHeader>
           멋쟁이사자처럼 벚꽃톤 프로젝트 'Call me by your TEXT'
         </AboutHeader>

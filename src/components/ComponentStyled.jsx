@@ -127,12 +127,19 @@ export const modalStyle = {
 // Image---------------------------------------------
 export const ImageBox = styled.img`
   width: 250px;
-  height: 250px;
+  height: auto;
   cursor: pointer;
-  border: 1px solid linear;
+  &:hover {
+    width: 260px;
+    transition: all 0.3s;
+  }
   @media screen and (max-width: 540px) {
     width: 200px;
-    height: 200px;
+    height: auto;
+    &:hover {
+      width: 210px;
+      transition: all 0.3s;
+    }
   }
 `;
 
@@ -172,5 +179,33 @@ export const DeleteText = styled.span`
   transition: 0.5s;
   &:hover {
     color: ${primaryColor};
+  }
+`;
+
+// ABOUT PAGE-------------------------------------------
+export const AboutHeader = styled.h6`
+  font-size: 18px;
+  font-weight: 900;
+  font-style: italic;
+  color: white;
+  @media screen and (max-width: 476px) {
+    font-size: 90%;
+  }
+  @media screen and (max-width: 386px) {
+    font-size: 80%;
+  }
+`;
+
+export const AboutBody = styled.p`
+  border: 5px solid white;
+  border-top: none;
+  border-bottom: none;
+  padding: 30px;
+  font-size: 1rem;
+  line-height: 45px;
+  @media screen and (max-width: 540px) {
+    width: 90%;
+    font-size: 0.9rem;
+    line-height: 40px;
   }
 `;
