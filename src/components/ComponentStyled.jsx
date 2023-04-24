@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { pointColor, primaryColor } from '../GlobalStyle';
+import { bgColor, pointColor, primaryColor } from '../GlobalStyle';
 import landingTitle from '../assets/images/landingTitle.png';
 
 export const Container = styled.div`
@@ -14,27 +14,21 @@ export const Container = styled.div`
 export const DarkContainer = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: black;
-  color: ${primaryColor};
-`;
-
-export const Item = styled.div`
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: black;
+  background-color: ${bgColor};
   color: ${primaryColor};
-  font-size: 18px;
   font-weight: 550;
 
   // PC 화면
   @media screen and (min-width: 1024px) {
   }
   // 모바일 스타일
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 420px) {
+    height: auto;
+    min-height: 120vh;
   }
 `;
 
@@ -102,6 +96,13 @@ export const ButtonBox = styled.section`
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
+  border: 1px soild white;
+  @media screen and (max-width: 450px) {
+    width: 400px;
+  }
+  @media screen and (max-width: 350px) {
+    width: 300px;
+  }
 `;
 
 // Modal----------------------------------------------
@@ -129,6 +130,10 @@ export const ImageBox = styled.img`
   height: 250px;
   cursor: pointer;
   border: 1px solid linear;
+  @media screen and (max-width: 540px) {
+    width: 200px;
+    height: 200px;
+  }
 `;
 
 export const Img = styled.img`
