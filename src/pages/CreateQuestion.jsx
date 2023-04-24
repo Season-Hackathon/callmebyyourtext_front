@@ -29,12 +29,13 @@ const CreateQuestion = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await Instance.post('http://127.0.0.1:8000/questions', question, {
-      withCredentials: true,
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
+    await axios
+      .post('http://127.0.0.1:8000/questions', question, {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
       .then((response) => {
         console.log(response);
         navigate(`/questionlist/${userId}`);

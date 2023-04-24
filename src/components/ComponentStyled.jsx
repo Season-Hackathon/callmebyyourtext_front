@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { pointColor, primaryColor } from '../GlobalStyle';
+import { bgColor, pointColor, primaryColor } from '../GlobalStyle';
 import landingTitle from '../assets/images/landingTitle.png';
 
 export const Container = styled.div`
@@ -14,27 +14,21 @@ export const Container = styled.div`
 export const DarkContainer = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: black;
-  color: ${primaryColor};
-`;
-
-export const Item = styled.div`
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: black;
+  background-color: ${bgColor};
   color: ${primaryColor};
-  font-size: 18px;
   font-weight: 550;
 
   // PC 화면
   @media screen and (min-width: 1024px) {
   }
   // 모바일 스타일
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 420px) {
+    height: auto;
+    min-height: 120vh;
   }
 `;
 
@@ -102,6 +96,13 @@ export const ButtonBox = styled.section`
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
+  border: 1px soild white;
+  @media screen and (max-width: 450px) {
+    width: 400px;
+  }
+  @media screen and (max-width: 350px) {
+    width: 300px;
+  }
 `;
 
 // Modal----------------------------------------------
@@ -126,9 +127,20 @@ export const modalStyle = {
 // Image---------------------------------------------
 export const ImageBox = styled.img`
   width: 250px;
-  height: 250px;
+  height: auto;
   cursor: pointer;
-  border: 1px solid linear;
+  &:hover {
+    width: 260px;
+    transition: all 0.3s;
+  }
+  @media screen and (max-width: 540px) {
+    width: 200px;
+    height: auto;
+    &:hover {
+      width: 210px;
+      transition: all 0.3s;
+    }
+  }
 `;
 
 export const Img = styled.img`
@@ -167,5 +179,33 @@ export const DeleteText = styled.span`
   transition: 0.5s;
   &:hover {
     color: ${primaryColor};
+  }
+`;
+
+// ABOUT PAGE-------------------------------------------
+export const AboutHeader = styled.h6`
+  font-size: 18px;
+  font-weight: 900;
+  font-style: italic;
+  color: white;
+  @media screen and (max-width: 476px) {
+    font-size: 90%;
+  }
+  @media screen and (max-width: 386px) {
+    font-size: 80%;
+  }
+`;
+
+export const AboutBody = styled.p`
+  border: 5px solid white;
+  border-top: none;
+  border-bottom: none;
+  padding: 30px;
+  font-size: 1rem;
+  line-height: 45px;
+  @media screen and (max-width: 540px) {
+    width: 90%;
+    font-size: 0.9rem;
+    line-height: 40px;
   }
 `;

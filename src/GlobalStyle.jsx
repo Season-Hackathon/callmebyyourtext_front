@@ -2,6 +2,8 @@ import { createGlobalStyle } from 'styled-components';
 import AppleSDGothicNeoB from './assets/fonts/AppleSDGothicNeoB.ttf';
 import AppleSDGothicNeoM from './assets/fonts/AppleSDGothicNeoM.ttf';
 
+// background: linear-gradient(270deg, rgba(87, 154, 255, 0.3) 0%, rgba(0, 186, 244, 0.008) 100%);
+
 export const primaryColor = '#0D87AD';
 export const secondaryColor = '#FFAF81';
 export const pointColor = '#2D2D2D';
@@ -50,6 +52,11 @@ footer, header, hgroup, main, menu, nav, section {
   font-style: normal;
 }
 
+* {
+  font-family: "AppleSDGothicNeoM", 'Noto Sans KR Black' !important;
+  box-sizing: border-box;
+}
+
 *::-webkit-scrollbar {
   width: 2px;
   height: 2px;
@@ -91,20 +98,6 @@ footer, header, hgroup, main, menu, nav, section {
 .fadeOut{
   animation: fadeOut;
   animation-duration: 0.8s;
-}
-
-* {
-  font-family: "AppleSDGothicNeoM", 'Noto Sans KR Black' !important;
-  box-sizing: border-box;
-}
-
-body {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
 }
 
 ul {

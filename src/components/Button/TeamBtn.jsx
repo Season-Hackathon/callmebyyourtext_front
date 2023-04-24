@@ -15,6 +15,9 @@ const Button = styled.button`
     background-color: ${primaryColor};
     cursor: pointer;
   }
+  @media screen and (max-width: 450px) {
+    width: 150px;
+  }
 `;
 
 const TeamBtn = ({ btnName, onClick, type }) => {
