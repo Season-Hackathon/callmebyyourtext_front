@@ -15,40 +15,45 @@ import {
 import { primaryColor, secondaryColor } from 'GlobalStyle';
 
 const GuideButton = styled.button`
-  width: 250px;
+  width: 500px;
   height: 35px;
-  border: 1px solid #fff;
-  border-radius: 10px;
-  background-color: transparent;
+  border: 1px solid transparent;
+  background: none,
+    linear-gradient(to right, ${primaryColor}, ${secondaryColor});
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  border-radius: 15px;
   color: #fff;
   cursor: pointer;
-  &:hover {
+  @media screen and (max-width: 530px) {
+    width: 400px;
   }
 `;
 
 const WarningButton = styled.button`
-  width: 250px;
+  width: 500px;
   height: 35px;
-  border: 1px solid ${secondaryColor};
-  border-radius: 10px;
-  background-color: transparent;
-  color: ${secondaryColor};
+  border: 1px solid transparent;
+  background: none, linear-gradient(to left, ${primaryColor}, ${secondaryColor});
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  border-radius: 15px;
+  color: #fff;
   cursor: pointer;
-  &:hover {
+  @media screen and (max-width: 530px) {
+    width: 400px;
   }
 `;
 
 const GuideList = styled.ul`
+  width: 500px;
   color: #fff;
   font-size: 0.9rem;
   line-height: 50px;
-  text-align: left;
-`;
-
-const WarningList = styled.ul`
-  color: #fff;
-  font-size: 0.9rem;
-  line-height: 50px;
+  @media screen and (max-width: 530px) {
+    width: 400px;
+    font-size: 0.76rem;
+  }
 `;
 
 const Guide = () => {
@@ -61,7 +66,7 @@ const Guide = () => {
       <DarkContainer className="fadeIn">
         <TitleBox onClick={goToHome} />
         <br /> <br />
-        <GuideButton>사용 방법 안내</GuideButton>
+        <GuideButton>사용 방법</GuideButton>
         <GuideList>
           <li>
             <FontAwesomeIcon icon={faPaperPlane} /> 나만의 질문을 만들고 SNS를
@@ -89,9 +94,9 @@ const Guide = () => {
           </li>
           <hr />
         </GuideList>
-        <br />
+        <br /> <br />
         <WarningButton>주의 사항</WarningButton>
-        <WarningList>
+        <GuideList>
           <li>
             <FontAwesomeIcon icon={faUserSecret} /> 모든 답변은 익명으로
             등록됩니다.
@@ -100,7 +105,7 @@ const Guide = () => {
             <FontAwesomeIcon icon={faHandHoldingHeart} /> 타인에 대한 비방 및
             비하, 욕설 표현은 자제해요.
           </li>
-        </WarningList>
+        </GuideList>
       </DarkContainer>
     </>
   );
