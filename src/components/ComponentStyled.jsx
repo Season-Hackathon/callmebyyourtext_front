@@ -27,8 +27,8 @@ export const DarkContainer = styled.div`
   }
   // 모바일 스타일
   @media screen and (max-width: 420px) {
-    height: auto;
-    min-height: 120vh;
+    // height: auto;
+    // min-height: 120vh;
   }
 `;
 
@@ -197,15 +197,22 @@ export const AboutHeader = styled.h6`
 `;
 
 export const AboutBody = styled.p`
+  display: flex;
+  justify-content: center;
+  width: 550px;
   border: 5px solid white;
   border-top: none;
   border-bottom: none;
   padding: 30px;
   font-size: 1rem;
   line-height: 45px;
-  @media screen and (max-width: 540px) {
+  @media screen and (max-width: 580px) {
     width: 90%;
     font-size: 0.9rem;
     line-height: 40px;
+  }
+  @media screen and (max-width: 410px) {
+    font-size: 3.5vw;
+    line-height: 30px;
   }
 `;
