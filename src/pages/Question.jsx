@@ -1,24 +1,25 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { primaryColor, secondaryColor } from '../GlobalStyle';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { pointColor } from '../GlobalStyle';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import PrimaryBtn from '../components/Button/PrimaryBtn';
 import { Box, TextField, Typography } from '@mui/material';
 import {
   DeleteText,
   Header,
   QuestionBox,
-  Wrapper,
+  Container,
 } from '../components/ComponentStyled';
 import axios from 'axios';
 import CommentComponent from '../components/List/CommentComponent';
-import Title from 'components/Title/Title';
+import { TitleBox } from 'components/ComponentStyled';
 
 const Question = () => {
   // 변수 관리-------------------------------------------------------
   const navigate = useNavigate();
   const location = useLocation();
-  const { question, questionId, writer } = location.state;
+  const { question, writer } = location.state;
   const userId = localStorage.getItem('id');
+  const { questionId } = useParams();
   const userName = localStorage.getItem('name');
   const accessToken = localStorage.getItem('access_token');
 
@@ -142,47 +143,50 @@ const Question = () => {
 
   return (
     <>
-      <Title onClick={goToHome} />
-      <Wrapper>
+      <Container>
+        <TitleBox onClick={goToHome}></TitleBox>
+        {writer === userName ? (
+          <Typography
+            variant="h6"
+            sx={{
+              color: `${pointColor}`,
+              fontSize: '14px',
+              fontWeight: '600',
+              marginTop: 1,
+            }}
+          >
+            현재 포인트 : {point}
+          </Typography>
+        ) : (
+          ''
+        )}
         <Box
           sx={{
             display: 'flex',
-            justifyContent: 'center',
+            justifyContent: 'space-between',
             alignItems: 'center',
             position: 'relative',
-            width: '100%',
-            marginBottom: 1,
+            width: '350px',
+            marginTop: 5,
           }}
         >
-          <Header>{writer}님의 질문입니다.</Header>
+          <Header>{writer}님의 질문</Header>
           {writer === userName ? (
             <DeleteText onClick={deleteQuestion}>삭제</DeleteText>
           ) : (
             ''
           )}
         </Box>
-        <Typography
-          variant="h6"
-          sx={{
-            color: `${secondaryColor}`,
-            marginBottom: '10%',
-            fontSize: '14px',
-            fontWeight: '600',
-            textAlign: 'center',
-          }}
-        >
-          현재 포인트 : {point}
-        </Typography>
         <QuestionBox>{question}</QuestionBox>
         {/* {writer === userName ? "사용자 접근" : "다른 사용자 접근"} */}
-        <Box sx={{ overflowY: 'auto', width: '100%', maxHeight: '30vh' }}>
+        <Box sx={{ overflowY: 'auto', width: '350px', maxHeight: '20vh' }}>
           {commentsArray.length === 0 ? (
             <Typography
               sx={{
                 fontSize: '14px',
                 fontWeight: '700',
                 textAlign: 'center',
-                color: `${secondaryColor}`,
+                color: `${pointColor}`,
               }}
             >
               등록된 답변이 없습니다.
@@ -191,60 +195,40 @@ const Question = () => {
             [...commentsList]
           )}
         </Box>
-        {writer === userName ? (
+        {writer !== userName ? (
           ''
         ) : (
           <>
-            <TextField
-              variant="outlined"
-              autoFocus
-              fullWidth
-              color="secondary"
-              label="답변을 입력해주세요."
-              id="comment"
-              name="comment"
-              type="comment"
-              autoComplete="comment"
+            <Box
+              component="form"
+              onSubmit={onSubmit}
               sx={{
-                borderBottom: `1px dashed ${primaryColor}`,
-                borderRadius: 3,
-                marginBottom: 2,
+                width: '350px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
               }}
-              onChange={onChange}
-            />
-            <PrimaryBtn btnName={'답변 등록'} onClick={onSubmit}></PrimaryBtn>
+            >
+              <TextField
+                variant="outlined"
+                autoFocus
+                fullWidth
+                color="info"
+                label="답변을 입력해주세요."
+                value={comments.comment}
+                id="comment"
+                name="comment"
+                type="text"
+                sx={{
+                  borderRadius: 3,
+                  margin: '20px 0 20px 0',
+                }}
+                onChange={onChange}
+              />
+              <PrimaryBtn btnName={'답변 등록'}></PrimaryBtn>
+            </Box>
           </>
         )}
-        {/* 임시 답변 등록 인풋 --------------------------------- */}
-        {/* <Box
-          component="form"
-          onSubmit={onSubmit}
-          sx={{
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <TextField
-            variant="outlined"
-            autoFocus
-            fullWidth
-            color="secondary"
-            label="답변을 입력해주세요."
-            value={comments.comment}
-            id="comment"
-            name="comment"
-            type="text"
-            sx={{
-              marginBottom: 2,
-            }}
-            onChange={onChange}
-          />
-          <PrimaryBtn btnName={'답변 등록'}></PrimaryBtn>
-        </Box>
-        <br /> */}
-        {/* -------------------------------------------------- */}
         <br />
         <PrimaryBtn
           btnName={'SNS 공유하기'}
@@ -252,7 +236,7 @@ const Question = () => {
         ></PrimaryBtn>
         <br />
         <PrimaryBtn btnName={'주소 복사'} onClick={copyLink}></PrimaryBtn>
-      </Wrapper>
+      </Container>
     </>
   );
 };

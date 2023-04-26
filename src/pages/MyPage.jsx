@@ -3,17 +3,21 @@ import React, { useContext, useState } from 'react';
 import { pointColor, primaryColor, secondaryColor } from 'GlobalStyle';
 import Typewriter from 'typewriter-effect';
 import PrimaryBtn from 'components/Button/PrimaryBtn';
-import HeartLogo from 'assets/images/inputId.png';
-import TitleLogo from 'assets/images/titleLogo.png';
 import { AuthContext } from 'context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import {
-  CursorText,
   modalStyle,
-  SmallImg,
-  Wrapper,
+  Container,
+  TitleBox,
+  LogOutBox,
 } from 'components/ComponentStyled';
-import Title from 'components/Title/Title';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faPlus,
+  faList,
+  faCircleInfo,
+  faUserSecret,
+} from '@fortawesome/free-solid-svg-icons';
 
 const MyPage = () => {
   // 변수 관리
@@ -31,6 +35,12 @@ const MyPage = () => {
   const modalClose = () => setOpen(false);
 
   // 모달 인풋 관리
+  const goToGuide = () => {
+    navigate(`/guide`);
+  };
+  const goToAbout = () => {
+    navigate(`/about`);
+  };
   const goToNewQuestion = () => {
     navigate(`/createquestion/${userId}`);
   };
@@ -53,23 +63,28 @@ const MyPage = () => {
 
   return (
     <>
-      <Title onClick={goToHome} className="fadeIn" />
-      <Typography
-        className="fadeIn"
-        variant="h6"
-        sx={{
-          color: `${secondaryColor}`,
-          marginBottom: '10%',
-          fontFamily: 'Noto Sans KR Black',
-          fontSize: '14px',
-          fontWeight: '600',
-          textAlign: 'center',
-        }}
-      >
-        <SmallImg src={TitleLogo} /> {userName}님의 페이지
-        <SmallImg src={TitleLogo} />
-      </Typography>
-      <Wrapper className="fadeIn">
+      <Container className="fadeIn">
+        <TitleBox onClick={goToHome}></TitleBox>
+        <br />
+        <Typography
+          className="fadeIn"
+          variant="h6"
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            height: '20px',
+            fontSize: '14px',
+            fontWeight: '600',
+            color: `${primaryColor}`,
+            padding: '13px',
+            marginBottom: 5,
+            border: `4px solid ${primaryColor}`,
+            borderTop: 'none',
+            borderBottom: 'none',
+          }}
+        >
+          {userName}님의 페이지
+        </Typography>
         <Box
           sx={{
             whiteSpace: 'pre-wrap',
@@ -81,8 +96,8 @@ const MyPage = () => {
             lineHeight: '1.5',
             color: `${pointColor}`,
             marginBottom: 5,
-            borderTop: `1px dashed ${primaryColor}`,
-            borderBottom: `1px dashed ${primaryColor}`,
+            borderTop: `1px dashed ${pointColor}`,
+            borderBottom: `1px dashed ${pointColor}`,
             borderRadius: 3,
             padding: 3,
           }}
@@ -107,7 +122,7 @@ const MyPage = () => {
           />
         </Box>
         <PrimaryBtn btnName={'더 알아보기'} onClick={modalOpen}></PrimaryBtn>
-      </Wrapper>
+      </Container>
       <Modal
         open={open}
         onClose={modalClose}
@@ -119,62 +134,112 @@ const MyPage = () => {
             id="modal-modal-description"
             sx={{
               mt: 2,
-              fontSize: 14,
+              display: 'flex',
+              justifyContent: 'flex-start',
+              gap: 2,
+              width: '150px',
+              fontSize: 15,
               fontWeight: 700,
-              fontFamily: 'Noto Sans KR Black',
-              color: `${secondaryColor}`,
-              borderBottom: `1px solid ${primaryColor}`,
+              color: `${primaryColor}`,
               marginBottom: 3,
               cursor: 'pointer',
               transition: '0.5s',
               '&:hover': {
-                color: `${primaryColor}`,
+                color: `${secondaryColor}`,
+              },
+            }}
+            onClick={goToGuide}
+          >
+            <FontAwesomeIcon icon={faCircleInfo} /> 서비스 사용 안내
+          </Typography>
+          <Typography
+            id="modal-modal-description"
+            sx={{
+              mt: 2,
+              display: 'flex',
+              justifyContent: 'flex-start',
+              gap: 2,
+              width: '150px',
+              fontSize: 15,
+              fontWeight: 700,
+              color: `${primaryColor}`,
+              marginBottom: 3,
+              cursor: 'pointer',
+              transition: '0.5s',
+              '&:hover': {
+                color: `${secondaryColor}`,
               },
             }}
             onClick={goToNewQuestion}
           >
-            <SmallImg src={HeartLogo} /> 새로운 질문 만들기
+            <FontAwesomeIcon icon={faPlus} /> 새로운 질문 만들기
           </Typography>
           <Typography
             id="modal-modal-description"
             sx={{
               mt: 2,
-              fontSize: 14,
+              display: 'flex',
+              justifyContent: 'flex-start',
+              gap: 2,
+              width: '150px',
+              fontSize: 15,
               fontWeight: 700,
-              fontFamily: 'Noto Sans KR Black',
-              color: `${secondaryColor}`,
-              borderBottom: `1px solid ${primaryColor}`,
+              color: `${primaryColor}`,
               marginBottom: 3,
               cursor: 'pointer',
               transition: '0.5s',
               '&:hover': {
-                color: `${primaryColor}`,
+                color: `${secondaryColor}`,
               },
             }}
             onClick={goToQuestionList}
           >
-            <SmallImg src={HeartLogo} /> 내 질문 리스트 보기
+            <FontAwesomeIcon icon={faList} /> 내 질문 리스트 보기
           </Typography>
           <Typography
             id="modal-modal-description"
             sx={{
               mt: 2,
-              fontSize: 12,
+              display: 'flex',
+              justifyContent: 'flex-start',
+              gap: 2,
+              width: '150px',
+              fontSize: 15,
               fontWeight: 700,
-              fontFamily: 'Noto Sans KR Black',
-              color: `${secondaryColor}`,
-              opacity: '75%',
-              textAlign: 'right',
+              color: `${primaryColor}`,
+              marginBottom: 3,
+              cursor: 'pointer',
               transition: '0.5s',
               '&:hover': {
-                color: `${primaryColor}`,
+                color: `${secondaryColor}`,
               },
             }}
+            onClick={goToAbout}
           >
-            <CursorText>
-              <span onClick={logout}>로그아웃</span>
-            </CursorText>
+            <FontAwesomeIcon icon={faUserSecret} /> ABOUT
           </Typography>
+          <LogOutBox>
+            <Typography
+              id="modal-modal-description"
+              sx={{
+                position: 'absolute',
+                bottom: 20,
+                right: 25,
+                fontSize: 12,
+                fontWeight: 700,
+                color: `${primaryColor}`,
+                opacity: '75%',
+                cursor: 'pointer',
+                transition: '0.5s',
+                '&:hover': {
+                  color: `${secondaryColor}`,
+                },
+              }}
+              onClick={logout}
+            >
+              로그아웃
+            </Typography>
+          </LogOutBox>
         </Box>
       </Modal>
     </>

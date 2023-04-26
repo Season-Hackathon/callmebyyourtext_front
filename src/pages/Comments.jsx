@@ -1,13 +1,7 @@
 import { Box } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Menu from '../assets/images/menu.png';
-import {
-  Header,
-  MyPage,
-  QuestionBox,
-  Wrapper,
-} from '../components/ComponentStyled';
+import { Header, QuestionBox, Container } from '../components/ComponentStyled';
 
 const Comments = () => {
   const navigate = useNavigate();
@@ -23,8 +17,7 @@ const Comments = () => {
   };
   return (
     <>
-      <MyPage src={Menu} onClick={goToMyPage} />
-      <Wrapper>
+      <Container>
         <Box
           sx={{
             display: 'flex',
@@ -46,7 +39,7 @@ const Comments = () => {
         ></PrimaryBtn>
         <br />
         <PrimaryBtn btnName={"주소 복사"} onClick={copyLink}></PrimaryBtn> */}
-      </Wrapper>
+      </Container>
     </>
   );
 };
