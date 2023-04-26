@@ -63,11 +63,11 @@ const Guide = () => {
   };
   return (
     <>
-      <DarkContainer className="fadeIn">
-        <TitleBox onClick={goToHome} />
+      <DarkContainer>
+        <TitleBox onClick={goToHome} className="fadeIn" />
         <br /> <br />
-        <GuideButton>사용 방법</GuideButton>
-        <GuideList>
+        <GuideButton className="fadeIn">사용 방법</GuideButton>
+        <GuideList className="fadeIn">
           <li>
             <FontAwesomeIcon icon={faPaperPlane} /> 나만의 질문을 만들고 SNS를
             통해 공유합니다.
@@ -95,8 +95,8 @@ const Guide = () => {
           <hr />
         </GuideList>
         <br /> <br />
-        <WarningButton>주의 사항</WarningButton>
-        <GuideList>
+        <WarningButton className="fadeIn">주의 사항</WarningButton>
+        <GuideList className="fadeIn">
           <li>
             <FontAwesomeIcon icon={faUserSecret} /> 모든 답변은 익명으로
             등록됩니다.
