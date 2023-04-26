@@ -37,31 +37,36 @@ const About = () => {
 
   return (
     <>
-      <DarkContainer className="fadeIn">
-        <ImageBox src={Likelion} alt="LIKELION" onClick={goToHome} />
+      <DarkContainer>
+        <ImageBox
+          src={Likelion}
+          alt="LIKELION"
+          onClick={goToHome}
+          className="fadeIn"
+        />
         <br /> <br />
-        <AboutHeader>
+        <AboutHeader className="fadeIn">
           멋쟁이사자처럼 벚꽃톤 프로젝트 'Call me by your TEXT'
         </AboutHeader>
         <br />
-        <AboutBody>
+        <AboutBody className="fadeIn">
           "새로운 인연을 마주하는 계절입니다."
           <br />
           서로를 알아가는 과정에서 많은 대화가 오고 가지만,
           <br />
-          정작 ‘나’에 대한 상대방의 솔직한 생각을 듣는 것은 쉽지 않은 일입니다.
+          정작 ‘나’에 대한 상대방의 솔직한 생각을 듣는 것은
           <br />
-          해당 프로젝트는 ‘나’를 더 다양한 관점에서 알아가기 위한 서비스로,
+          쉽지 않은 일입니다.
+          <br /> <br />
+          질문하고 대답하는 과정을 통해,
           <br />
-          질문하고 대답하는 과정을 통해
-          <br />
-          자연스러운 관계 형성과 친밀도 상승이 가능해질 것입니다.
+          ‘나’를 더 다양한 관점에서 알아갈 수 있기를 고대합니다.
         </AboutBody>
         <br /> <br />
-        <Typography sx={{ color: 'white', marginBottom: 1 }}>
-          TEAM_6 Contributor
+        <Typography sx={{ color: 'white', marginBottom: 1 }} className="fadeIn">
+          &lt;Contributor&gt;
         </Typography>
-        <ButtonBox>
+        <ButtonBox className="fadeIn">
           <TeamBtn btnName="LIKELION_DONGGUK" onClick={goToDongguk}></TeamBtn>
           <TeamBtn btnName="LIKELION_SUNGKYUL" onClick={goToSungkyul}></TeamBtn>
           <TeamBtn btnName="LIKELION_DONGDUK_W" onClick={goToDongDuk}></TeamBtn>

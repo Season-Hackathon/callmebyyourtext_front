@@ -88,9 +88,10 @@ const QuestionList = () => {
           sx={{
             color: `${pointColor}`,
             marginBottom: 5,
-            fontSize: '14px',
+            fontSize: '13px',
             fontWeight: '600',
             textAlign: 'center',
+            opacity: '75%',
           }}
         >
           현재 포인트 : {point}
