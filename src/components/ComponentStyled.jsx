@@ -76,7 +76,7 @@ export const QuestionBox = styled.section`
 export const CommentBox = styled.section`
   width: 350px;
   height: auto;
-  padding: 1%;
+  padding: 5px;
   overflow: hidden;
   word-wrap: break-word;
 `;

@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@mui/material/';
 import styled from 'styled-components';
-import { primaryColor } from 'GlobalStyle';
+import { errorColor, primaryColor } from 'GlobalStyle';
 import PrimaryBtn from 'components/Button/PrimaryBtn';
 import axios from 'axios';
 import { Container, TitleBox } from 'components/ComponentStyled';
@@ -19,28 +19,32 @@ const FormHelperEmails = styled(FormHelperText)`
   margin-left: 0 !important;
   font-weight: 700 !important;
   color: ${(props) =>
-    props.isemail === 'true' ? `${primaryColor}` : `#823434`} !important;
+    props.isemail === 'true' ? `${primaryColor}` : `${errorColor}`} !important;
 `;
 const FormHelperNames = styled(FormHelperText)`
   width: 100%;
   margin-left: 0 !important;
   font-weight: 700 !important;
   color: ${(props) =>
-    props.isname === 'true' ? `${primaryColor}` : `#823434`} !important;
+    props.isname === 'true' ? `${primaryColor}` : `${errorColor}`} !important;
 `;
 const FormHelperPWs = styled(FormHelperText)`
   width: 100%;
   margin-left: 0 !important;
   font-weight: 700 !important;
   color: ${(props) =>
-    props.ispassword === 'true' ? `${primaryColor}` : `#823434`} !important;
+    props.ispassword === 'true'
+      ? `${primaryColor}`
+      : `${errorColor}`} !important;
 `;
 const FormHelperPWCF = styled(FormHelperText)`
   width: 100%;
   margin-left: 0 !important;
   font-weight: 700 !important;
   color: ${(props) =>
-    props.ispassword2 === 'true' ? `${primaryColor}` : `#823434`} !important;
+    props.ispassword2 === 'true'
+      ? `${primaryColor}`
+      : `${errorColor}`} !important;
 `;
 
 const SignUp = () => {
