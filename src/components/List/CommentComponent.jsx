@@ -1,11 +1,19 @@
 import { Typography } from '@mui/material';
 import React, { memo, useState } from 'react';
-import { CommentBox, SmallImg } from '../ComponentStyled';
-import TitleLogo from '../../assets/images/titleLogo.png';
-import { pointColor, primaryColor, secondaryColor } from '../../GlobalStyle';
+import { CommentBox } from '../ComponentStyled';
+import { errorColor, pointColor, primaryColor } from '../../GlobalStyle';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLock, faUserSecret } from '@fortawesome/free-solid-svg-icons';
+import {
+  faFire,
+  faLock,
+  faUserSecret,
+} from '@fortawesome/free-solid-svg-icons';
+import styled from 'styled-components';
+
+const ThumbsUp = styled.p`
+  color: ${errorColor};
+`;
 
 const CommentComponent = ({
   comment,
@@ -26,6 +34,7 @@ const CommentComponent = ({
   // 상태 관리 --------------------------------------------
   const [isOpen, setIsOpen] = useState(openUser);
   const [pointRefresh, setPointRefresh] = useState(point);
+  const [thumbsUp, setThumbsUp] = useState(0);
 
   // 변수 관리 --------------------------------------------
   const userId = localStorage.getItem('id');
@@ -84,6 +93,9 @@ const CommentComponent = ({
           <CommentBox>
             <FontAwesomeIcon icon={faUserSecret} />{' '}
             <span>익명 답변 : {comment}</span>
+            <ThumbsUp>
+              <FontAwesomeIcon icon={faFire} /> 1
+            </ThumbsUp>
           </CommentBox>
         </Typography>
       ) : (

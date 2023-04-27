@@ -8,6 +8,7 @@ export const primaryColor = '#0D87AD';
 export const secondaryColor = '#FFAF81';
 export const pointColor = '#2D2D2D';
 export const bgColor = '#133337';
+export const errorColor = '#823434';
 export const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
