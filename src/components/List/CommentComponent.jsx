@@ -34,7 +34,7 @@ const CommentComponent = ({
   // 상태 관리 --------------------------------------------
   const [isOpen, setIsOpen] = useState(openUser);
   const [pointRefresh, setPointRefresh] = useState(point);
-  const [thumbsUp, setThumbsUp] = useState(0);
+  const [fire, setFire] = useState(0);
 
   // 변수 관리 --------------------------------------------
   const userId = localStorage.getItem('id');
@@ -117,6 +117,9 @@ const CommentComponent = ({
         >
           <CommentBox>
             <FontAwesomeIcon icon={faLock} /> <span>비공개 답변입니다.</span>
+            <ThumbsUp>
+              <FontAwesomeIcon icon={faFire} /> 1
+            </ThumbsUp>
           </CommentBox>
         </Typography>
       )}

@@ -12,6 +12,8 @@ import {
 import axios from 'axios';
 import CommentComponent from '../components/List/CommentComponent';
 import { TitleBox } from 'components/ComponentStyled';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUnlock } from '@fortawesome/free-solid-svg-icons';
 
 const Question = () => {
   // 변수 관리-------------------------------------------------------
@@ -170,7 +172,9 @@ const Question = () => {
             marginTop: 5,
           }}
         >
-          <Header>{writer}님의 질문</Header>
+          <Header>
+            <FontAwesomeIcon icon={faUnlock} /> {writer}님의 질문
+          </Header>
           {writer === userName ? (
             <DeleteText onClick={deleteQuestion}>삭제</DeleteText>
           ) : (
@@ -179,7 +183,14 @@ const Question = () => {
         </Box>
         <QuestionBox>{question}</QuestionBox>
         {/* {writer === userName ? "사용자 접근" : "다른 사용자 접근"} */}
-        <Box sx={{ overflowY: 'auto', width: '350px', maxHeight: '20vh' }}>
+        <Box
+          sx={{
+            overflowX: 'hidden',
+            overflowY: 'auto',
+            width: '350px',
+            maxHeight: '20vh',
+          }}
+        >
           {commentsArray.length === 0 ? (
             <Typography
               sx={{
@@ -221,7 +232,7 @@ const Question = () => {
                 type="text"
                 sx={{
                   borderRadius: 3,
-                  margin: '20px 0 20px 0',
+                  margin: '30px 0 30px 0',
                 }}
                 onChange={onChange}
               />
