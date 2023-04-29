@@ -11,7 +11,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
-const ThumbsUp = styled.p`
+const Emotion = styled.p`
   color: ${errorColor};
 `;
 
@@ -29,7 +29,9 @@ const CommentComponent = ({
   //   'questionId',
   //   questionId,
   //   'openUser',
-  //   openUser
+  //   openUser,
+  //   'writer',
+  //   writer
   // );
   // 상태 관리 --------------------------------------------
   const [isOpen, setIsOpen] = useState(openUser);
@@ -42,6 +44,7 @@ const CommentComponent = ({
 
   // 함수 관리 --------------------------------------------
   const openComment = async () => {
+    // 답변 공개
     if (window.confirm('50포인트를 소모하여 해당 답변을 확인하시겠습니까?')) {
       await axios
         .get(
@@ -76,6 +79,22 @@ const CommentComponent = ({
       return;
     }
   };
+  const fireComment = async () => {
+    // 답변 추천
+    await axios
+      .get(`http://127.0.0.1:8000/comments/${userId}/likes`, {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <>
       {isOpen?.id === userId ? (
@@ -93,9 +112,9 @@ const CommentComponent = ({
           <CommentBox>
             <FontAwesomeIcon icon={faUserSecret} />{' '}
             <span>익명 답변 : {comment}</span>
-            <ThumbsUp>
-              <FontAwesomeIcon icon={faFire} /> 1
-            </ThumbsUp>
+            <Emotion>
+              <FontAwesomeIcon icon={faFire} /> {fire}
+            </Emotion>
           </CommentBox>
         </Typography>
       ) : (
@@ -117,9 +136,9 @@ const CommentComponent = ({
         >
           <CommentBox>
             <FontAwesomeIcon icon={faLock} /> <span>비공개 답변입니다.</span>
-            <ThumbsUp>
-              <FontAwesomeIcon icon={faFire} /> 1
-            </ThumbsUp>
+            <Emotion>
+              <FontAwesomeIcon icon={faFire} /> {fire}
+            </Emotion>
           </CommentBox>
         </Typography>
       )}

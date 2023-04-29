@@ -65,6 +65,7 @@ const QuestionList = () => {
         questionId={q.questionId}
         question={q.question}
         writer={q.writer}
+        userId={userId}
       />
     )),
   ];

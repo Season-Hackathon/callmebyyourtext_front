@@ -2,12 +2,12 @@ import React from 'react';
 import ListBtn from '../Button/ListBtn';
 import { Link } from 'react-router-dom';
 
-const QuestionComponent = ({ question, questionId, writer }) => {
+const QuestionComponent = ({ question, questionId, writer, userId }) => {
   return (
     <>
       <Link
         to={`/question/${questionId}`}
-        state={{ question, questionId, writer }}
+        state={{ question, questionId, writer, userId }}
       >
         <ListBtn
           btnName={
