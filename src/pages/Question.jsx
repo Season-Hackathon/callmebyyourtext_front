@@ -73,6 +73,7 @@ const Question = () => {
         commentId={c.commentId}
         comment={c.comment}
         writer={c.writer}
+        userId={userId}
         point={point}
       />
     )),

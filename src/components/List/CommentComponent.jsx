@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import React, { memo, useState } from 'react';
-import { CommentBox } from '../ComponentStyled';
+import { CommentBox, SecretCommentBox } from '../ComponentStyled';
 import { errorColor, pointColor, primaryColor } from '../../GlobalStyle';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -21,25 +21,15 @@ const CommentComponent = ({
   questionId,
   openUser,
   writer,
+  userId,
   point,
 }) => {
-  // console.log(
-  //   'commentId',
-  //   commentId,
-  //   'questionId',
-  //   questionId,
-  //   'openUser',
-  //   openUser,
-  //   'writer',
-  //   writer
-  // );
   // 상태 관리 --------------------------------------------
   const [isOpen, setIsOpen] = useState(openUser);
   const [pointRefresh, setPointRefresh] = useState(point);
   const [fire, setFire] = useState(0);
 
   // 변수 관리 --------------------------------------------
-  const userId = localStorage.getItem('id');
   const accessToken = localStorage.getItem('access_token');
 
   // 함수 관리 --------------------------------------------
@@ -98,49 +88,20 @@ const CommentComponent = ({
   return (
     <>
       {isOpen?.id === userId ? (
-        <Typography
-          variant="h6"
-          sx={{
-            width: '100%',
-            color: `${primaryColor}`,
-            marginBottom: 3,
-            fontSize: '14px',
-            fontWeight: '600',
-            textAlign: 'left',
-          }}
-        >
-          <CommentBox>
-            <FontAwesomeIcon icon={faUserSecret} />{' '}
-            <span>익명 답변 : {comment}</span>
-            <Emotion>
-              <FontAwesomeIcon icon={faFire} /> {fire}
-            </Emotion>
-          </CommentBox>
-        </Typography>
+        <CommentBox>
+          <FontAwesomeIcon icon={faUserSecret} />{' '}
+          <span>익명 답변 : {comment}</span>
+          <Emotion>
+            <FontAwesomeIcon icon={faFire} /> {fire}
+          </Emotion>
+        </CommentBox>
       ) : (
-        <Typography
-          variant="h6"
-          sx={{
-            width: '100%',
-            color: `${pointColor}`,
-            marginBottom: 3,
-            fontSize: '14px',
-            fontWeight: '600',
-            textAlign: 'left',
-            cursor: 'pointer',
-            '&:hover': {
-              color: `${primaryColor}`,
-            },
-          }}
-          onClick={openComment}
-        >
-          <CommentBox>
-            <FontAwesomeIcon icon={faLock} /> <span>비공개 답변입니다.</span>
-            <Emotion>
-              <FontAwesomeIcon icon={faFire} /> {fire}
-            </Emotion>
-          </CommentBox>
-        </Typography>
+        <SecretCommentBox onClick={openComment}>
+          <FontAwesomeIcon icon={faLock} /> <span>비공개 답변입니다.</span>
+          <Emotion>
+            <FontAwesomeIcon icon={faFire} /> {fire}
+          </Emotion>
+        </SecretCommentBox>
       )}
     </>
   );

@@ -76,9 +76,29 @@ export const QuestionBox = styled.section`
 export const CommentBox = styled.section`
   width: 350px;
   height: auto;
+  color: ${primaryColor};
+  font-size: 14px;
+  font-weight: 600;
   padding: 5px;
+  margin-bottom: 15px;
   overflow: hidden;
   word-wrap: break-word;
+`;
+
+export const SecretCommentBox = styled.section`
+  width: 350px;
+  height: auto;
+  color: ${pointColor};
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  word-wrap: break-word;
+  cursor: pointer;
+  &:hover {
+    color: ${primaryColor};
+  }
 `;
 
 export const LogOutBox = styled.section`
