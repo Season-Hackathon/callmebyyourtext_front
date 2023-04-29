@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import React, { memo, useState } from 'react';
-import { CommentBox } from '../ComponentStyled';
+import { CommentBox, SecretCommentBox } from '../ComponentStyled';
 import { errorColor, pointColor, primaryColor } from '../../GlobalStyle';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,7 +11,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
-const ThumbsUp = styled.p`
+const Emotion = styled.p`
   color: ${errorColor};
 `;
 
@@ -21,27 +21,20 @@ const CommentComponent = ({
   questionId,
   openUser,
   writer,
+  userId,
   point,
 }) => {
-  // console.log(
-  //   'commentId',
-  //   commentId,
-  //   'questionId',
-  //   questionId,
-  //   'openUser',
-  //   openUser
-  // );
   // 상태 관리 --------------------------------------------
   const [isOpen, setIsOpen] = useState(openUser);
   const [pointRefresh, setPointRefresh] = useState(point);
   const [fire, setFire] = useState(0);
 
   // 변수 관리 --------------------------------------------
-  const userId = localStorage.getItem('id');
   const accessToken = localStorage.getItem('access_token');
 
   // 함수 관리 --------------------------------------------
   const openComment = async () => {
+    // 답변 공개
     if (window.confirm('50포인트를 소모하여 해당 답변을 확인하시겠습니까?')) {
       await axios
         .get(
@@ -76,52 +69,39 @@ const CommentComponent = ({
       return;
     }
   };
+  const fireComment = async () => {
+    // 답변 추천
+    await axios
+      .get(`http://127.0.0.1:8000/comments/${userId}/likes`, {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <>
       {isOpen?.id === userId ? (
-        <Typography
-          variant="h6"
-          sx={{
-            width: '100%',
-            color: `${primaryColor}`,
-            marginBottom: 3,
-            fontSize: '14px',
-            fontWeight: '600',
-            textAlign: 'left',
-          }}
-        >
-          <CommentBox>
-            <FontAwesomeIcon icon={faUserSecret} />{' '}
-            <span>익명 답변 : {comment}</span>
-            <ThumbsUp>
-              <FontAwesomeIcon icon={faFire} /> 1
-            </ThumbsUp>
-          </CommentBox>
-        </Typography>
+        <CommentBox>
+          <FontAwesomeIcon icon={faUserSecret} />{' '}
+          <span>익명 답변 : {comment}</span>
+          <Emotion>
+            <FontAwesomeIcon icon={faFire} /> {fire}
+          </Emotion>
+        </CommentBox>
       ) : (
-        <Typography
-          variant="h6"
-          sx={{
-            width: '100%',
-            color: `${pointColor}`,
-            marginBottom: 3,
-            fontSize: '14px',
-            fontWeight: '600',
-            textAlign: 'left',
-            cursor: 'pointer',
-            '&:hover': {
-              color: `${primaryColor}`,
-            },
-          }}
-          onClick={openComment}
-        >
-          <CommentBox>
-            <FontAwesomeIcon icon={faLock} /> <span>비공개 답변입니다.</span>
-            <ThumbsUp>
-              <FontAwesomeIcon icon={faFire} /> 1
-            </ThumbsUp>
-          </CommentBox>
-        </Typography>
+        <SecretCommentBox onClick={openComment}>
+          <FontAwesomeIcon icon={faLock} /> <span>비공개 답변입니다.</span>
+          <Emotion>
+            <FontAwesomeIcon icon={faFire} /> {fire}
+          </Emotion>
+        </SecretCommentBox>
       )}
     </>
   );

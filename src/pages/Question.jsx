@@ -19,8 +19,7 @@ const Question = () => {
   // 변수 관리-------------------------------------------------------
   const navigate = useNavigate();
   const location = useLocation();
-  const { question, writer } = location.state;
-  const userId = localStorage.getItem('id');
+  const { question, writer, userId } = location.state;
   const { questionId } = useParams();
   const userName = localStorage.getItem('name');
   const accessToken = localStorage.getItem('access_token');
@@ -41,6 +40,7 @@ const Question = () => {
         `http://127.0.0.1:8000/questions/${questionId}`
       );
       setCommentsArray(commentsData.data.comments);
+      //
       const getPoint = await axios.get(
         `http://127.0.0.1:8000/login/profile/${userId}/`,
         {
@@ -73,6 +73,7 @@ const Question = () => {
         commentId={c.commentId}
         comment={c.comment}
         writer={c.writer}
+        userId={userId}
         point={point}
       />
     )),
