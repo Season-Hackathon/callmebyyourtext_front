@@ -96,8 +96,12 @@ export const QuestionBox = styled.section`
   word-wrap: break-word;
   border-left: 5px solid ${primaryColor};
   border-right: 5px solid ${primaryColor};
-  margin: 10px 0 30px 0;
+  margin: 10px 0;
   padding: 20px;
+  // 모바일 스타일
+  @media screen and (max-height: 700px) {
+    min-height: 120px;
+  }
 `;
 
 export const QuestionSubBox = styled.span`
@@ -165,6 +169,21 @@ export const FireComment = styled.span`
 
 export const Emotion = styled.p`
   color: ${errorColor};
+`;
+
+export const SubmitButton = styled.button`
+  width: 55px;
+  height: 55px;
+  border: 1px solid ${primaryColor};
+  color: ${primaryColor};
+  background-color: unset;
+  border-radius: 5px;
+  transition: 0.3s;
+  &:hover {
+    color: white;
+    background-color: ${primaryColor};
+    cursor: pointer;
+  }
 `;
 
 export const Loading = keyframes`
