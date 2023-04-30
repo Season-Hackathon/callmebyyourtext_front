@@ -75,6 +75,7 @@ const Question = () => {
         writer={c.writer}
         userId={userId}
         point={point}
+        fire={0}
       />
     )),
   ];

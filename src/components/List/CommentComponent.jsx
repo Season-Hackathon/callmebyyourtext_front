@@ -1,7 +1,7 @@
-import { Typography } from '@mui/material';
 import React, { memo, useState } from 'react';
 import {
   CommentBox,
+  FireComment,
   SecretComment,
   SecretCommentBox,
 } from '../ComponentStyled';
@@ -20,19 +20,19 @@ const Emotion = styled.p`
 `;
 
 const CommentComponent = ({
-  comment,
-  commentId,
-  questionId,
   openUser,
+  questionId,
+  commentId,
+  comment,
   writer,
   userId,
   point,
+  fire,
 }) => {
   // 상태 관리 --------------------------------------------
   const [isOpen, setIsOpen] = useState(openUser);
   const [pointRefresh, setPointRefresh] = useState(point);
-  const [fire, setFire] = useState(0);
-
+  const [fires, setFires] = useState(fire);
   // 변수 관리 --------------------------------------------
   const accessToken = localStorage.getItem('access_token');
 
@@ -74,20 +74,25 @@ const CommentComponent = ({
     }
   };
   const fireComment = async () => {
-    // 답변 추천
-    await axios
-      .get(`http://127.0.0.1:8000/comments/${userId}/likes`, {
-        withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (window.confirm('해당 답변을 추천하시겠습니까?')) {
+      // 답변 추천
+      await axios
+        .get(`http://127.0.0.1:8000/comments/${commentId}/likes`, {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((res) => {
+          setFires(fires + 1);
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      return;
+    }
   };
   return (
     <>
@@ -96,7 +101,8 @@ const CommentComponent = ({
           <FontAwesomeIcon icon={faUserSecret} />{' '}
           <span>익명 답변 : {comment}</span>
           <Emotion>
-            <FontAwesomeIcon icon={faFire} /> {fire}
+            <FireComment onClick={fireComment}>추천</FireComment>{' '}
+            <FontAwesomeIcon icon={faFire} /> {fires}
           </Emotion>
         </CommentBox>
       ) : (
@@ -105,7 +111,8 @@ const CommentComponent = ({
             <FontAwesomeIcon icon={faLock} /> 비공개 답변입니다.
           </SecretComment>
           <Emotion>
-            <FontAwesomeIcon icon={faFire} /> {fire}
+            <FireComment onClick={fireComment}>추천</FireComment>{' '}
+            <FontAwesomeIcon icon={faFire} /> {fires}
           </Emotion>
         </SecretCommentBox>
       )}

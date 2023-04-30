@@ -99,8 +99,20 @@ export const SecretCommentBox = styled.section`
 
 export const SecretComment = styled.span`
   cursor: pointer;
+  transition: all 0.3s;
   &:hover {
     color: ${primaryColor};
+  }
+`;
+
+export const FireComment = styled.span`
+  color: ${pointColor};
+  font-size: 12px;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    opacity: 1;
   }
 `;
 
