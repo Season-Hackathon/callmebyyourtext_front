@@ -65,6 +65,7 @@ const QuestionList = () => {
         questionId={q.questionId}
         question={q.question}
         writer={q.writer}
+        publish={q.publish}
         userId={userId}
       />
     )),
@@ -82,7 +83,7 @@ const QuestionList = () => {
             marginTop: 5,
           }}
         >
-          {userName}님의 (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
+          {userName}님의 ( &quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot; )
         </Typography>
         <Typography
           variant="h6"

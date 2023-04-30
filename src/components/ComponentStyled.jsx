@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { bgColor, pointColor, primaryColor } from '../GlobalStyle';
+import { bgColor, errorColor, pointColor, primaryColor } from '../GlobalStyle';
 import landingTitle from '../assets/images/landingTitle.png';
 
 export const Container = styled.div`
-  width: 99vw;
+  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -102,6 +102,19 @@ export const SecretComment = styled.span`
   transition: all 0.3s;
   &:hover {
     color: ${primaryColor};
+  }
+`;
+
+export const LockComment = styled.span`
+  color: ${pointColor};
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    opacity: 1;
+    color: ${errorColor};
   }
 `;
 

@@ -1,6 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { pointColor } from '../GlobalStyle';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import {
+  useAsyncError,
+  useLocation,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 import PrimaryBtn from '../components/Button/PrimaryBtn';
 import { Box, TextField, Typography } from '@mui/material';
 import {
@@ -8,24 +13,26 @@ import {
   Header,
   QuestionBox,
   Container,
+  LockComment,
 } from '../components/ComponentStyled';
 import axios from 'axios';
 import CommentComponent from '../components/List/CommentComponent';
 import { TitleBox } from 'components/ComponentStyled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUnlock } from '@fortawesome/free-solid-svg-icons';
+import { faLock, faUnlock } from '@fortawesome/free-solid-svg-icons';
 
 const Question = () => {
   // 변수 관리-------------------------------------------------------
   const navigate = useNavigate();
   const location = useLocation();
-  const { question, writer, userId } = location.state;
+  const { question, writer, publish, userId } = location.state;
   const { questionId } = useParams();
   const userName = localStorage.getItem('name');
   const accessToken = localStorage.getItem('access_token');
 
   // 상태 관리-------------------------------------------------------
   const [point, setPoint] = useState('');
+  const [published, setPublished] = useState(publish);
   const [comments, setComments] = useState({
     questionId,
     comment: '',
@@ -75,7 +82,7 @@ const Question = () => {
         writer={c.writer}
         userId={userId}
         point={point}
-        fire={0}
+        fire={0} // 수정 필요
       />
     )),
   ];
@@ -144,7 +151,59 @@ const Question = () => {
       return;
     }
   };
-
+  // 질문 답변 공개 관리
+  const publishComment = async () => {
+    if (published) {
+      if (window.confirm('해당 질문 답변 공개를 제한하시겠습니까?')) {
+        await axios
+          .put(
+            `http://127.0.0.1:8000/questions/${questionId}`,
+            { publish: !published },
+            {
+              withCredentials: true,
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            }
+          )
+          .then((response) => {
+            console.log(response);
+            setPublished(!published);
+            alert('해당 질문은 본인을 제외한 제 3자의 답변 열람이 제한됩니다.');
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        return;
+      }
+    } else {
+      if (window.confirm('해당 질문 답변 공개를 허용하시겠습니까?')) {
+        await axios
+          .put(
+            `http://127.0.0.1:8000/questions/${questionId}`,
+            { publish: !published },
+            {
+              withCredentials: true,
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+              publish: !published,
+            }
+          )
+          .then((response) => {
+            console.log(response);
+            setPublished(!published);
+            alert('해당 질문은 제 3자가 포인트를 통해 답변 열람이 가능합니다.');
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        return;
+      }
+    }
+  };
   return (
     <>
       <Container>
@@ -174,9 +233,7 @@ const Question = () => {
             marginTop: 5,
           }}
         >
-          <Header>
-            <FontAwesomeIcon icon={faUnlock} /> {writer}님의 질문
-          </Header>
+          <Header>{writer}님의 질문</Header>
           {writer === userName ? (
             <DeleteText onClick={deleteQuestion}>삭제</DeleteText>
           ) : (
@@ -185,6 +242,25 @@ const Question = () => {
         </Box>
         <QuestionBox>{question}</QuestionBox>
         {/* {writer === userName ? "사용자 접근" : "다른 사용자 접근"} */}
+        {writer === userName ? (
+          <>
+            {published ? (
+              <>
+                <LockComment onClick={publishComment}>
+                  제 3자의 답변 열람 가능 <FontAwesomeIcon icon={faUnlock} />
+                </LockComment>
+              </>
+            ) : (
+              <>
+                <LockComment onClick={publishComment}>
+                  답변 공개 잠금 <FontAwesomeIcon icon={faLock} />
+                </LockComment>
+              </>
+            )}
+          </>
+        ) : (
+          ''
+        )}
         <Box
           sx={{
             overflowX: 'hidden',
