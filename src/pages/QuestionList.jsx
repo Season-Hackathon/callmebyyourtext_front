@@ -14,7 +14,6 @@ import PrimaryBtn from 'components/Button/PrimaryBtn';
 const QuestionList = () => {
   // 변수 관리-----------------------------------------
   const navigate = useNavigate();
-  const userName = localStorage.getItem('name');
   const { userId } = useParams();
   const accessToken = localStorage.getItem('access_token');
 
@@ -33,13 +32,19 @@ const QuestionList = () => {
 
   // 상태 관리-----------------------------------------
   const [questionArray, setQuestionArray] = useState([]);
-  const [point, setPoint] = useState('');
+  const [userInfo, setUserInfo] = useState({
+    id: '',
+    email: '',
+    name: '',
+    point: '',
+  });
   const fetchData = async () => {
     try {
       const getQuestionData = await axios.get(
         `http://127.0.0.1:8000/${userId}/questionList`
       );
-      const getPoint = await axios.get(
+
+      const getUserInfo = await axios.get(
         `http://127.0.0.1:8000/login/profile/${userId}/`,
         {
           withCredentials: true,
@@ -49,7 +54,11 @@ const QuestionList = () => {
         }
       );
       setQuestionArray(getQuestionData.data);
-      setPoint(getPoint.data.point);
+      setUserInfo({
+        ...userInfo,
+        name: getUserInfo.data.name,
+        point: getUserInfo.data.point,
+      });
     } catch (error) {
       console.log(error);
       // alert("데이터를 가져오는데 실패했습니다. 다시 로그인해주세요.");
@@ -98,7 +107,8 @@ const QuestionList = () => {
             marginTop: 5,
           }}
         >
-          {userName}님의 ( &quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot; )
+          {userInfo.name}님의 ( &quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;
+          )
         </Typography>
         <Typography
           variant="h6"
@@ -111,7 +121,7 @@ const QuestionList = () => {
             opacity: '75%',
           }}
         >
-          현재 포인트 : {point}
+          현재 포인트 : {userInfo.point}
         </Typography>
         <Box
           sx={{

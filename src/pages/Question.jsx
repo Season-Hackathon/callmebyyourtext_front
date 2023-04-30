@@ -9,6 +9,7 @@ import {
   QuestionBox,
   Container,
   LockComment,
+  QuestionSubBox,
 } from '../components/ComponentStyled';
 import axios from 'axios';
 import CommentComponent from '../components/List/CommentComponent';
@@ -21,28 +22,35 @@ const Question = () => {
   // 변수 관리-------------------------------------------------------
   const navigate = useNavigate();
   const location = useLocation();
-  const { question, writer, publish, userId } = location.state;
+  const { userId } = location.state;
   const { questionId } = useParams();
   const userName = localStorage.getItem('name');
   const accessToken = localStorage.getItem('access_token');
 
   // 상태 관리-------------------------------------------------------
+  const [questionInfo, setQuestionInfo] = useState({});
   const [point, setPoint] = useState('');
-  const [published, setPublished] = useState(publish);
   const [comments, setComments] = useState({
     questionId,
     comment: '',
     anonymous: true,
   });
 
-  // 답변 관리-------------------------------------------------------
-  const [commentsArray, setCommentsArray] = useState([]);
-  const fetchComments = useCallback(async () => {
+  // 데이터 관리-------------------------------------------------------
+  const fetchData = useCallback(async () => {
     try {
-      const commentsData = await axios.get(
+      const questionData = await axios.get(
         `http://127.0.0.1:8000/questions/${questionId}`
       );
-      setCommentsArray(commentsData.data.comments);
+
+      setQuestionInfo({
+        ...questionInfo,
+        publish: questionData.data.publish,
+        question: questionData.data.question,
+        questionId: questionData.data.questionId,
+        writer: questionData.data.writer,
+        commentsArray: questionData.data.comments,
+      });
       //
       const getPoint = await axios.get(
         `http://127.0.0.1:8000/login/profile/${userId}/`,
@@ -61,15 +69,15 @@ const Question = () => {
       // console.clear();
       // navigate('/', { replace: true });
     }
-  }, [commentsArray]);
+  }, [questionInfo]);
 
   // 렌더링 관리----------------------------------------------------
   useEffect(() => {
-    fetchComments();
+    fetchData();
   }, [comments]);
 
   const commentsList = [
-    commentsArray?.map((c) => (
+    questionInfo.commentsArray?.map((c) => (
       <CommentComponent
         key={c.commentId}
         openUser={c.open_user[0]}
@@ -79,7 +87,7 @@ const Question = () => {
         writer={c.writer}
         userId={userId}
         point={point}
-        published={published}
+        published={questionInfo.publish}
         like_count={c.like_count}
       />
     )),
@@ -151,12 +159,12 @@ const Question = () => {
   };
   // 질문 답변 공개 관리
   const publishComment = async () => {
-    if (published) {
+    if (questionInfo.publish) {
       if (window.confirm('해당 질문 답변 공개를 제한하시겠습니까?')) {
         await axios
           .put(
             `http://127.0.0.1:8000/questions/${questionId}`,
-            { publish: !published },
+            { publish: !questionInfo.publish },
             {
               withCredentials: true,
               headers: {
@@ -166,7 +174,10 @@ const Question = () => {
           )
           .then((response) => {
             console.log(response);
-            setPublished(!published);
+            setQuestionInfo({
+              ...questionInfo,
+              publish: !questionInfo.publish,
+            });
             alert('해당 질문은 본인을 제외한 제 3자의 답변 열람이 제한됩니다.');
           })
           .catch((error) => {
@@ -180,18 +191,21 @@ const Question = () => {
         await axios
           .put(
             `http://127.0.0.1:8000/questions/${questionId}`,
-            { publish: !published },
+            { publish: !questionInfo.publish },
             {
               withCredentials: true,
               headers: {
                 Authorization: `Bearer ${accessToken}`,
               },
-              publish: !published,
+              publish: !questionInfo.publish,
             }
           )
           .then((response) => {
             console.log(response);
-            setPublished(!published);
+            setQuestionInfo({
+              ...questionInfo,
+              publish: !questionInfo.publish,
+            });
             alert('해당 질문은 제 3자가 포인트를 통해 답변 열람이 가능합니다.');
           })
           .catch((error) => {
@@ -207,7 +221,14 @@ const Question = () => {
     <>
       <Container>
         <TitleBox onClick={goToHome}></TitleBox>
-        {writer === userName ? (
+        {userName ? (
+          <QuestionSubBox>반갑습니다, {userName}님</QuestionSubBox>
+        ) : (
+          <QuestionSubBox onClick={goToHome}>
+            로그인 후 답변을 남길 수 있어요.
+          </QuestionSubBox>
+        )}
+        {questionInfo.writer === userName ? (
           <Typography
             variant="h6"
             sx={{
@@ -232,18 +253,18 @@ const Question = () => {
             marginTop: 5,
           }}
         >
-          <Header>{writer}님의 질문</Header>
-          {writer === userName ? (
+          <Header>{questionInfo.writer}님의 질문</Header>
+          {questionInfo.writer === userName ? (
             <DeleteText onClick={deleteQuestion}>삭제</DeleteText>
           ) : (
             ''
           )}
         </Box>
-        <QuestionBox>{question}</QuestionBox>
-        {/* {writer === userName ? "사용자 접근" : "다른 사용자 접근"} */}
-        {writer === userName ? (
+        <QuestionBox>{questionInfo.question}</QuestionBox>
+
+        {questionInfo.writer === userName ? (
           <>
-            {published ? (
+            {questionInfo.publish ? (
               <>
                 <LockComment onClick={publishComment}>
                   제 3자의 답변 열람 가능 <FontAwesomeIcon icon={faUnlock} />
@@ -268,7 +289,7 @@ const Question = () => {
             maxHeight: '20vh',
           }}
         >
-          {commentsArray.length === 0 ? (
+          {questionInfo.commentsArray?.length === 0 ? (
             <Typography
               sx={{
                 fontSize: '14px',
@@ -283,7 +304,7 @@ const Question = () => {
             [...commentsList]
           )}
         </Box>
-        {writer === userName ? (
+        {questionInfo.writer === userName ? (
           ''
         ) : (
           <>

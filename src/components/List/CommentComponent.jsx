@@ -31,6 +31,7 @@ const CommentComponent = ({
   const [fires, setFires] = useState(like_count);
   // 변수 관리 --------------------------------------------
   const accessToken = localStorage.getItem('access_token');
+  const loggedInId = localStorage.getItem('id');
 
   // 함수 관리 --------------------------------------------
   const openComment = async () => {
@@ -50,7 +51,7 @@ const CommentComponent = ({
           .then((response) => {
             console.log(response);
             const getPoint = axios.get(
-              `http://127.0.0.1:8000/login/profile/${userId}/`,
+              `http://127.0.0.1:8000/login/profile/${loggedInId}/`,
               {
                 withCredentials: true,
                 headers: {
@@ -58,7 +59,7 @@ const CommentComponent = ({
                 },
               }
             );
-            if (userId === response.data.open_user[0].id) {
+            if (loggedInId === response.data.open_user[0].id) {
               setPointRefresh(getPoint);
               setIsOpen(response.data.open_user[0]);
             }
@@ -85,30 +86,34 @@ const CommentComponent = ({
 
   const fireComment = async () => {
     // 답변 추천
-    if (window.confirm('해당 답변을 추천하시겠습니까?')) {
-      // 답변 추천
-      await axios
-        .get(`http://127.0.0.1:8000/comments/${commentId}/likes`, {
-          withCredentials: true,
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        })
-        .then((res) => {
-          setFires(res.data.like_count);
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    if (isOpen.id !== loggedInId) {
+      if (window.confirm('해당 답변을 추천하시겠습니까?')) {
+        // 답변 추천
+        await axios
+          .get(`http://127.0.0.1:8000/comments/${commentId}/likes`, {
+            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          })
+          .then((res) => {
+            setFires(res.data.like_count);
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        return;
+      }
     } else {
-      return;
+      alert('본인의 답변은 추천할 수 없습니다.');
     }
   };
 
   return (
     <>
-      {isOpen?.id === userId ? (
+      {isOpen?.id === loggedInId ? (
         <CommentBox>
           <FontAwesomeIcon icon={faUserSecret} />{' '}
           <span>익명 답변 : {comment}</span>
@@ -123,11 +128,6 @@ const CommentComponent = ({
             <FontAwesomeIcon icon={faLock} /> 비공개 답변입니다.
           </SecretComment>
           <Emotion>
-            {openUser ? (
-              <FireComment onClick={fireComment}>추천</FireComment>
-            ) : (
-              ''
-            )}{' '}
             {fires === 0 ? (
               ''
             ) : (

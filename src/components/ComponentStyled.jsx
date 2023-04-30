@@ -100,6 +100,14 @@ export const QuestionBox = styled.section`
   padding: 20px;
 `;
 
+export const QuestionSubBox = styled.span`
+  color: ${pointColor};
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.4;
+  cursor: pointer;
+`;
+
 export const CommentBox = styled.section`
   width: 350px;
   height: auto;
