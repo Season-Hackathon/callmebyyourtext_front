@@ -73,7 +73,8 @@ const CommentComponent = ({
       alert('답변 공개가 제한된 질문입니다.');
     }
   };
-
+  // http://localhost:3000/question/66
+  // http://localhost:3000/questionlist/20233292344237941
   const fireComment = async () => {
     // 답변 추천
     if (window.confirm('해당 답변을 추천하시겠습니까?')) {
@@ -114,8 +115,18 @@ const CommentComponent = ({
             <FontAwesomeIcon icon={faLock} /> 비공개 답변입니다.
           </SecretComment>
           <Emotion>
-            <FireComment onClick={fireComment}>추천</FireComment>{' '}
-            <FontAwesomeIcon icon={faFire} /> {fires}
+            {openUser ? (
+              <FireComment onClick={fireComment}>추천</FireComment>
+            ) : (
+              ''
+            )}{' '}
+            {fires === 0 ? (
+              ''
+            ) : (
+              <>
+                <FontAwesomeIcon icon={faFire} /> {fires}
+              </>
+            )}
           </Emotion>
         </SecretCommentBox>
       )}
