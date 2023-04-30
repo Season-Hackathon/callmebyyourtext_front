@@ -80,7 +80,7 @@ const Question = () => {
     questionInfo.commentsArray?.map((c) => (
       <CommentComponent
         key={c.commentId}
-        openUser={c.open_user[0]}
+        openUsers={c.open_user}
         questionId={c.questionId}
         commentId={c.commentId}
         comment={c.comment}
@@ -281,6 +281,7 @@ const Question = () => {
         ) : (
           ''
         )}
+        <br />
         <Box
           sx={{
             overflowX: 'hidden',

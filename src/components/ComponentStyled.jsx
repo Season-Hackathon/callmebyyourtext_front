@@ -96,7 +96,7 @@ export const QuestionBox = styled.section`
   word-wrap: break-word;
   border-left: 5px solid ${primaryColor};
   border-right: 5px solid ${primaryColor};
-  margin: 10px 0 50px 0;
+  margin: 10px 0 30px 0;
   padding: 20px;
 `;
 
