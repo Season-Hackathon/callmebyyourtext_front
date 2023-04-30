@@ -29,13 +29,7 @@ const CreateQuestion = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios
-      .post('http://127.0.0.1:8000/questions', question, {
-        withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
+    await Instance.post('http://127.0.0.1:8000/questions', question)
       .then((response) => {
         console.log(response);
         navigate(`/questionlist/${userId}`);
@@ -44,7 +38,12 @@ const CreateQuestion = () => {
         console.log(error);
       });
   };
-
+  // , {
+  //   withCredentials: true,
+  //   headers: {
+  //     Authorization: `Bearer ${accessToken}`,
+  //   },
+  // }
   return (
     <>
       <Container className="fadeIn">
