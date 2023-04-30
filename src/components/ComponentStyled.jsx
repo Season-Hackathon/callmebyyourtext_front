@@ -1,5 +1,11 @@
-import styled from 'styled-components';
-import { bgColor, errorColor, pointColor, primaryColor } from '../GlobalStyle';
+import styled, { keyframes } from 'styled-components';
+import {
+  bgColor,
+  errorColor,
+  pointColor,
+  primaryColor,
+  secondaryColor,
+} from '../GlobalStyle';
 import landingTitle from '../assets/images/landingTitle.png';
 
 export const Container = styled.div`
@@ -114,7 +120,6 @@ export const LockComment = styled.span`
   transition: all 0.3s;
   &:hover {
     opacity: 1;
-    color: ${errorColor};
   }
 `;
 
@@ -128,6 +133,30 @@ export const FireComment = styled.span`
     opacity: 1;
   }
 `;
+
+export const Emotion = styled.p`
+  color: ${errorColor};
+`;
+
+export const Loading = keyframes`
+  from {
+    transform: rotate(0deg);
+    border-radius: 50%;
+    border-color: ${secondaryColor};
+  } 
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const LoadingBox = styled.section`
+  width: 30px;
+  height: 30px;
+  border: 1px solid ${primaryColor};
+  animation: ${Loading} 1s ease infinite alternate;
+`;
+
+// --------------------------------------------------
 
 export const LogOutBox = styled.section`
   width: 100%;

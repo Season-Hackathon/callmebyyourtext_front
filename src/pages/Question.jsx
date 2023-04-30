@@ -1,11 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { pointColor } from '../GlobalStyle';
-import {
-  useAsyncError,
-  useLocation,
-  useNavigate,
-  useParams,
-} from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import PrimaryBtn from '../components/Button/PrimaryBtn';
 import { Box, TextField, Typography } from '@mui/material';
 import {
@@ -20,6 +15,7 @@ import CommentComponent from '../components/List/CommentComponent';
 import { TitleBox } from 'components/ComponentStyled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock, faUnlock } from '@fortawesome/free-solid-svg-icons';
+import { Instance } from 'components/Instance';
 
 const Question = () => {
   // 변수 관리-------------------------------------------------------
@@ -82,7 +78,8 @@ const Question = () => {
         writer={c.writer}
         userId={userId}
         point={point}
-        fire={0} // 수정 필요
+        published={published}
+        like_count={c.like_count}
       />
     )),
   ];
@@ -274,10 +271,10 @@ const Question = () => {
               sx={{
                 fontSize: '14px',
                 fontWeight: '700',
-                textAlign: 'center',
                 color: `${pointColor}`,
               }}
             >
+              <br />
               등록된 답변이 없습니다.
             </Typography>
           ) : (

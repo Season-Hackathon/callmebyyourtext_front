@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { getCookie, removeCookie } from 'components/Cookie';
+import { useNavigate } from 'react-router-dom';
 
 const ACCESS_TOKEN = localStorage.getItem('access_token');
 const REFRESH_TOKEN = getCookie('refresh_token');
@@ -41,6 +42,7 @@ Instance.interceptors.response.use(
     return response;
   },
   async (error) => {
+    const navigate = useNavigate();
     // Response 에러 처리
     console.log('respone interceptor 에러', error);
     const originalRequest = error.config;
@@ -70,9 +72,10 @@ Instance.interceptors.response.use(
         console.log('interceptor try catch >', error);
       }
     } else {
+      alert('다시 로그인 후 시도해주세요.');
       // localStorage.removeItem('access_token');
       // removeCookie('refresh_token');
-      alert('다시 로그인 후 시도해주세요.');
+      // navigate('/', { replace: true });
     }
     return Promise.reject(error);
   }

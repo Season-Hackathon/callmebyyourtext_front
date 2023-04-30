@@ -1,11 +1,11 @@
 import React, { memo, useState } from 'react';
 import {
   CommentBox,
+  Emotion,
   FireComment,
   SecretComment,
   SecretCommentBox,
 } from '../ComponentStyled';
-import { errorColor, pointColor, primaryColor } from '../../GlobalStyle';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -13,11 +13,6 @@ import {
   faLock,
   faUserSecret,
 } from '@fortawesome/free-solid-svg-icons';
-import styled from 'styled-components';
-
-const Emotion = styled.p`
-  color: ${errorColor};
-`;
 
 const CommentComponent = ({
   openUser,
@@ -27,53 +22,60 @@ const CommentComponent = ({
   writer,
   userId,
   point,
-  fire,
+  published,
+  like_count,
 }) => {
   // 상태 관리 --------------------------------------------
   const [isOpen, setIsOpen] = useState(openUser);
   const [pointRefresh, setPointRefresh] = useState(point);
-  const [fires, setFires] = useState(fire);
+  const [fires, setFires] = useState(like_count);
   // 변수 관리 --------------------------------------------
   const accessToken = localStorage.getItem('access_token');
 
   // 함수 관리 --------------------------------------------
   const openComment = async () => {
     // 답변 공개
-    if (window.confirm('50포인트를 소모하여 해당 답변을 확인하시겠습니까?')) {
-      await axios
-        .get(
-          `http://127.0.0.1:8000/questions/${questionId}/comments/${commentId}`,
-          {
-            withCredentials: true,
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        )
-        .then((response) => {
-          console.log(response);
-          const getPoint = axios.get(
-            `http://127.0.0.1:8000/login/profile/${userId}/`,
+    if (published) {
+      if (window.confirm('50포인트를 소모하여 해당 답변을 확인하시겠습니까?')) {
+        await axios
+          .get(
+            `http://127.0.0.1:8000/questions/${questionId}/comments/${commentId}`,
             {
               withCredentials: true,
               headers: {
                 Authorization: `Bearer ${accessToken}`,
               },
             }
-          );
-          if (userId === response.data.open_user[0].id) {
-            setPointRefresh(getPoint);
-            setIsOpen(response.data.open_user[0]);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+          )
+          .then((response) => {
+            console.log(response);
+            const getPoint = axios.get(
+              `http://127.0.0.1:8000/login/profile/${userId}/`,
+              {
+                withCredentials: true,
+                headers: {
+                  Authorization: `Bearer ${accessToken}`,
+                },
+              }
+            );
+            if (userId === response.data.open_user[0].id) {
+              setPointRefresh(getPoint);
+              setIsOpen(response.data.open_user[0]);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        return;
+      }
     } else {
-      return;
+      alert('답변 공개가 제한된 질문입니다.');
     }
   };
+
   const fireComment = async () => {
+    // 답변 추천
     if (window.confirm('해당 답변을 추천하시겠습니까?')) {
       // 답변 추천
       await axios
@@ -94,6 +96,7 @@ const CommentComponent = ({
       return;
     }
   };
+
   return (
     <>
       {isOpen?.id === userId ? (
