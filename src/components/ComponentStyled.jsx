@@ -95,6 +95,9 @@ export const SecretCommentBox = styled.section`
   margin-bottom: 15px;
   overflow: hidden;
   word-wrap: break-word;
+`;
+
+export const SecretComment = styled.span`
   cursor: pointer;
   &:hover {
     color: ${primaryColor};

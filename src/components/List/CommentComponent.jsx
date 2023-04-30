@@ -1,6 +1,10 @@
 import { Typography } from '@mui/material';
 import React, { memo, useState } from 'react';
-import { CommentBox, SecretCommentBox } from '../ComponentStyled';
+import {
+  CommentBox,
+  SecretComment,
+  SecretCommentBox,
+} from '../ComponentStyled';
 import { errorColor, pointColor, primaryColor } from '../../GlobalStyle';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -96,8 +100,10 @@ const CommentComponent = ({
           </Emotion>
         </CommentBox>
       ) : (
-        <SecretCommentBox onClick={openComment}>
-          <FontAwesomeIcon icon={faLock} /> <span>비공개 답변입니다.</span>
+        <SecretCommentBox>
+          <SecretComment onClick={openComment}>
+            <FontAwesomeIcon icon={faLock} /> 비공개 답변입니다.
+          </SecretComment>
           <Emotion>
             <FontAwesomeIcon icon={faFire} /> {fire}
           </Emotion>
