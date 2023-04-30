@@ -1,9 +1,15 @@
-import styled from 'styled-components';
-import { bgColor, pointColor, primaryColor } from '../GlobalStyle';
+import styled, { keyframes } from 'styled-components';
+import {
+  bgColor,
+  errorColor,
+  pointColor,
+  primaryColor,
+  secondaryColor,
+} from '../GlobalStyle';
 import landingTitle from '../assets/images/landingTitle.png';
 
 export const Container = styled.div`
-  width: 99vw;
+  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -62,6 +68,27 @@ export const TitleBox = styled.section`
   cursor: pointer;
 `;
 
+export const QListButton = styled.button`
+  width: 350px;
+  height: 50px;
+  min-height: 35px;
+  border: 1px solid ${primaryColor};
+  color: ${primaryColor};
+  background-color: transparent;
+  border-radius: 15px;
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    color: white;
+    background-color: ${primaryColor};
+    border: 1px solid transparent;
+    background: none,
+      linear-gradient(to left, ${primaryColor}, ${secondaryColor});
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+  }
+`;
+
 export const QuestionBox = styled.section`
   width: 350px;
   min-height: 200px;
@@ -69,8 +96,16 @@ export const QuestionBox = styled.section`
   word-wrap: break-word;
   border-left: 5px solid ${primaryColor};
   border-right: 5px solid ${primaryColor};
-  margin: 10px 0 50px 0;
+  margin: 10px 0 30px 0;
   padding: 20px;
+`;
+
+export const QuestionSubBox = styled.span`
+  color: ${pointColor};
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.4;
+  cursor: pointer;
 `;
 
 export const CommentBox = styled.section`
@@ -95,11 +130,62 @@ export const SecretCommentBox = styled.section`
   margin-bottom: 15px;
   overflow: hidden;
   word-wrap: break-word;
+`;
+
+export const SecretComment = styled.span`
   cursor: pointer;
+  transition: all 0.3s;
   &:hover {
     color: ${primaryColor};
   }
 `;
+
+export const LockComment = styled.span`
+  color: ${pointColor};
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    opacity: 1;
+  }
+`;
+
+export const FireComment = styled.span`
+  color: ${pointColor};
+  font-size: 12px;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    opacity: 1;
+  }
+`;
+
+export const Emotion = styled.p`
+  color: ${errorColor};
+`;
+
+export const Loading = keyframes`
+  from {
+    transform: rotate(0deg);
+    border-radius: 50%;
+    border-color: ${secondaryColor};
+  } 
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const LoadingBox = styled.section`
+  width: 30px;
+  height: 30px;
+  border: 1px solid ${primaryColor};
+  animation: ${Loading} 1s ease infinite alternate;
+`;
+
+// --------------------------------------------------
 
 export const LogOutBox = styled.section`
   width: 100%;

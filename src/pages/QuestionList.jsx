@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { modalStyle, Container, TitleBox } from 'components/ComponentStyled';
+import {
+  modalStyle,
+  Container,
+  TitleBox,
+  QListButton,
+} from 'components/ComponentStyled';
 import { Box, Modal, Typography } from '@mui/material';
 import { pointColor, primaryColor, secondaryColor } from 'GlobalStyle';
 import axios from 'axios';
 import PrimaryBtn from 'components/Button/PrimaryBtn';
-import ListBtn from 'components/Button/ListBtn';
-import QuestionComponent from 'components/List/QuestionComponent';
 
 const QuestionList = () => {
   // 변수 관리-----------------------------------------
   const navigate = useNavigate();
-  const userName = localStorage.getItem('name');
   const { userId } = useParams();
   const accessToken = localStorage.getItem('access_token');
 
@@ -30,13 +32,19 @@ const QuestionList = () => {
 
   // 상태 관리-----------------------------------------
   const [questionArray, setQuestionArray] = useState([]);
-  const [point, setPoint] = useState('');
+  const [userInfo, setUserInfo] = useState({
+    id: '',
+    email: '',
+    name: '',
+    point: '',
+  });
   const fetchData = async () => {
     try {
       const getQuestionData = await axios.get(
         `http://127.0.0.1:8000/${userId}/questionList`
       );
-      const getPoint = await axios.get(
+
+      const getUserInfo = await axios.get(
         `http://127.0.0.1:8000/login/profile/${userId}/`,
         {
           withCredentials: true,
@@ -46,7 +54,11 @@ const QuestionList = () => {
         }
       );
       setQuestionArray(getQuestionData.data);
-      setPoint(getPoint.data.point);
+      setUserInfo({
+        ...userInfo,
+        name: getUserInfo.data.name,
+        point: getUserInfo.data.point,
+      });
     } catch (error) {
       console.log(error);
       // alert("데이터를 가져오는데 실패했습니다. 다시 로그인해주세요.");
@@ -60,13 +72,26 @@ const QuestionList = () => {
   }, []);
   const questionList = [
     questionArray?.map((q) => (
-      <QuestionComponent
-        key={q.questionId}
-        questionId={q.questionId}
-        question={q.question}
-        writer={q.writer}
-        userId={userId}
-      />
+      <React.Fragment key={q.questionId}>
+        <QListButton
+          onClick={() => {
+            navigate(`/question/${q.questionId}`, {
+              state: {
+                question: q.question,
+                questionId: q.questionId,
+                writer: q.writer,
+                publish: q.publish,
+                userId: userId,
+              },
+            });
+          }}
+        >
+          {q.question.length > 25
+            ? q.question.slice(0, 25) + '...'
+            : q.question}
+        </QListButton>
+        <br key="enter" />
+      </React.Fragment>
     )),
   ];
 
@@ -82,7 +107,8 @@ const QuestionList = () => {
             marginTop: 5,
           }}
         >
-          {userName}님의 (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
+          {userInfo.name}님의 ( &quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;
+          )
         </Typography>
         <Typography
           variant="h6"
@@ -95,7 +121,7 @@ const QuestionList = () => {
             opacity: '75%',
           }}
         >
-          현재 포인트 : {point}
+          현재 포인트 : {userInfo.point}
         </Typography>
         <Box
           sx={{
@@ -126,11 +152,9 @@ const QuestionList = () => {
             </Typography>
           ) : (
             [
-              <ListBtn
-                btnName={'+'}
-                onClick={goToCreateQuestion}
-                key={userId}
-              />,
+              <QListButton onClick={goToCreateQuestion} key={userId}>
+                +
+              </QListButton>,
               <br key="enter" />,
               ...questionList,
             ]
