@@ -86,7 +86,7 @@ const CommentComponent = ({
           },
         })
         .then((res) => {
-          setFires(fires + 1);
+          setFires(res.data.like_count);
           console.log(res);
         })
         .catch((err) => {
