@@ -6,7 +6,23 @@ import { pointColor, primaryColor, secondaryColor } from 'GlobalStyle';
 import axios from 'axios';
 import PrimaryBtn from 'components/Button/PrimaryBtn';
 import ListBtn from 'components/Button/ListBtn';
-import QuestionComponent from 'components/List/QuestionComponent';
+import styled from 'styled-components';
+
+const Button = styled.button`
+  width: 350px;
+  height: 35px;
+  min-height: 35px;
+  border: 1px solid ${primaryColor};
+  color: ${primaryColor};
+  background-color: transparent;
+  border-radius: 5px;
+  transition: 0.3s;
+  &:hover {
+    color: white;
+    background-color: ${primaryColor};
+    cursor: pointer;
+  }
+`;
 
 const QuestionList = () => {
   // 변수 관리-----------------------------------------
@@ -60,14 +76,27 @@ const QuestionList = () => {
   }, []);
   const questionList = [
     questionArray?.map((q) => (
-      <QuestionComponent
-        key={q.questionId}
-        questionId={q.questionId}
-        question={q.question}
-        writer={q.writer}
-        publish={q.publish}
-        userId={userId}
-      />
+      <>
+        <Button
+          key={q.questionId}
+          onClick={() => {
+            navigate(`/question/${q.questionId}`, {
+              state: {
+                question: q.question,
+                questionId: q.questionId,
+                writer: q.writer,
+                publish: q.publish,
+                userId: userId,
+              },
+            });
+          }}
+        >
+          {q.question.length > 20
+            ? q.question.slice(0, 20) + '...'
+            : q.question}
+        </Button>
+        <br key="enter" />
+      </>
     )),
   ];
 

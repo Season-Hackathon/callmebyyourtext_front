@@ -67,6 +67,7 @@ const Question = () => {
   useEffect(() => {
     fetchComments();
   }, [comments]);
+
   const commentsList = [
     commentsArray?.map((c) => (
       <CommentComponent
@@ -201,6 +202,7 @@ const Question = () => {
       }
     }
   };
+
   return (
     <>
       <Container>
@@ -281,7 +283,7 @@ const Question = () => {
             [...commentsList]
           )}
         </Box>
-        {writer !== userName ? (
+        {writer === userName ? (
           ''
         ) : (
           <>

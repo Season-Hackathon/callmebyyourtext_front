@@ -73,8 +73,16 @@ const CommentComponent = ({
       alert('답변 공개가 제한된 질문입니다.');
     }
   };
-  // http://localhost:3000/question/66
-  // http://localhost:3000/questionlist/20233292344237941
+  // 정택원 계정
+  // http://localhost:3000/questionlist/202343016325651694
+  // 질문 ID 68 ~ 70
+  // http://localhost:3000/question/68
+
+  // 김지민 계정
+  // http://localhost:3000/questionlist/2023430163220825041
+  // 질문 ID 71 ~ 73
+  // http://localhost:3000/question/73
+
   const fireComment = async () => {
     // 답변 추천
     if (window.confirm('해당 답변을 추천하시겠습니까?')) {

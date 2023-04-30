@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { primaryColor } from '../../GlobalStyle';
 
 const Button = styled.button`
-  width: 250px;
+  width: 350px;
   height: 35px;
   min-height: 35px;
   border: 1px solid ${primaryColor};
@@ -18,9 +18,24 @@ const Button = styled.button`
   }
 `;
 
-const ListBtn = ({ btnName, onClick, type }) => {
+const ListBtn = ({
+  btnName,
+  onClick,
+  question,
+  questionId,
+  writer,
+  publish,
+  userId,
+}) => {
   return (
-    <Button onClick={onClick} type={type}>
+    <Button
+      onClick={onClick}
+      question={question}
+      questionId={questionId}
+      writer={writer}
+      publish={publish}
+      userId={userId}
+    >
       {btnName}
     </Button>
   );
