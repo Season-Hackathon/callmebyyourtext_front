@@ -68,6 +68,27 @@ export const TitleBox = styled.section`
   cursor: pointer;
 `;
 
+export const QListButton = styled.button`
+  width: 350px;
+  height: 50px;
+  min-height: 35px;
+  border: 1px solid ${primaryColor};
+  color: ${primaryColor};
+  background-color: transparent;
+  border-radius: 15px;
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    color: white;
+    background-color: ${primaryColor};
+    border: 1px solid transparent;
+    background: none,
+      linear-gradient(to left, ${primaryColor}, ${secondaryColor});
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+  }
+`;
+
 export const QuestionBox = styled.section`
   width: 350px;
   min-height: 200px;

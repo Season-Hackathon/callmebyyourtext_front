@@ -1,28 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { modalStyle, Container, TitleBox } from 'components/ComponentStyled';
+import {
+  modalStyle,
+  Container,
+  TitleBox,
+  QListButton,
+} from 'components/ComponentStyled';
 import { Box, Modal, Typography } from '@mui/material';
 import { pointColor, primaryColor, secondaryColor } from 'GlobalStyle';
 import axios from 'axios';
 import PrimaryBtn from 'components/Button/PrimaryBtn';
-import ListBtn from 'components/Button/ListBtn';
-import styled from 'styled-components';
-
-const Button = styled.button`
-  width: 350px;
-  height: 35px;
-  min-height: 35px;
-  border: 1px solid ${primaryColor};
-  color: ${primaryColor};
-  background-color: transparent;
-  border-radius: 5px;
-  transition: 0.3s;
-  &:hover {
-    color: white;
-    background-color: ${primaryColor};
-    cursor: pointer;
-  }
-`;
 
 const QuestionList = () => {
   // 변수 관리-----------------------------------------
@@ -76,9 +63,8 @@ const QuestionList = () => {
   }, []);
   const questionList = [
     questionArray?.map((q) => (
-      <>
-        <Button
-          key={q.questionId}
+      <React.Fragment key={q.questionId}>
+        <QListButton
           onClick={() => {
             navigate(`/question/${q.questionId}`, {
               state: {
@@ -91,12 +77,12 @@ const QuestionList = () => {
             });
           }}
         >
-          {q.question.length > 20
-            ? q.question.slice(0, 20) + '...'
+          {q.question.length > 25
+            ? q.question.slice(0, 25) + '...'
             : q.question}
-        </Button>
+        </QListButton>
         <br key="enter" />
-      </>
+      </React.Fragment>
     )),
   ];
 
@@ -156,11 +142,9 @@ const QuestionList = () => {
             </Typography>
           ) : (
             [
-              <ListBtn
-                btnName={'+'}
-                onClick={goToCreateQuestion}
-                key={userId}
-              />,
+              <QListButton onClick={goToCreateQuestion} key={userId}>
+                +
+              </QListButton>,
               <br key="enter" />,
               ...questionList,
             ]
