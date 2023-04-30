@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { pointColor } from '../GlobalStyle';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import PrimaryBtn from '../components/Button/PrimaryBtn';
 import { Box, TextField, Typography } from '@mui/material';
 import {
@@ -10,6 +10,7 @@ import {
   Container,
   LockComment,
   QuestionSubBox,
+  SubmitButton,
 } from '../components/ComponentStyled';
 import axios from 'axios';
 import CommentComponent from '../components/List/CommentComponent';
@@ -21,9 +22,8 @@ import { Instance } from 'components/Instance';
 const Question = () => {
   // 변수 관리-------------------------------------------------------
   const navigate = useNavigate();
-  const location = useLocation();
-  const { userId } = location.state;
   const { questionId } = useParams();
+  const userId = localStorage.getItem('id');
   const userName = localStorage.getItem('name');
   const accessToken = localStorage.getItem('access_token');
 
@@ -49,6 +49,7 @@ const Question = () => {
         question: questionData.data.question,
         questionId: questionData.data.questionId,
         writer: questionData.data.writer,
+        // writerId: questionData.data.writer_id,
         commentsArray: questionData.data.comments,
       });
       //
@@ -85,10 +86,11 @@ const Question = () => {
         commentId={c.commentId}
         comment={c.comment}
         writer={c.writer}
-        userId={userId}
-        point={point}
-        published={questionInfo.publish}
         like_count={c.like_count}
+        userId={questionInfo.userId}
+        point={point}
+        setPoint={setPoint}
+        published={questionInfo.publish}
       />
     )),
   ];
@@ -221,14 +223,14 @@ const Question = () => {
     <>
       <Container>
         <TitleBox onClick={goToHome}></TitleBox>
-        {userName ? (
+        {userName && userId ? (
           <QuestionSubBox>반갑습니다, {userName}님</QuestionSubBox>
         ) : (
           <QuestionSubBox onClick={goToHome}>
             로그인 후 답변을 남길 수 있어요.
           </QuestionSubBox>
         )}
-        {questionInfo.writer === userName ? (
+        {questionInfo.writer === userName && userId ? (
           <Typography
             variant="h6"
             sx={{
@@ -254,7 +256,7 @@ const Question = () => {
           }}
         >
           <Header>{questionInfo.writer}님의 질문</Header>
-          {questionInfo.writer === userName ? (
+          {questionInfo.writer === userName && userId ? (
             <DeleteText onClick={deleteQuestion}>삭제</DeleteText>
           ) : (
             ''
@@ -315,14 +317,14 @@ const Question = () => {
               sx={{
                 width: '350px',
                 display: 'flex',
-                flexDirection: 'column',
+                justifyContent: 'space-between',
                 alignItems: 'center',
               }}
             >
               <TextField
                 variant="outlined"
+                multiline
                 autoFocus
-                fullWidth
                 color="info"
                 label="답변을 입력해주세요."
                 value={comments.comment}
@@ -330,12 +332,14 @@ const Question = () => {
                 name="comment"
                 type="text"
                 sx={{
+                  width: '290px',
                   borderRadius: 3,
-                  margin: '30px 0 30px 0',
+                  margin: '10px 0',
                 }}
                 onChange={onChange}
               />
-              <PrimaryBtn btnName={'답변 등록'}></PrimaryBtn>
+              <SubmitButton>등록</SubmitButton>
+              {/* <PrimaryBtn btnName={'답변 등록'}></PrimaryBtn> */}
             </Box>
           </>
         )}
@@ -346,6 +350,10 @@ const Question = () => {
         ></PrimaryBtn>
         <br />
         <PrimaryBtn btnName={'주소 복사'} onClick={copyLink}></PrimaryBtn>
+        <br />
+        <PrimaryBtn
+          btnName={questionInfo.writer + '님에게 질문 추천하기'}
+        ></PrimaryBtn>
       </Container>
     </>
   );

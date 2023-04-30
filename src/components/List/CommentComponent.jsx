@@ -21,9 +21,9 @@ const CommentComponent = ({
   comment,
   writer,
   userId,
-  point,
   published,
   like_count,
+  setPoint,
 }) => {
   // 상태 관리 --------------------------------------------
   const [isOpened, setIsOpened] = useState(openUsers);
@@ -81,26 +81,22 @@ const CommentComponent = ({
 
   const fireComment = async () => {
     // 답변 추천
-    if (isOpened[0].id !== loggedInId) {
-      if (window.confirm('해당 답변을 추천하시겠습니까?')) {
-        // 답변 추천
-        await axios
-          .get(`http://127.0.0.1:8000/comments/${commentId}/likes`, {
-            withCredentials: true,
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          })
-          .then((res) => {
-            setFires(res.data.like_count);
-            console.log(res);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      } else {
-        return;
-      }
+    if (isOpened[0].name !== writer) {
+      // 답변 추천
+      await axios
+        .get(`http://127.0.0.1:8000/comments/${commentId}/likes`, {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((res) => {
+          setFires(res.data.like_count);
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
       alert('본인의 답변은 추천할 수 없습니다.');
     }

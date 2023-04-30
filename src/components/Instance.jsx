@@ -10,9 +10,9 @@ export const Instance = axios.create({
   headers: {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': 'http://localhost:8000',
-    'Access-Control-Allow-Headers': '*',
+    // 'Access-Control-Allow-Headers': '*',
     Authorization: `Bearer ${ACCESS_TOKEN}`,
-    withCredentials: true,
+    // withCredentials: true,
   },
 });
 
@@ -23,7 +23,7 @@ Instance.interceptors.request.use(
     if (ACCESS_TOKEN && REFRESH_TOKEN) {
       config.headers['Authorization'] = `Bearer ${ACCESS_TOKEN}`;
     } else {
-      alert('토큰 없다');
+      alert('잠시 후 다시 이용해주세요.');
     }
     return config;
   },
@@ -72,10 +72,10 @@ Instance.interceptors.response.use(
         console.log('interceptor try catch >', error);
       }
     } else {
-      alert('다시 로그인 후 시도해주세요.');
       // localStorage.removeItem('access_token');
       // removeCookie('refresh_token');
       // navigate('/', { replace: true });
+      alert('다시 로그인 후 시도해주세요.');
     }
     return Promise.reject(error);
   }
