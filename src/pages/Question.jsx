@@ -22,8 +22,9 @@ const Question = () => {
   // 변수 관리-------------------------------------------------------
   const navigate = useNavigate();
   const location = useLocation();
-  const { userId } = location.state;
+  // const { userId } = location.state;
   const { questionId } = useParams();
+  const userId = localStorage.getItem('id');
   const userName = localStorage.getItem('name');
   const accessToken = localStorage.getItem('access_token');
 
@@ -49,6 +50,7 @@ const Question = () => {
         question: questionData.data.question,
         questionId: questionData.data.questionId,
         writer: questionData.data.writer,
+        // writerId: questionData.data.writer_id,
         commentsArray: questionData.data.comments,
       });
       //
@@ -85,10 +87,10 @@ const Question = () => {
         commentId={c.commentId}
         comment={c.comment}
         writer={c.writer}
-        userId={userId}
+        like_count={c.like_count}
+        userId={questionInfo.userId}
         point={point}
         published={questionInfo.publish}
-        like_count={c.like_count}
       />
     )),
   ];
@@ -228,7 +230,7 @@ const Question = () => {
             로그인 후 답변을 남길 수 있어요.
           </QuestionSubBox>
         )}
-        {questionInfo.writer === userName ? (
+        {questionInfo.writer === userName && userId ? (
           <Typography
             variant="h6"
             sx={{
@@ -254,7 +256,7 @@ const Question = () => {
           }}
         >
           <Header>{questionInfo.writer}님의 질문</Header>
-          {questionInfo.writer === userName ? (
+          {questionInfo.writer === userName && userId ? (
             <DeleteText onClick={deleteQuestion}>삭제</DeleteText>
           ) : (
             ''
