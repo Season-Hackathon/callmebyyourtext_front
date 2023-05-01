@@ -49,7 +49,7 @@ const Question = () => {
         question: questionData.data.question,
         questionId: questionData.data.questionId,
         writer: questionData.data.writer,
-        // writerId: questionData.data.writer_id,
+        writerId: questionData.data.writer_id,
         commentsArray: questionData.data.comments,
       });
       //
@@ -351,6 +351,14 @@ const Question = () => {
             <br />
             <PrimaryBtn
               btnName={questionInfo.writer + '님에게 다른 질문 추천하기'}
+              onClick={() =>
+                navigate(`/question/bequestions/${questionId}`, {
+                  state: {
+                    ownerId: questionInfo.writerId,
+                    ownerName: questionInfo.writer,
+                  },
+                })
+              }
             ></PrimaryBtn>
           </>
         ) : (
