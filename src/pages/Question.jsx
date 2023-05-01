@@ -339,7 +339,6 @@ const Question = () => {
                 onChange={onChange}
               />
               <SquareSubmitButton>등록</SquareSubmitButton>
-              {/* <PrimaryBtn btnName={'답변 등록'}></PrimaryBtn> */}
             </Box>
           </>
         )}
@@ -351,7 +350,7 @@ const Question = () => {
           <>
             <br />
             <PrimaryBtn
-              btnName={questionInfo.writer + '님에게 질문 추천하기'}
+              btnName={questionInfo.writer + '님에게 다른 질문 추천하기'}
             ></PrimaryBtn>
           </>
         ) : (

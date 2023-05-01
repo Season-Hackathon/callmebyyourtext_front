@@ -102,6 +102,49 @@ export const Bracket = styled.span`
   visibility: hidden;
 `;
 
+// Guide page------------------------------------
+export const GuideButton = styled.button`
+  width: 500px;
+  height: 35px;
+  border: 1px solid transparent;
+  background: none,
+    linear-gradient(to right, ${primaryColor}, ${secondaryColor});
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  border-radius: 15px;
+  color: #fff;
+  cursor: pointer;
+  @media screen and (max-width: 530px) {
+    width: 400px;
+  }
+`;
+
+export const WarningButton = styled.button`
+  width: 500px;
+  height: 35px;
+  border: 1px solid transparent;
+  background: none, linear-gradient(to left, ${primaryColor}, ${secondaryColor});
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  border-radius: 15px;
+  color: #fff;
+  cursor: pointer;
+  @media screen and (max-width: 530px) {
+    width: 400px;
+  }
+`;
+
+export const GuideList = styled.ul`
+  width: 500px;
+  color: #fff;
+  font-size: 0.9rem;
+  line-height: 50px;
+  @media screen and (max-width: 530px) {
+    width: 400px;
+    font-size: 0.76rem;
+  }
+`;
+
 // Question List---------------------------------
 export const QListButton = styled.button`
   width: 350px;
