@@ -352,10 +352,11 @@ const Question = () => {
             <PrimaryBtn
               btnName={questionInfo.writer + '님에게 다른 질문 추천하기'}
               onClick={() =>
-                navigate(`/question/bequestions/${questionId}`, {
+                navigate(`/question/bequestions/${questionInfo.writerId}`, {
                   state: {
                     ownerId: questionInfo.writerId,
                     ownerName: questionInfo.writer,
+                    questionId: questionInfo.questionId,
                   },
                 })
               }

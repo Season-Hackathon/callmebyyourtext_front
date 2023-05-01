@@ -15,8 +15,8 @@ import { Instance } from 'components/Instance';
 const BeQuestions = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { ownerId, ownerName } = location?.state;
-  const { questionId } = useParams();
+  const { ownerName, questionId } = location?.state;
+  const { ownerId } = useParams();
   const userName = localStorage.getItem('name');
   const userId = localStorage.getItem('id');
   const [beQuestion, setBeQuestion] = useState('');
