@@ -1,5 +1,5 @@
 import { Box, TextField } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   BeQuestion,
   Container,
@@ -13,6 +13,7 @@ import PrimaryBtn from '../components/Button/PrimaryBtn';
 import { Instance } from 'components/Instance';
 import axios from 'axios';
 import { getCookie } from 'components/Cookie';
+import { DummyData } from 'components/DummyData';
 
 const CreateQuestion = () => {
   const navigate = useNavigate();
@@ -26,23 +27,29 @@ const CreateQuestion = () => {
     navigate('/');
   };
 
+  // 랜덤 추천 질문
+  const randomQuestion = useCallback(() => {
+    const dummyData = DummyData;
+    const selectedNumber = Math.floor(Math.random() * dummyData.length);
+    setQuestion(dummyData[selectedNumber].beQuestion);
+  }, []);
+
   const onChange = (e) => {
-    const { name, value } = e.target;
-    setQuestion({
-      [name]: value,
-    });
+    setQuestion(e.target.value);
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
     if (userName && userId) {
-      await Instance.post('http://127.0.0.1:8000/questions', question)
-        .then((response) => {
-          console.log(response);
+      await Instance.post('http://127.0.0.1:8000/questions', {
+        question: question,
+      })
+        .then((res) => {
+          console.log(res);
           navigate(`/questionlist/${userId}`);
         })
-        .catch((error) => {
-          console.log(error);
+        .catch((err) => {
+          console.log(err);
         });
     } else {
       alert('로그인 후 이용해주세요.');
@@ -78,16 +85,19 @@ const CreateQuestion = () => {
             minRows={5}
             id="question"
             name="question"
+            value={question}
             label="질문을 입력해주세요."
             multiline
             onChange={onChange}
             sx={{
               width: '350px',
-              marginBottom: 1,
+              marginBottom: 1.5,
             }}
           />
           <CreateQuestionBox>
-            <RecommendQuestion>질문 추천</RecommendQuestion>
+            <RecommendQuestion onClick={randomQuestion}>
+              랜덤 추천 질문
+            </RecommendQuestion>
             <BeQuestion>선물받은 질문</BeQuestion>
           </CreateQuestionBox>
           <br />
