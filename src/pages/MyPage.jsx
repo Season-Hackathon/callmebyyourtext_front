@@ -2,7 +2,6 @@ import { Typography, Box, Modal } from '@mui/material';
 import React, { useContext, useState } from 'react';
 import { pointColor, primaryColor, secondaryColor } from 'GlobalStyle';
 import Typewriter from 'typewriter-effect';
-import PrimaryBtn from 'components/Button/PrimaryBtn';
 import { AuthContext } from 'context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -10,6 +9,7 @@ import {
   Container,
   TitleBox,
   LogOutBox,
+  MainButton,
 } from 'components/ComponentStyled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -121,7 +121,7 @@ const MyPage = () => {
             }}
           />
         </Box>
-        <PrimaryBtn btnName={'더 알아보기'} onClick={modalOpen}></PrimaryBtn>
+        <MainButton onClick={modalOpen}>더 알아보기</MainButton>
       </Container>
       <Modal
         open={open}
@@ -140,7 +140,7 @@ const MyPage = () => {
               width: '150px',
               fontSize: 15,
               fontWeight: 700,
-              color: `${primaryColor}`,
+              color: `#fff`,
               marginBottom: 3,
               cursor: 'pointer',
               transition: '0.5s',
@@ -162,7 +162,7 @@ const MyPage = () => {
               width: '150px',
               fontSize: 15,
               fontWeight: 700,
-              color: `${primaryColor}`,
+              color: `#fff`,
               marginBottom: 3,
               cursor: 'pointer',
               transition: '0.5s',
@@ -184,7 +184,7 @@ const MyPage = () => {
               width: '150px',
               fontSize: 15,
               fontWeight: 700,
-              color: `${primaryColor}`,
+              color: `#fff`,
               marginBottom: 3,
               cursor: 'pointer',
               transition: '0.5s',
@@ -206,7 +206,7 @@ const MyPage = () => {
               width: '150px',
               fontSize: 15,
               fontWeight: 700,
-              color: `${primaryColor}`,
+              color: `#fff`,
               marginBottom: 3,
               cursor: 'pointer',
               transition: '0.5s',
@@ -227,12 +227,12 @@ const MyPage = () => {
                 right: 25,
                 fontSize: 12,
                 fontWeight: 700,
-                color: `${primaryColor}`,
-                opacity: '75%',
+                color: `${secondaryColor}`,
+                opacity: '0.75',
                 cursor: 'pointer',
-                transition: '0.5s',
+                transition: '0.3s',
                 '&:hover': {
-                  color: `${secondaryColor}`,
+                  opacity: '1',
                 },
               }}
               onClick={logout}

@@ -344,7 +344,7 @@ const Question = () => {
           </>
         )}
         <br />
-        <PrimaryBtn btnName={'추천 질문 받기'}></PrimaryBtn>
+        <PrimaryBtn btnName={'SNS 공유하기'}></PrimaryBtn>
         <br />
         <PrimaryBtn btnName={'주소 복사'} onClick={copyLink}></PrimaryBtn>
         {questionInfo.writer !== userName ? (

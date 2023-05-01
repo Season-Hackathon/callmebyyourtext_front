@@ -49,6 +49,21 @@ export const MyPage = styled.img`
   right: 13px;
 `;
 
+export const MainButton = styled.button`
+  width: 200px;
+  height: 35px;
+  border: 1px solid ${bgColor};
+  color: ${bgColor};
+  background-color: transparent;
+  border-radius: 5px;
+  transition: 0.3s;
+  &:hover {
+    color: white;
+    background-color: ${bgColor};
+    cursor: pointer;
+  }
+`;
+
 // Refactoring 대상
 export const CursorText = styled.span`
   cursor: pointer;
@@ -287,11 +302,28 @@ export const modalStyle = {
   transform: 'translate(-50%, -50%)',
   width: 325,
   height: 350,
-  bgcolor: 'background.paper',
-  border: `1px solid ${primaryColor}`,
+  bgcolor: `${bgColor}`,
+  border: `1px solid ${secondaryColor}`,
   borderRadius: 3,
   boxShadow: 24,
   p: 4,
+};
+
+export const modalStyle2 = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 325,
+  height: 400,
+  bgcolor: `${bgColor}`,
+  border: `1px solid ${secondaryColor}`,
+  borderRadius: 3,
+  boxShadow: 24,
+  p: 3,
 };
 
 // Image---------------------------------------------
