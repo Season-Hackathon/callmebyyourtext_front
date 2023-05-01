@@ -1,10 +1,12 @@
 import { Box, Modal, TextField, Typography } from '@mui/material';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   BeQuestion,
   Container,
   CreateQuestionBox,
   CreateQuestionText,
+  GivenQuestionBox,
+  GivenQuestionContent,
   RecommendQuestion,
   TitleBox,
   modalStyle2,
@@ -12,11 +14,8 @@ import {
 import { useNavigate } from 'react-router-dom';
 import PrimaryBtn from '../components/Button/PrimaryBtn';
 import { Instance } from 'components/Instance';
-import axios from 'axios';
-import { getCookie } from 'components/Cookie';
 import { DummyData } from 'components/DummyData';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { primaryColor, secondaryColor } from 'GlobalStyle';
+import { secondaryColor } from 'GlobalStyle';
 
 const CreateQuestion = () => {
   const navigate = useNavigate();
@@ -25,6 +24,19 @@ const CreateQuestion = () => {
   const [question, setQuestion] = useState('');
   // const accessToken = localStorage.getItem('access_token');
   // const refreshToken = getCookie('refresh_token');
+  const fetchData = async () => {
+    try {
+      // const presentQuestion = await Instance.get(
+      //   `http://127.0.0.1:8000/bequestions/${}`
+      // );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   // 모달 관리
   const [open, setOpen] = useState(false);
@@ -127,18 +139,35 @@ const CreateQuestion = () => {
               fontSize: 14,
               fontWeight: 600,
               textAlign: 'center',
-              color: `#fff`,
+              color: `${secondaryColor}`,
               cursor: 'pointer',
               borderLeft: '5px solid white',
               borderRight: '5px solid white',
               transition: '0.5s',
               '&:hover': {
-                color: `${secondaryColor}`,
+                borderColor: `${secondaryColor}`,
               },
             }}
+            onClick={() => {
+              alert('마음에 드는 선물을 선택해 새로운 질문을 만들어보세요!');
+            }}
           >
-            익명으로부터 선물받은 질문입니다.
+            익명으로부터 선물받은 질문 목록
           </Typography>
+          <GivenQuestionBox>
+            <GivenQuestionContent>
+              선물받은 질문1선물받은 질문1선물받은 질문1선물받은 질문1선물받은
+              질문1
+            </GivenQuestionContent>
+            <GivenQuestionContent>선물받은 질문2</GivenQuestionContent>
+            <GivenQuestionContent>선물받은 질문3</GivenQuestionContent>
+            <GivenQuestionContent>선물받은 질문4</GivenQuestionContent>
+            <GivenQuestionContent>선물받은 질문5</GivenQuestionContent>
+            <GivenQuestionContent>선물받은 질문6</GivenQuestionContent>
+            <GivenQuestionContent>선물받은 질문7</GivenQuestionContent>
+            <GivenQuestionContent>선물받은 질문8</GivenQuestionContent>
+            <GivenQuestionContent>선물받은 질문9</GivenQuestionContent>
+          </GivenQuestionBox>
         </Box>
       </Modal>
     </>

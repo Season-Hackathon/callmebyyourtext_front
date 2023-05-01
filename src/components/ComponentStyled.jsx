@@ -217,6 +217,7 @@ export const RecommendQuestion = styled.span`
     opacity: 1;
   }
 `;
+
 export const BeQuestion = styled.span`
   font-size: 12px;
   font-weight: 600;
@@ -228,6 +229,28 @@ export const BeQuestion = styled.span`
     color: ${primaryColor};
     opacity: 1;
   }
+`;
+
+export const GivenQuestionBox = styled.section`
+  width: 90%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin-top: 20px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar-thumb {
+    background: ${secondaryColor};
+  }
+`;
+
+export const GivenQuestionContent = styled.p`
+  width: 95%;
+  font-size: 14px;
+  color: #fff;
+  border-bottom: 3px solid #fff;
 `;
 
 // Comment---------------------------------------
