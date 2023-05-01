@@ -10,7 +10,7 @@ import {
   Container,
   LockComment,
   QuestionSubBox,
-  SubmitButton,
+  SquareSubmitButton,
 } from '../components/ComponentStyled';
 import axios from 'axios';
 import CommentComponent from '../components/List/CommentComponent';
@@ -338,22 +338,25 @@ const Question = () => {
                 }}
                 onChange={onChange}
               />
-              <SubmitButton>등록</SubmitButton>
+              <SquareSubmitButton>등록</SquareSubmitButton>
               {/* <PrimaryBtn btnName={'답변 등록'}></PrimaryBtn> */}
             </Box>
           </>
         )}
         <br />
-        <PrimaryBtn
-          btnName={'SNS 공유하기'}
-          onClick={() => alert('준비 중입니다.')}
-        ></PrimaryBtn>
+        <PrimaryBtn btnName={'추천 질문 받기'}></PrimaryBtn>
         <br />
         <PrimaryBtn btnName={'주소 복사'} onClick={copyLink}></PrimaryBtn>
-        <br />
-        <PrimaryBtn
-          btnName={questionInfo.writer + '님에게 질문 추천하기'}
-        ></PrimaryBtn>
+        {questionInfo.writer !== userName ? (
+          <>
+            <br />
+            <PrimaryBtn
+              btnName={questionInfo.writer + '님에게 질문 추천하기'}
+            ></PrimaryBtn>
+          </>
+        ) : (
+          ''
+        )}
       </Container>
     </>
   );
