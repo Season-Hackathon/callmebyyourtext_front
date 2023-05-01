@@ -8,6 +8,7 @@ import {
 } from '../GlobalStyle';
 import landingTitle from '../assets/images/landingTitle.png';
 
+// Container---------------------------------------
 export const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -38,12 +39,7 @@ export const DarkContainer = styled.div`
   }
 `;
 
-export const Header = styled.span`
-  color: ${primaryColor};
-  font-size: 16px;
-  font-weight: 800;
-`;
-
+// Mypage----------------------------------------
 export const MyPage = styled.img`
   width: auto;
   height: auto;
@@ -53,11 +49,33 @@ export const MyPage = styled.img`
   right: 13px;
 `;
 
+export const MainButton = styled.button`
+  width: 200px;
+  height: 35px;
+  border: 1px solid ${bgColor};
+  color: ${bgColor};
+  background-color: transparent;
+  border-radius: 5px;
+  transition: 0.3s;
+  &:hover {
+    color: white;
+    background-color: ${bgColor};
+    cursor: pointer;
+  }
+`;
+
+// Refactoring 대상
 export const CursorText = styled.span`
   cursor: pointer;
 `;
 
-// Box--------------------------------------------
+// Logo------------------------------------------
+export const Header = styled.span`
+  color: ${primaryColor};
+  font-size: 16px;
+  font-weight: 800;
+`;
+
 export const TitleBox = styled.section`
   width: 350px;
   min-height: 50px;
@@ -68,6 +86,66 @@ export const TitleBox = styled.section`
   cursor: pointer;
 `;
 
+export const SubTitle = styled.p`
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #fff;
+`;
+
+export const SubTitle404 = styled.p`
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: ${pointColor};
+`;
+
+export const Bracket = styled.span`
+  visibility: hidden;
+`;
+
+// Guide page------------------------------------
+export const GuideButton = styled.button`
+  width: 500px;
+  height: 35px;
+  border: 1px solid transparent;
+  background: none,
+    linear-gradient(to right, ${primaryColor}, ${secondaryColor});
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  border-radius: 15px;
+  color: #fff;
+  cursor: pointer;
+  @media screen and (max-width: 530px) {
+    width: 400px;
+  }
+`;
+
+export const WarningButton = styled.button`
+  width: 500px;
+  height: 35px;
+  border: 1px solid transparent;
+  background: none, linear-gradient(to left, ${primaryColor}, ${secondaryColor});
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  border-radius: 15px;
+  color: #fff;
+  cursor: pointer;
+  @media screen and (max-width: 530px) {
+    width: 400px;
+  }
+`;
+
+export const GuideList = styled.ul`
+  width: 500px;
+  color: #fff;
+  font-size: 0.9rem;
+  line-height: 50px;
+  @media screen and (max-width: 530px) {
+    width: 400px;
+    font-size: 0.76rem;
+  }
+`;
+
+// Question List---------------------------------
 export const QListButton = styled.button`
   width: 350px;
   height: 50px;
@@ -89,6 +167,7 @@ export const QListButton = styled.button`
   }
 `;
 
+// Question detail-------------------------------
 export const QuestionBox = styled.section`
   width: 350px;
   min-height: 200px;
@@ -112,6 +191,69 @@ export const QuestionSubBox = styled.span`
   cursor: pointer;
 `;
 
+// Create Question ------------------------------
+export const CreateQuestionText = styled.h6`
+  width: 350px;
+  color: ${primaryColor};
+  font-size: 14px;
+  font-weight: 600;
+  margin: 40px 0 15px 0;
+`;
+export const CreateQuestionBox = styled.section`
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const RecommendQuestion = styled.span`
+  font-size: 12px;
+  font-weight: 600;
+  color: ${pointColor};
+  transition: all 0.3s;
+  opacity: 0.7;
+  cursor: pointer;
+  &:hover {
+    color: ${primaryColor};
+    opacity: 1;
+  }
+`;
+
+export const BeQuestion = styled.span`
+  font-size: 12px;
+  font-weight: 600;
+  color: ${pointColor};
+  transition: all 0.3s;
+  opacity: 0.7;
+  cursor: pointer;
+  &:hover {
+    color: ${primaryColor};
+    opacity: 1;
+  }
+`;
+
+export const GivenQuestionBox = styled.section`
+  width: 90%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin-top: 20px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar-thumb {
+    background: ${secondaryColor};
+  }
+`;
+
+export const GivenQuestionContent = styled.p`
+  width: 95%;
+  font-size: 14px;
+  color: #fff;
+  border-bottom: 3px solid #fff;
+`;
+
+// Comment---------------------------------------
 export const CommentBox = styled.section`
   width: 350px;
   height: auto;
@@ -171,7 +313,7 @@ export const Emotion = styled.p`
   color: ${errorColor};
 `;
 
-export const SubmitButton = styled.button`
+export const SquareSubmitButton = styled.button`
   width: 55px;
   height: 55px;
   border: 1px solid ${primaryColor};
@@ -186,6 +328,7 @@ export const SubmitButton = styled.button`
   }
 `;
 
+// Effect------------------------------------------
 export const Loading = keyframes`
   from {
     transform: rotate(0deg);
@@ -213,23 +356,6 @@ export const LogOutBox = styled.section`
   justify-content: flex-end;
 `;
 
-export const ButtonBox = styled.section`
-  width: 500px;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  border: 1px soild white;
-  @media screen and (max-width: 450px) {
-    width: 400px;
-  }
-  @media screen and (max-width: 350px) {
-    width: 300px;
-  }
-`;
-
 // Modal----------------------------------------------
 export const modalStyle = {
   display: 'flex',
@@ -242,11 +368,28 @@ export const modalStyle = {
   transform: 'translate(-50%, -50%)',
   width: 325,
   height: 350,
-  bgcolor: 'background.paper',
-  border: `1px solid ${primaryColor}`,
+  bgcolor: `${bgColor}`,
+  border: `1px solid ${secondaryColor}`,
   borderRadius: 3,
   boxShadow: 24,
   p: 4,
+};
+
+export const modalStyle2 = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 325,
+  height: 400,
+  bgcolor: `${bgColor}`,
+  border: `1px solid ${secondaryColor}`,
+  borderRadius: 3,
+  boxShadow: 24,
+  p: 3,
 };
 
 // Image---------------------------------------------
@@ -268,31 +411,7 @@ export const ImageBox = styled.img`
   }
 `;
 
-export const Img = styled.img`
-  width: auto;
-  margin-bottom: 15%;
-`;
-
-export const SmallImg = styled.img`
-  width: 16px;
-`;
-
-export const SubTitle = styled.p`
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #fff;
-`;
-
-export const SubTitle404 = styled.p`
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: ${pointColor};
-`;
-
-export const Bracket = styled.span`
-  visibility: hidden;
-`;
-
+//삭제 텍스트-------------------------------------------
 export const DeleteText = styled.span`
   position: absolute;
   right: 0;
@@ -339,5 +458,22 @@ export const AboutBody = styled.p`
   @media screen and (max-width: 410px) {
     font-size: 3.5vw;
     line-height: 30px;
+  }
+`;
+
+export const AboutButtonBox = styled.section`
+  width: 500px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  border: 1px soild white;
+  @media screen and (max-width: 450px) {
+    width: 400px;
+  }
+  @media screen and (max-width: 350px) {
+    width: 300px;
   }
 `;

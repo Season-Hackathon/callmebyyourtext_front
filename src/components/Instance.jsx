@@ -23,7 +23,7 @@ Instance.interceptors.request.use(
     if (ACCESS_TOKEN && REFRESH_TOKEN) {
       config.headers['Authorization'] = `Bearer ${ACCESS_TOKEN}`;
     } else {
-      alert('잠시 후 다시 이용해주세요.');
+      alert('새로고침 후 다시 시도해주세요.');
     }
     return config;
   },
@@ -50,8 +50,8 @@ Instance.interceptors.response.use(
     // 만료된 access token이면서 refresh token이 유효한 경우
     if (
       error.response?.status === 401 &&
-      error.response?.statusText === 'Unauthorized' &&
-      error.response?.data.detail === 'Token expired'
+      error.response?.statusText === 'Unauthorized'
+      // && error.response?.data.detail === 'Token expired'
     ) {
       try {
         const reIssue = await axios.post(

@@ -15,6 +15,7 @@ import NotFound from './pages/NotFound';
 import Comments from './pages/Comments';
 import Guide from 'pages/Guide';
 import About from 'pages/About';
+import BeQuestions from 'pages/Bequestions';
 
 const flowerFlake1 = document.createElement('img');
 flowerFlake1.src = './assets/images/cherryblossom1.png';
@@ -56,6 +57,10 @@ const App = () => {
             <Route path="/guide" element={<Guide />}></Route>
             <Route path="/about" element={<About />}></Route>
             <Route path="/question/:questionId" element={<Question />}></Route>
+            <Route
+              path="/question/bequestions/:ownerId"
+              element={<BeQuestions />}
+            ></Route>
             <Route
               path="/questionlist/:userId"
               element={<QuestionList />}

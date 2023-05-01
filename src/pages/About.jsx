@@ -1,8 +1,8 @@
 import React from 'react';
 import {
   AboutBody,
+  AboutButtonBox,
   AboutHeader,
-  ButtonBox,
   DarkContainer,
   ImageBox,
 } from 'components/ComponentStyled';
@@ -66,7 +66,7 @@ const About = () => {
         <Typography sx={{ color: 'white', marginBottom: 1 }} className="fadeIn">
           &lt;Contributor&gt;
         </Typography>
-        <ButtonBox className="fadeIn">
+        <AboutButtonBox className="fadeIn">
           <TeamBtn btnName="LIKELION_DONGGUK" onClick={goToDongguk}></TeamBtn>
           <TeamBtn btnName="LIKELION_SUNGKYUL" onClick={goToSungkyul}></TeamBtn>
           <TeamBtn btnName="LIKELION_DONGDUK_W" onClick={goToDongDuk}></TeamBtn>
@@ -79,7 +79,7 @@ const About = () => {
             onClick={goToSungshin}
           ></TeamBtn>
           <TeamBtn btnName="LIKELION_HALLYM" onClick={goToHallym}></TeamBtn>
-        </ButtonBox>
+        </AboutButtonBox>
       </DarkContainer>
     </>
   );

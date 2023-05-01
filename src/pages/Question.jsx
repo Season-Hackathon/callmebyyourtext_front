@@ -10,7 +10,7 @@ import {
   Container,
   LockComment,
   QuestionSubBox,
-  SubmitButton,
+  SquareSubmitButton,
 } from '../components/ComponentStyled';
 import axios from 'axios';
 import CommentComponent from '../components/List/CommentComponent';
@@ -49,7 +49,7 @@ const Question = () => {
         question: questionData.data.question,
         questionId: questionData.data.questionId,
         writer: questionData.data.writer,
-        // writerId: questionData.data.writer_id,
+        writerId: questionData.data.writer_id,
         commentsArray: questionData.data.comments,
       });
       //
@@ -338,22 +338,33 @@ const Question = () => {
                 }}
                 onChange={onChange}
               />
-              <SubmitButton>등록</SubmitButton>
-              {/* <PrimaryBtn btnName={'답변 등록'}></PrimaryBtn> */}
+              <SquareSubmitButton>등록</SquareSubmitButton>
             </Box>
           </>
         )}
         <br />
-        <PrimaryBtn
-          btnName={'SNS 공유하기'}
-          onClick={() => alert('준비 중입니다.')}
-        ></PrimaryBtn>
+        <PrimaryBtn btnName={'SNS 공유하기'}></PrimaryBtn>
         <br />
         <PrimaryBtn btnName={'주소 복사'} onClick={copyLink}></PrimaryBtn>
-        <br />
-        <PrimaryBtn
-          btnName={questionInfo.writer + '님에게 질문 추천하기'}
-        ></PrimaryBtn>
+        {questionInfo.writer !== userName ? (
+          <>
+            <br />
+            <PrimaryBtn
+              btnName={questionInfo.writer + '님에게 다른 질문 추천하기'}
+              onClick={() =>
+                navigate(`/question/bequestions/${questionInfo.writerId}`, {
+                  state: {
+                    ownerId: questionInfo.writerId,
+                    ownerName: questionInfo.writer,
+                    questionId: questionInfo.questionId,
+                  },
+                })
+              }
+            ></PrimaryBtn>
+          </>
+        ) : (
+          ''
+        )}
       </Container>
     </>
   );
