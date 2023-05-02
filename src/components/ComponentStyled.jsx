@@ -473,6 +473,14 @@ export const AboutBody = styled.p`
   }
 `;
 
+export const AboutContributor = styled.span`
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 3px;
+  margin-bottom: 5px;
+  cursor: pointer;
+`;
+
 export const AboutButtonBox = styled.section`
   width: 500px;
   height: auto;

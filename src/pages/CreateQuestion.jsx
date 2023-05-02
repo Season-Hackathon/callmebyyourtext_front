@@ -91,7 +91,16 @@ const CreateQuestion = () => {
           <FontAwesomeIcon icon={faGift} /> {data.beQuestionId}번째 추천 질문{' '}
           <FontAwesomeIcon icon={faGift} />
         </GivenQuestionContent>
-        <GivenQuestionSubContent>{data.q}</GivenQuestionSubContent>
+        <GivenQuestionSubContent
+          onClick={() => {
+            if (window.confirm('해당 선물받은 추천 질문을 생성하시겠습니까?')) {
+              setQuestion(data.q);
+              modalClose();
+            } else return;
+          }}
+        >
+          {data.q}
+        </GivenQuestionSubContent>
         <br /> <br />
       </React.Fragment>
     )),

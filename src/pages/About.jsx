@@ -2,6 +2,7 @@ import React from 'react';
 import {
   AboutBody,
   AboutButtonBox,
+  AboutContributor,
   AboutHeader,
   DarkContainer,
   ImageBox,
@@ -10,6 +11,9 @@ import Likelion from '../assets/images/LIKELION.png';
 import { useNavigate } from 'react-router-dom';
 import { Typography } from '@mui/material';
 import TeamBtn from 'components/Button/TeamBtn';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCat, faPaw } from '@fortawesome/free-solid-svg-icons';
+import { secondaryColor } from 'GlobalStyle';
 
 const About = () => {
   const navigate = useNavigate();
@@ -63,9 +67,17 @@ const About = () => {
           ‘나’를 더 다양한 관점에서 알아갈 수 있기를 고대합니다.
         </AboutBody>
         <br /> <br />
-        <Typography sx={{ color: 'white', marginBottom: 1 }} className="fadeIn">
-          &lt;Contributor&gt;
-        </Typography>
+        <AboutContributor
+          className="fadeIn"
+          onClick={() =>
+            alert(
+              '`멋쟁이사자처럼`은 프로그래밍이 하나의 수단이 되어 누구나 본인의 아이디어를 구현할 수 있도록 하는 공동체입니다.'
+            )
+          }
+        >
+          <FontAwesomeIcon icon={faCat} /> Contributor{' '}
+          <FontAwesomeIcon icon={faCat} />
+        </AboutContributor>
         <AboutButtonBox className="fadeIn">
           <TeamBtn btnName="LIKELION_DONGGUK" onClick={goToDongguk}></TeamBtn>
           <TeamBtn btnName="LIKELION_SUNGKYUL" onClick={goToSungkyul}></TeamBtn>
