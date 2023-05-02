@@ -39,6 +39,10 @@ export const DarkContainer = styled.div`
   }
 `;
 
+export const EffectContainer = styled.div`
+  position: relative;
+`;
+
 // Mypage----------------------------------------
 export const MyPage = styled.img`
   width: auto;
@@ -245,11 +249,26 @@ export const GivenQuestionBox = styled.section`
   }
 `;
 
-export const GivenQuestionContent = styled.p`
+export const GivenQuestionHeader = styled.section`
   width: 95%;
-  font-size: 14px;
   color: #fff;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const GivenQuestionContent = styled.span`
+  font-size: 14px;
   margin-bottom: 5px;
+`;
+
+export const GivenQuestionDelete = styled.span`
+  font-size: 12px;
+  opacity: 0.5;
+  transition: all 0.3s;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 export const GivenQuestionSubContent = styled.span`

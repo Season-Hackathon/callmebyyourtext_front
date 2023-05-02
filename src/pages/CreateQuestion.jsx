@@ -7,6 +7,8 @@ import {
   CreateQuestionText,
   GivenQuestionBox,
   GivenQuestionContent,
+  GivenQuestionDelete,
+  GivenQuestionHeader,
   GivenQuestionSubContent,
   RecommendQuestion,
   TitleBox,
@@ -58,6 +60,7 @@ const CreateQuestion = () => {
   const randomQuestion = useCallback(() => {
     const dummyData = DummyData;
     const selectedNumber = Math.floor(Math.random() * dummyData.length);
+    alert('랜덤으로 추첨된 질문입니다!');
     setQuestion(dummyData[selectedNumber].beQuestion);
   }, []);
 
@@ -84,13 +87,31 @@ const CreateQuestion = () => {
     }
   };
 
+  const deletePresent = async () => {
+    if (window.confirm('해당 추천 질문을 정말 삭제하시겠습니까?')) {
+      await Instance.delete(`http://127.0.0.1:8000/${userId}/bequestionlist`)
+        .then((res) => {
+          console.log(res);
+          modalClose();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else return;
+  };
+
   const givenQuestionArray = [
     givenQuestions?.map((data) => (
       <React.Fragment key={data.beQuestionId}>
-        <GivenQuestionContent>
-          <FontAwesomeIcon icon={faGift} /> {data.beQuestionId}번째 추천 질문{' '}
-          <FontAwesomeIcon icon={faGift} />
-        </GivenQuestionContent>
+        <GivenQuestionHeader>
+          <GivenQuestionContent>
+            <FontAwesomeIcon icon={faGift} /> 추천 질문{' '}
+            <FontAwesomeIcon icon={faGift} />
+          </GivenQuestionContent>
+          <GivenQuestionDelete onClick={deletePresent}>
+            삭제
+          </GivenQuestionDelete>
+        </GivenQuestionHeader>
         <GivenQuestionSubContent
           onClick={() => {
             if (window.confirm('해당 선물받은 추천 질문을 생성하시겠습니까?')) {
