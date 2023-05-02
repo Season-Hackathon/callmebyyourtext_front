@@ -1,9 +1,9 @@
 import { Typography, Box, Modal } from '@mui/material';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { pointColor, primaryColor, secondaryColor } from 'GlobalStyle';
 import Typewriter from 'typewriter-effect';
 import { AuthContext } from 'context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   modalStyle,
   Container,
@@ -18,13 +18,30 @@ import {
   faCircleInfo,
   faUserSecret,
 } from '@fortawesome/free-solid-svg-icons';
+import { Instance } from 'components/Instance';
 
 const MyPage = () => {
   // 변수 관리
   const navigate = useNavigate();
-  const userId = localStorage.getItem('id');
-  const userName = localStorage.getItem('name');
+  const { userId } = useParams();
+  const [userName, setUserName] = useState('');
   const { setIsLoggedIn } = useContext(AuthContext);
+
+  const fetchData = async () => {
+    try {
+      const targetUserData = await Instance.get(
+        `http://127.0.0.1:8000/login/profile/${userId}`
+      );
+      setUserName(targetUserData.data.name);
+    } catch (error) {
+      alert('유저 정보를 불러오지 못했습니다.');
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const goToHome = () => {
     navigate('/');
   };

@@ -39,6 +39,10 @@ export const DarkContainer = styled.div`
   }
 `;
 
+export const EffectContainer = styled.div`
+  position: relative;
+`;
+
 // Mypage----------------------------------------
 export const MyPage = styled.img`
   width: auto;
@@ -237,7 +241,6 @@ export const GivenQuestionBox = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
   margin-top: 20px;
   overflow-y: auto;
 
@@ -246,11 +249,39 @@ export const GivenQuestionBox = styled.section`
   }
 `;
 
-export const GivenQuestionContent = styled.p`
+export const GivenQuestionHeader = styled.section`
   width: 95%;
-  font-size: 14px;
   color: #fff;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const GivenQuestionContent = styled.span`
+  font-size: 14px;
+  margin-bottom: 5px;
+`;
+
+export const GivenQuestionDelete = styled.span`
+  font-size: 12px;
+  opacity: 0.5;
+  transition: all 0.3s;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
+`;
+
+export const GivenQuestionSubContent = styled.span`
+  width: 95%;
+  font-size: 12px;
+  color: #fff;
+  opacity: 0.7;
   border-bottom: 3px solid #fff;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+    color: ${secondaryColor};
+  }
 `;
 
 // Comment---------------------------------------
@@ -383,7 +414,7 @@ export const modalStyle2 = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 325,
+  width: 350,
   height: 400,
   bgcolor: `${bgColor}`,
   border: `1px solid ${secondaryColor}`,
@@ -459,6 +490,14 @@ export const AboutBody = styled.p`
     font-size: 3.5vw;
     line-height: 30px;
   }
+`;
+
+export const AboutContributor = styled.span`
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 3px;
+  margin-bottom: 5px;
+  cursor: pointer;
 `;
 
 export const AboutButtonBox = styled.section`
