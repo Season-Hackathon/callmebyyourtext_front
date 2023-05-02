@@ -7,6 +7,7 @@ import {
   CreateQuestionText,
   GivenQuestionBox,
   GivenQuestionContent,
+  GivenQuestionSubContent,
   RecommendQuestion,
   TitleBox,
   modalStyle2,
@@ -16,24 +17,30 @@ import PrimaryBtn from '../components/Button/PrimaryBtn';
 import { Instance } from 'components/Instance';
 import { DummyData } from 'components/DummyData';
 import { secondaryColor } from 'GlobalStyle';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGift } from '@fortawesome/free-solid-svg-icons';
 
 const CreateQuestion = () => {
   const navigate = useNavigate();
   const userName = localStorage.getItem('name');
   const userId = localStorage.getItem('id');
   const [question, setQuestion] = useState('');
+  const [givenQuestions, setGivenQuestions] = useState([]);
   // const accessToken = localStorage.getItem('access_token');
   // const refreshToken = getCookie('refresh_token');
-  const fetchData = async () => {
+
+  // 데이터 fetch
+  const fetchData = useCallback(async () => {
+    //modalOpen 리렌더링 시 참조값 바뀌지 않게
     try {
-      // const presentQuestion = await Instance.get(
-      //   `http://127.0.0.1:8000/bequestions/${}`
-      // );
+      const presentData = await Instance.get(
+        `http://127.0.0.1:8000/${userId}/bequestionlist`
+      );
+      setGivenQuestions(presentData.data);
     } catch (err) {
       console.log(err);
     }
-  };
-
+  }, [givenQuestions]);
   useEffect(() => {
     fetchData();
   }, []);
@@ -77,6 +84,18 @@ const CreateQuestion = () => {
     }
   };
 
+  const givenQuestionArray = [
+    givenQuestions?.map((data) => (
+      <React.Fragment key={data.beQuestionId}>
+        <GivenQuestionContent>
+          <FontAwesomeIcon icon={faGift} /> {data.beQuestionId}번째 추천 질문{' '}
+          <FontAwesomeIcon icon={faGift} />
+        </GivenQuestionContent>
+        <GivenQuestionSubContent>{data.q}</GivenQuestionSubContent>
+        <br /> <br />
+      </React.Fragment>
+    )),
+  ];
   return (
     <>
       <Container className="fadeIn">
@@ -154,20 +173,11 @@ const CreateQuestion = () => {
           >
             익명으로부터 선물받은 질문 목록
           </Typography>
-          <GivenQuestionBox>
-            <GivenQuestionContent>
-              선물받은 질문1선물받은 질문1선물받은 질문1선물받은 질문1선물받은
-              질문1
-            </GivenQuestionContent>
-            <GivenQuestionContent>선물받은 질문2</GivenQuestionContent>
-            <GivenQuestionContent>선물받은 질문3</GivenQuestionContent>
-            <GivenQuestionContent>선물받은 질문4</GivenQuestionContent>
-            <GivenQuestionContent>선물받은 질문5</GivenQuestionContent>
-            <GivenQuestionContent>선물받은 질문6</GivenQuestionContent>
-            <GivenQuestionContent>선물받은 질문7</GivenQuestionContent>
-            <GivenQuestionContent>선물받은 질문8</GivenQuestionContent>
-            <GivenQuestionContent>선물받은 질문9</GivenQuestionContent>
-          </GivenQuestionBox>
+          {givenQuestions?.length >= 1 ? (
+            <GivenQuestionBox>{[...givenQuestionArray]}</GivenQuestionBox>
+          ) : (
+            '선물 목록이 비어있어요'
+          )}
         </Box>
       </Modal>
     </>

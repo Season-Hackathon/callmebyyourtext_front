@@ -237,7 +237,6 @@ export const GivenQuestionBox = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
   margin-top: 20px;
   overflow-y: auto;
 
@@ -250,7 +249,20 @@ export const GivenQuestionContent = styled.p`
   width: 95%;
   font-size: 14px;
   color: #fff;
+  margin-bottom: 5px;
+`;
+
+export const GivenQuestionSubContent = styled.span`
+  width: 95%;
+  font-size: 12px;
+  color: #fff;
+  opacity: 0.7;
   border-bottom: 3px solid #fff;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+    color: ${secondaryColor};
+  }
 `;
 
 // Comment---------------------------------------
@@ -383,7 +395,7 @@ export const modalStyle2 = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 325,
+  width: 350,
   height: 400,
   bgcolor: `${bgColor}`,
   border: `1px solid ${secondaryColor}`,
