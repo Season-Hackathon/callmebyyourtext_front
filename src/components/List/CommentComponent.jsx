@@ -1,6 +1,8 @@
 import React, { memo, useState } from 'react';
 import {
   CommentBox,
+  CommentLeftBox,
+  CommentRightBox,
   Emotion,
   FireComment,
   SecretComment,
@@ -20,7 +22,6 @@ const CommentComponent = ({
   commentId,
   comment,
   writer,
-  writerId,
   userId,
   published,
   like_count,
@@ -81,10 +82,9 @@ const CommentComponent = ({
   // 질문 ID 71 ~ 73
   // http://localhost:3000/question/73
 
+  // 답변 추천
   const fireComment = async () => {
-    // 답변 추천
     if (loggedInName !== writer) {
-      // 답변 추천
       await axios
         .get(`http://127.0.0.1:8000/comments/${commentId}/likes`, {
           withCredentials: true,
@@ -103,26 +103,48 @@ const CommentComponent = ({
       alert('본인의 답변은 추천할 수 없습니다.');
     }
   };
+  // 답변 삭제
+  const deleteComment = async () => {
+    if (writer === loggedInName) {
+      if (window.confirm('정말 해당 답변을 삭제하시겠습니까?')) {
+        await axios
+          .delete(`http://127.0.0.1:8000/comments/${commentId}`)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else return;
+    }
+  };
   return (
     <>
       {isOpened[0]?.id === loggedInId || writer === loggedInName ? (
         <CommentBox>
-          <FontAwesomeIcon icon={faUserSecret} />{' '}
-          <span>익명 답변 : {comment}</span>
-          <Emotion>
-            <FireComment onClick={fireComment}>
-              {/* 답변 오픈 유저랑 답변 작성자랑 같으면 추천 글자 숨기기 */}
-              {isOpened[0]?.name !== writer ? '추천' : ''}
-            </FireComment>{' '}
-            {/* 추천 0개일 경우 불 이모지 숨기기 */}
-            {fires === 0 ? (
-              ''
-            ) : (
-              <>
-                <FontAwesomeIcon icon={faFire} /> {fires}
-              </>
-            )}
-          </Emotion>
+          <CommentLeftBox>
+            <FontAwesomeIcon icon={faUserSecret} />{' '}
+            <span>익명 답변 : {comment}</span>
+            <Emotion>
+              <FireComment onClick={fireComment}>
+                {/* 답변 오픈 유저랑 답변 작성자랑 같으면 추천 글자 숨기기 */}
+                {isOpened[0]?.name !== writer ? '추천' : ''}
+              </FireComment>{' '}
+              {/* 추천 0개일 경우 불 이모지 숨기기 */}
+              {fires === 0 ? (
+                ''
+              ) : (
+                <>
+                  <FontAwesomeIcon icon={faFire} /> {fires}
+                </>
+              )}
+            </Emotion>
+          </CommentLeftBox>
+          {writer === loggedInName ? (
+            <CommentRightBox onClick={deleteComment}>삭제</CommentRightBox>
+          ) : (
+            ''
+          )}
         </CommentBox>
       ) : (
         <SecretCommentBox>

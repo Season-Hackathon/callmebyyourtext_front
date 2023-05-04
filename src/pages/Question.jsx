@@ -71,7 +71,7 @@ const Question = () => {
       // navigate('/', { replace: true });
     }
   }, [questionInfo]);
-  console.log(questionInfo);
+
   // 렌더링 관리----------------------------------------------------
   useEffect(() => {
     fetchData();
@@ -86,7 +86,6 @@ const Question = () => {
         commentId={c.commentId}
         comment={c.comment}
         writer={c.writer}
-        writerId={c.writerId}
         like_count={c.like_count}
         userId={questionInfo.userId}
         point={point}
@@ -324,6 +323,7 @@ const Question = () => {
           ''
         ) : (
           <>
+            <br />
             <Box
               component="form"
               onSubmit={onSubmit}
