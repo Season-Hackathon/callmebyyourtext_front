@@ -6,23 +6,24 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from 'context/AuthContext';
 import { CursorText, Container, TitleBox } from 'components/ComponentStyled';
-import { setCookie } from 'components/Cookie';
+import { getCookie, setCookie } from 'components/Cookie';
 
 const SignIn = () => {
   // State-------------------------------------------------------------------
   const navigate = useNavigate();
   const { setIsLoggedIn } = useContext(AuthContext);
   const userId = localStorage.getItem('id');
-  const auth = localStorage.getItem('auth');
+  const accessToken = localStorage.getItem('access_token');
+  const refreshToken = getCookie('refresh_token');
 
   const goToHome = () => {
     navigate('/');
   };
   useEffect(() => {
-    if (auth) {
+    if (accessToken && refreshToken) {
       navigate(`/mypage/${userId}`, { replace: true });
     }
-  }, [auth]);
+  }, [refreshToken]);
 
   // Input 관리--------------------------------------------------------------
   const [inputs, setInputs] = useState({

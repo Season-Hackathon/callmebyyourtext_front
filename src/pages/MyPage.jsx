@@ -19,6 +19,8 @@ import {
   faUserSecret,
 } from '@fortawesome/free-solid-svg-icons';
 import { Instance } from 'components/Instance';
+import { removeCookie } from 'components/Cookie';
+import axios from 'axios';
 
 const MyPage = () => {
   // 변수 관리
@@ -34,8 +36,12 @@ const MyPage = () => {
       );
       setUserName(targetUserData.data.name);
     } catch (error) {
-      alert('유저 정보를 불러오지 못했습니다.');
-      console.log(error);
+      alert('유저 정보를 불러오지 못했습니다, 로그인 페이지로 이동합니다.');
+      // console.clear();
+      // localStorage.clear();
+      // removeCookie('refresh_token');
+      // navigate('/signin', { replace: true });
+      // console.log(error);
     }
   };
   useEffect(() => {
@@ -69,8 +75,9 @@ const MyPage = () => {
   const logout = () => {
     if (window.confirm('정말 로그아웃하시겠습니까?')) {
       setIsLoggedIn(false);
+      console.clear();
       localStorage.clear();
-      alert('로그아웃되었습니다.');
+      removeCookie('refresh_token');
       // navigate("/", { replace: true });
       window.location.replace('/');
     } else {

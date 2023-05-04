@@ -37,8 +37,10 @@ function FallingEffect() {
     const updateLeaves = () => {
       setLeaves((leaves) => {
         const newLeaves = leaves.map((leaf) => {
+          // 위치 계산
           let newX = leaf.x - leaf.speed;
           let newY = leaf.y + leaf.speed;
+          let newZ = leaf.z + Math.random() * 1;
           if (newX < -100 || newY > window.innerHeight + 100) {
             newX = Math.random() * window.innerWidth;
             newY = -100;
@@ -47,7 +49,7 @@ function FallingEffect() {
             leaf.rotation.y = Math.random() * 360;
             leaf.rotation.z = Math.random() * 360;
           }
-          return { ...leaf, x: newX, y: newY };
+          return { ...leaf, x: newX, y: newY, z: newZ };
         });
         return newLeaves;
       });

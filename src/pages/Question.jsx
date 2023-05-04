@@ -71,7 +71,7 @@ const Question = () => {
       // navigate('/', { replace: true });
     }
   }, [questionInfo]);
-
+  console.log(questionInfo);
   // 렌더링 관리----------------------------------------------------
   useEffect(() => {
     fetchData();
@@ -86,6 +86,7 @@ const Question = () => {
         commentId={c.commentId}
         comment={c.comment}
         writer={c.writer}
+        writerId={c.writerId}
         like_count={c.like_count}
         userId={questionInfo.userId}
         point={point}
@@ -126,6 +127,18 @@ const Question = () => {
       })
       .catch((error) => {
         console.log(error);
+        if (
+          (error.response.data.code =
+            'token_not_valid' && error.response.status === 401)
+        ) {
+          if (
+            window.confirm(
+              '로그인 후 답변 등록이 가능해요. 로그인하러 이동하시겠어요?'
+            )
+          ) {
+            navigate('/signin');
+          } else return;
+        }
       });
   };
 

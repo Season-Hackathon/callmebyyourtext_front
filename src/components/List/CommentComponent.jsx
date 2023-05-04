@@ -20,6 +20,7 @@ const CommentComponent = ({
   commentId,
   comment,
   writer,
+  writerId,
   userId,
   published,
   like_count,
@@ -31,6 +32,7 @@ const CommentComponent = ({
   // 변수 관리 --------------------------------------------
   const accessToken = localStorage.getItem('access_token');
   const loggedInId = localStorage.getItem('id');
+  const loggedInName = localStorage.getItem('name');
 
   // 함수 관리 --------------------------------------------
   const openComment = async () => {
@@ -81,7 +83,7 @@ const CommentComponent = ({
 
   const fireComment = async () => {
     // 답변 추천
-    if (isOpened[0].name !== writer) {
+    if (loggedInName !== writer) {
       // 답변 추천
       await axios
         .get(`http://127.0.0.1:8000/comments/${commentId}/likes`, {
@@ -103,7 +105,7 @@ const CommentComponent = ({
   };
   return (
     <>
-      {isOpened[0]?.id === loggedInId ? (
+      {isOpened[0]?.id === loggedInId || writer === loggedInName ? (
         <CommentBox>
           <FontAwesomeIcon icon={faUserSecret} />{' '}
           <span>익명 답변 : {comment}</span>
