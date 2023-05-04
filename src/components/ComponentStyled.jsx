@@ -288,6 +288,9 @@ export const GivenQuestionSubContent = styled.span`
 export const CommentBox = styled.section`
   width: 350px;
   height: auto;
+  display: flex;
+  justify-content: space-between;
+
   color: ${primaryColor};
   font-size: 14px;
   font-weight: 600;
@@ -295,6 +298,19 @@ export const CommentBox = styled.section`
   margin-bottom: 15px;
   overflow: hidden;
   word-wrap: break-word;
+`;
+
+export const CommentLeftBox = styled.section``;
+
+export const CommentRightBox = styled.section`
+  color: ${pointColor};
+  font-size: 12px;
+  opacity: 0.5;
+  transition: all 0.3s;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 export const SecretCommentBox = styled.section`

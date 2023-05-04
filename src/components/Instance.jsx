@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { getCookie, removeCookie } from 'components/Cookie';
-import { useNavigate } from 'react-router-dom';
 
 const ACCESS_TOKEN = localStorage.getItem('access_token');
 const REFRESH_TOKEN = getCookie('refresh_token');
@@ -22,8 +21,6 @@ Instance.interceptors.request.use(
     // Request 처리
     if (ACCESS_TOKEN && REFRESH_TOKEN) {
       config.headers['Authorization'] = `Bearer ${ACCESS_TOKEN}`;
-    } else {
-      alert('새로고침 후 다시 시도해주세요.');
     }
     return config;
   },
@@ -42,7 +39,6 @@ Instance.interceptors.response.use(
     return response;
   },
   async (error) => {
-    const navigate = useNavigate();
     // Response 에러 처리
     console.log('respone interceptor 에러', error);
     const originalRequest = error.config;
