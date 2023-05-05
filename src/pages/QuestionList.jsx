@@ -41,11 +41,11 @@ const QuestionList = () => {
   const fetchData = async () => {
     try {
       const getQuestionData = await axios.get(
-        `http://127.0.0.1:8000/${userId}/questionList`
+        `http://13.209.43.178/${userId}/questionList`
       );
 
       const getUserInfo = await axios.get(
-        `http://127.0.0.1:8000/login/profile/${userId}/`,
+        `http://13.209.43.178/login/profile/${userId}/`,
         {
           withCredentials: true,
           headers: {

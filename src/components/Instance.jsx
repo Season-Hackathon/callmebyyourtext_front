@@ -5,10 +5,10 @@ const ACCESS_TOKEN = localStorage.getItem('access_token');
 const REFRESH_TOKEN = getCookie('refresh_token');
 
 export const Instance = axios.create({
-  baseURL: 'http://127.0.0.1:8000',
+  baseURL: 'http://13.209.43.178',
   headers: {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': 'http://localhost:8000',
+    'Access-Control-Allow-Origin': 'http://13.209.43.178',
     // 'Access-Control-Allow-Headers': '*',
     Authorization: `Bearer ${ACCESS_TOKEN}`,
     // withCredentials: true,
@@ -51,7 +51,7 @@ Instance.interceptors.response.use(
     ) {
       try {
         const reIssue = await axios.post(
-          'http://127.0.0.1:8000/token/refresh/',
+          'http://13.209.43.178/token/refresh/',
           {
             refresh: REFRESH_TOKEN,
           }

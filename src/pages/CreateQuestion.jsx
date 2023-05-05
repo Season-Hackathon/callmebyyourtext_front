@@ -36,7 +36,7 @@ const CreateQuestion = () => {
     //modalOpen 리렌더링 시 참조값 바뀌지 않게
     try {
       const presentData = await Instance.get(
-        `http://127.0.0.1:8000/${userId}/bequestionlist`
+        `http://13.209.43.178/${userId}/bequestionlist`
       );
       setGivenQuestions(presentData.data);
     } catch (err) {
@@ -71,7 +71,7 @@ const CreateQuestion = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (userName && userId) {
-      await Instance.post('http://127.0.0.1:8000/questions', {
+      await Instance.post('http://13.209.43.178/questions', {
         question: question,
       })
         .then((res) => {
@@ -89,7 +89,7 @@ const CreateQuestion = () => {
 
   const deletePresent = async () => {
     if (window.confirm('해당 추천 질문을 정말 삭제하시겠습니까?')) {
-      await Instance.delete(`http://127.0.0.1:8000/${userId}/bequestionlist`)
+      await Instance.delete(`http://13.209.43.178/${userId}/bequestionlist`)
         .then((res) => {
           console.log(res);
           modalClose();

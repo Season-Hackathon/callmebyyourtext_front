@@ -47,7 +47,7 @@ const SignIn = () => {
       password,
     };
     await axios
-      .post('http://127.0.0.1:8000/login/login/', user)
+      .post('http://13.209.43.178/login/login/', user)
       .then((response) => {
         console.log(response);
         setIsLoggedIn(true);

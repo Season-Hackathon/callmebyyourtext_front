@@ -42,7 +42,7 @@ const CommentComponent = ({
       if (window.confirm('50포인트를 소모하여 해당 답변을 확인하시겠습니까?')) {
         await axios
           .get(
-            `http://127.0.0.1:8000/questions/${questionId}/comments/${commentId}`,
+            `http://13.209.43.178/questions/${questionId}/comments/${commentId}`,
             {
               withCredentials: true,
               headers: {
@@ -86,7 +86,7 @@ const CommentComponent = ({
   const fireComment = async () => {
     if (loggedInName !== writer) {
       await axios
-        .get(`http://127.0.0.1:8000/comments/${commentId}/likes`, {
+        .get(`http://13.209.43.178/comments/${commentId}/likes`, {
           withCredentials: true,
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -108,7 +108,7 @@ const CommentComponent = ({
     if (writer === loggedInName) {
       if (window.confirm('정말 해당 답변을 삭제하시겠습니까?')) {
         await axios
-          .delete(`http://127.0.0.1:8000/comments/${commentId}`)
+          .delete(`http://13.209.43.178/comments/${commentId}`)
           .then((res) => {
             console.log(res);
           })
