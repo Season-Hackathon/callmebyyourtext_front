@@ -19,7 +19,7 @@ import {
   faUserSecret,
 } from '@fortawesome/free-solid-svg-icons';
 import { Instance } from 'components/Instance';
-import { removeCookie } from 'components/Cookie';
+import { removeCookie } from '../Cookie';
 import axios from 'axios';
 
 const MyPage = () => {

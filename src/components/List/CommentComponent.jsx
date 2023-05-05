@@ -15,6 +15,7 @@ import {
   faLock,
   faUserSecret,
 } from '@fortawesome/free-solid-svg-icons';
+import { Instance } from 'components/Instance';
 
 const CommentComponent = ({
   openUsers,
@@ -72,7 +73,16 @@ const CommentComponent = ({
       alert('답변 공개가 제한된 질문입니다.');
     }
   };
+  // 노트북 기준
+  // 오준서
+  //
+  // 정택원
+  // http://localhost:3000/questionlist/202355164758210397
+  // http://localhost:3000/question/5
+  // 김지민
+
   // 정택원 계정
+
   // http://localhost:3000/questionlist/202343016325651694
   // 질문 ID 68 ~ 70
   // http://localhost:3000/question/68
@@ -85,13 +95,12 @@ const CommentComponent = ({
   // 답변 추천
   const fireComment = async () => {
     if (loggedInName !== writer) {
-      await axios
-        .get(`http://13.209.43.178/comments/${commentId}/likes`, {
-          withCredentials: true,
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        })
+      await Instance.get(`http://13.209.43.178/comments/${commentId}/likes`, {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
         .then((res) => {
           setFires(res.data.like_count);
           console.log(res);
@@ -108,7 +117,15 @@ const CommentComponent = ({
     if (writer === loggedInName) {
       if (window.confirm('정말 해당 답변을 삭제하시겠습니까?')) {
         await axios
-          .delete(`http://13.209.43.178/comments/${commentId}`)
+          .delete(
+            `http://13.209.43.178/questions/${questionId}/comments/${commentId}`,
+            {
+              withCredentials: true,
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            }
+          )
           .then((res) => {
             console.log(res);
           })

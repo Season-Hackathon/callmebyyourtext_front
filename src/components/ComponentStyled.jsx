@@ -249,6 +249,21 @@ export const GivenQuestionBox = styled.section`
   }
 `;
 
+export const GivenEmptyBox = styled.section`
+  width: 90%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+`;
+
+export const GivenEmptyIcon = styled.p`
+  font-size: 60px;
+  color: ${secondaryColor};
+`;
+
 export const GivenQuestionHeader = styled.section`
   width: 95%;
   color: #fff;
@@ -300,7 +315,9 @@ export const CommentBox = styled.section`
   word-wrap: break-word;
 `;
 
-export const CommentLeftBox = styled.section``;
+export const CommentLeftBox = styled.section`
+  width: 310px;
+`;
 
 export const CommentRightBox = styled.section`
   color: ${pointColor};
