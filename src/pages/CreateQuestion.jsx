@@ -5,6 +5,8 @@ import {
   Container,
   CreateQuestionBox,
   CreateQuestionText,
+  GivenEmptyBox,
+  GivenEmptyIcon,
   GivenQuestionBox,
   GivenQuestionContent,
   GivenQuestionDelete,
@@ -20,7 +22,7 @@ import { Instance } from 'components/Instance';
 import { DummyData } from 'components/DummyData';
 import { secondaryColor } from 'GlobalStyle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGift } from '@fortawesome/free-solid-svg-icons';
+import { faBoxOpen, faGift } from '@fortawesome/free-solid-svg-icons';
 
 const CreateQuestion = () => {
   const navigate = useNavigate();
@@ -206,7 +208,14 @@ const CreateQuestion = () => {
           {givenQuestions?.length >= 1 ? (
             <GivenQuestionBox>{[...givenQuestionArray]}</GivenQuestionBox>
           ) : (
-            '선물 목록이 비어있어요'
+            <>
+              <GivenEmptyBox>
+                <GivenEmptyIcon>
+                  <FontAwesomeIcon icon={faBoxOpen} />
+                </GivenEmptyIcon>
+                '선물 목록이 비어있어요'
+              </GivenEmptyBox>
+            </>
           )}
         </Box>
       </Modal>

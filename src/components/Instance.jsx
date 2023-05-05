@@ -67,6 +67,8 @@ Instance.interceptors.response.use(
       } catch (error) {
         console.log('interceptor try catch >', error);
       }
+    } else if (error.response?.status === 500) {
+      alert('일시적인 서버 오류입니다. 새로고침 후 다시 시도해주세요.');
     } else {
       // localStorage.removeItem('access_token');
       // removeCookie('refresh_token');

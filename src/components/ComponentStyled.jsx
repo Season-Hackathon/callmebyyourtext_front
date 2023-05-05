@@ -249,6 +249,21 @@ export const GivenQuestionBox = styled.section`
   }
 `;
 
+export const GivenEmptyBox = styled.section`
+  width: 90%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+`;
+
+export const GivenEmptyIcon = styled.p`
+  font-size: 60px;
+  color: ${secondaryColor};
+`;
+
 export const GivenQuestionHeader = styled.section`
   width: 95%;
   color: #fff;
