@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getCookie, removeCookie } from 'components/Cookie';
+import { getCookie, removeCookie } from '../Cookie';
 
 const ACCESS_TOKEN = localStorage.getItem('access_token');
 const REFRESH_TOKEN = getCookie('refresh_token');
