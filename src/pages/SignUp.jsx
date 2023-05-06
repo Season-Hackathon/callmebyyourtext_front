@@ -49,6 +49,9 @@ const FormHelperPWCF = styled(FormHelperText)`
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const goToHome = () => {
+    navigate('/');
+  };
   // Input Component--------------------------------------------------------
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
@@ -158,7 +161,7 @@ const SignUp = () => {
   return (
     <>
       <Container>
-        <TitleBox></TitleBox>
+        <TitleBox onClick={goToHome}></TitleBox>
         <Typography
           color={primaryColor}
           sx={{
