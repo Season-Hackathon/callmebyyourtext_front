@@ -15,9 +15,7 @@ import {
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const goToHome = () => {
-    navigate('/');
-  };
+  const goToHome = () => navigate('/');
   // Input Component--------------------------------------------------------
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');

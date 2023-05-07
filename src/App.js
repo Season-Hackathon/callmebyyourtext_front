@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { GlobalStyle } from './GlobalStyle';
 import { AuthContext } from './context/AuthContext';
 import { CookiesProvider } from 'react-cookie';
-import Home from './pages/Home';
+import Landing from './pages/Landing';
 import Question from './pages/Question';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
@@ -15,6 +15,7 @@ import Guide from 'pages/Guide';
 import About from 'pages/About';
 import BeQuestions from 'pages/Bequestions';
 import FallingEffect from 'components/FallingEffect';
+import LandingGuide from 'pages/LandingGuide';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,7 +32,8 @@ const App = () => {
           <GlobalStyle />
           <Routes>
             <Route path="*" element={<NotFound />}></Route>
-            <Route path="/" element={<Home />}></Route>
+            <Route path="/" element={<Landing />}></Route>
+            <Route path="/landing/guide" element={<LandingGuide />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/signin" element={<SignIn />}></Route>
             <Route path="/mypage/:userId" element={<MyPage />}></Route>
