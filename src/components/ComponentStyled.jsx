@@ -315,7 +315,9 @@ export const CommentBox = styled.section`
   word-wrap: break-word;
 `;
 
-export const CommentLeftBox = styled.section``;
+export const CommentLeftBox = styled.section`
+  width: 310px;
+`;
 
 export const CommentRightBox = styled.section`
   color: ${pointColor};

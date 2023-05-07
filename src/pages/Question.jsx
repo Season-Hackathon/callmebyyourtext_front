@@ -40,7 +40,7 @@ const Question = () => {
   const fetchData = useCallback(async () => {
     try {
       const questionData = await axios.get(
-        `http://127.0.0.1:8000/questions/${questionId}`
+        `https://callmebyyourtext.xyz/questions/${questionId}`
       );
 
       setQuestionInfo({
@@ -54,7 +54,7 @@ const Question = () => {
       });
       //
       const getPoint = await axios.get(
-        `http://127.0.0.1:8000/login/profile/${userId}/`,
+        `https://callmebyyourtext.xyz/login/profile/${userId}/`,
         {
           withCredentials: true,
           headers: {
@@ -107,7 +107,7 @@ const Question = () => {
     e.preventDefault();
     await axios
       .post(
-        `http://127.0.0.1:8000/questions/${questionId}/comments`,
+        `https://callmebyyourtext.xyz/questions/${questionId}/comments`,
         comments,
         {
           withCredentials: true,
@@ -154,7 +154,7 @@ const Question = () => {
   const deleteQuestion = async () => {
     if (window.confirm('해당 질문을 삭제하시겠습니까?')) {
       await axios
-        .delete(`http://127.0.0.1:8000/questions/${questionId}`, {
+        .delete(`https://callmebyyourtext.xyz/questions/${questionId}`, {
           withCredentials: true,
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -177,7 +177,7 @@ const Question = () => {
       if (window.confirm('해당 질문 답변 공개를 제한하시겠습니까?')) {
         await axios
           .put(
-            `http://127.0.0.1:8000/questions/${questionId}`,
+            `https://callmebyyourtext.xyz/questions/${questionId}`,
             { publish: !questionInfo.publish },
             {
               withCredentials: true,
@@ -204,7 +204,7 @@ const Question = () => {
       if (window.confirm('해당 질문 답변 공개를 허용하시겠습니까?')) {
         await axios
           .put(
-            `http://127.0.0.1:8000/questions/${questionId}`,
+            `https://callmebyyourtext.xyz/questions/${questionId}`,
             { publish: !questionInfo.publish },
             {
               withCredentials: true,

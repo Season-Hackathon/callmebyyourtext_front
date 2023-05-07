@@ -49,6 +49,9 @@ const FormHelperPWCF = styled(FormHelperText)`
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const goToHome = () => {
+    navigate('/');
+  };
   // Input Component--------------------------------------------------------
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
@@ -141,7 +144,7 @@ const SignUp = () => {
       password2: data.get('password2'),
     };
     await axios
-      .post('http://127.0.0.1:8000/login/signup/', joinData)
+      .post('https://callmebyyourtext.xyz/login/signup/', joinData)
       .then((response) => {
         console.log(response);
         alert('회원가입되었습니다. 로그인 후 이용해주세요.');
@@ -158,7 +161,7 @@ const SignUp = () => {
   return (
     <>
       <Container>
-        <TitleBox></TitleBox>
+        <TitleBox onClick={goToHome}></TitleBox>
         <Typography
           color={primaryColor}
           sx={{

@@ -1,14 +1,14 @@
 import axios from 'axios';
-import { getCookie, removeCookie } from 'components/Cookie';
+import { getCookie, removeCookie } from '../Cookie';
 
 const ACCESS_TOKEN = localStorage.getItem('access_token');
 const REFRESH_TOKEN = getCookie('refresh_token');
 
 export const Instance = axios.create({
-  baseURL: 'http://127.0.0.1:8000',
+  baseURL: 'https://callmebyyourtext.xyz',
   headers: {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': 'http://localhost:8000',
+    'Access-Control-Allow-Origin': 'https://callmebyyourtext.xyz',
     // 'Access-Control-Allow-Headers': '*',
     Authorization: `Bearer ${ACCESS_TOKEN}`,
     // withCredentials: true,
@@ -51,7 +51,7 @@ Instance.interceptors.response.use(
     ) {
       try {
         const reIssue = await axios.post(
-          'http://127.0.0.1:8000/token/refresh/',
+          'https://callmebyyourtext.xyz/token/refresh/',
           {
             refresh: REFRESH_TOKEN,
           }

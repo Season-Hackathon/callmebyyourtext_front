@@ -9,11 +9,9 @@ import {
 } from 'components/ComponentStyled';
 import Likelion from '../assets/images/LIKELION.png';
 import { useNavigate } from 'react-router-dom';
-import { Typography } from '@mui/material';
 import TeamBtn from 'components/Button/TeamBtn';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCat, faPaw } from '@fortawesome/free-solid-svg-icons';
-import { secondaryColor } from 'GlobalStyle';
+import { faCat } from '@fortawesome/free-solid-svg-icons';
 
 const About = () => {
   const navigate = useNavigate();

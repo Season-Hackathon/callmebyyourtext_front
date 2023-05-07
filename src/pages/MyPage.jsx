@@ -19,7 +19,7 @@ import {
   faUserSecret,
 } from '@fortawesome/free-solid-svg-icons';
 import { Instance } from 'components/Instance';
-import { removeCookie } from 'components/Cookie';
+import { removeCookie } from '../Cookie';
 import axios from 'axios';
 
 const MyPage = () => {
@@ -32,7 +32,7 @@ const MyPage = () => {
   const fetchData = async () => {
     try {
       const targetUserData = await Instance.get(
-        `http://127.0.0.1:8000/login/profile/${userId}`
+        `https://callmebyyourtext.xyz/login/profile/${userId}`
       );
       setUserName(targetUserData.data.name);
     } catch (error) {

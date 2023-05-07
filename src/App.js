@@ -8,7 +8,6 @@ import Question from './pages/Question';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import MyPage from './pages/MyPage';
-import Snowfall from 'react-snowfall';
 import CreateQuestion from './pages/CreateQuestion';
 import QuestionList from './pages/QuestionList';
 import NotFound from './pages/NotFound';
@@ -26,13 +25,6 @@ const App = () => {
   }, [isLoggedIn]);
   return (
     <>
-      {/* <Snowfall
-        color="pink"
-        snowflakeCount={10}
-        changeFrequency={100}
-        speed={[1.0, 2.0]}
-        wind={[-0.5, 1.5]}
-      /> */}
       <FallingEffect />
       <CookiesProvider>
         <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
