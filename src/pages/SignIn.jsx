@@ -13,6 +13,7 @@ import {
   FormHelperPWs,
 } from 'components/ComponentStyled';
 import { getCookie, setCookie } from '../Cookie';
+import { useCallback } from 'react';
 
 const SignIn = () => {
   // State-------------------------------------------------------------------
@@ -21,13 +22,19 @@ const SignIn = () => {
   const userId = localStorage.getItem('id');
   const accessToken = localStorage.getItem('access_token');
   const refreshToken = getCookie('refresh_token');
-  //
+
+  // Input 관리------------------------------------------------------
+  const [inputs, setInputs] = useState({
+    email: '',
+    password: '',
+  });
+
   const [isEmail, setIsEmail] = useState(false);
   const [isPassword, setIsPassword] = useState(false);
   const [emailMessage, setEmailMessage] = useState('');
   const [passwordMessage, setPasswordMessage] = useState('');
 
-  // Navigation--------------------------------------------------------------
+  // Navigation------------------------------------------------------
   const goToSignUp = () => {
     navigate('/signup');
   };
@@ -35,18 +42,14 @@ const SignIn = () => {
     navigate('/');
   };
 
-  // 렌더링 시 실행----------------------------------------------------------
+  // 렌더링 시 실행---------------------------------------------------
   useEffect(() => {
     if (accessToken && refreshToken) {
       navigate(`/mypage/${userId}`, { replace: true });
     }
   }, [refreshToken]);
 
-  // Input 관리--------------------------------------------------------------
-  const [inputs, setInputs] = useState({
-    email: '',
-    password: '',
-  });
+  // Form 관리-------------------------------------------------------
   const onChange = (e) => {
     const { value, name } = e.target;
     setInputs({
@@ -55,7 +58,7 @@ const SignIn = () => {
     });
   };
 
-  // 로그인 클릭------------------------------------------------------------
+  // 클릭------------------------------------------------------------
   const onSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = inputs;
@@ -63,7 +66,6 @@ const SignIn = () => {
       email,
       password,
     };
-
     if (email === '') {
       setIsEmail(false);
       setEmailMessage('이메일 입력란을 작성하세요.');
@@ -72,7 +74,6 @@ const SignIn = () => {
       await axios
         .post('https://callmebyyourtext.xyz/login/login/', user)
         .then((response) => {
-          console.log(response);
           setIsLoggedIn(true);
           localStorage.setItem('auth', true);
           localStorage.setItem('id', response.data.id);
@@ -83,7 +84,6 @@ const SignIn = () => {
           navigate(`/mypage/${response.data.id}`, { replace: true });
         })
         .catch((error) => {
-          console.log(error);
           if (error.response.status === 500) {
             setIsEmail(false);
             setEmailMessage(
@@ -131,7 +131,6 @@ const SignIn = () => {
             name="email"
             label="이메일"
             onChange={onChange}
-            error={inputs.email !== '' && !isEmail}
           />
           <FormHelperEmails isemail={isEmail ? 'true' : 'false'}>
             {emailMessage}
