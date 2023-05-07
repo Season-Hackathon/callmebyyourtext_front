@@ -1,51 +1,17 @@
 import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  TextField,
-  FormControl,
-  FormHelperText,
-  Box,
-  Typography,
-} from '@mui/material/';
-import styled from 'styled-components';
-import { errorColor, primaryColor } from 'GlobalStyle';
-import PrimaryBtn from 'components/Button/PrimaryBtn';
+import { TextField, Box, Typography } from '@mui/material/';
+import { bgColor } from 'GlobalStyle';
 import axios from 'axios';
-import { Container, TitleBox } from 'components/ComponentStyled';
-
-// FormHelper--------------------------------------------------------------------------
-const FormHelperEmails = styled(FormHelperText)`
-  width: 100%;
-  margin-left: 0 !important;
-  font-weight: 700 !important;
-  color: ${(props) =>
-    props.isemail === 'true' ? `${primaryColor}` : `${errorColor}`} !important;
-`;
-const FormHelperNames = styled(FormHelperText)`
-  width: 100%;
-  margin-left: 0 !important;
-  font-weight: 700 !important;
-  color: ${(props) =>
-    props.isname === 'true' ? `${primaryColor}` : `${errorColor}`} !important;
-`;
-const FormHelperPWs = styled(FormHelperText)`
-  width: 100%;
-  margin-left: 0 !important;
-  font-weight: 700 !important;
-  color: ${(props) =>
-    props.ispassword === 'true'
-      ? `${primaryColor}`
-      : `${errorColor}`} !important;
-`;
-const FormHelperPWCF = styled(FormHelperText)`
-  width: 100%;
-  margin-left: 0 !important;
-  font-weight: 700 !important;
-  color: ${(props) =>
-    props.ispassword2 === 'true'
-      ? `${primaryColor}`
-      : `${errorColor}`} !important;
-`;
+import {
+  Container,
+  FormHelperEmails,
+  FormHelperNames,
+  FormHelperPWCF,
+  FormHelperPWs,
+  MainButton,
+  TitleBox,
+} from 'components/ComponentStyled';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -146,15 +112,22 @@ const SignUp = () => {
     await axios
       .post('https://callmebyyourtext.xyz/login/signup/', joinData)
       .then((response) => {
-        console.log(response);
         alert('회원가입되었습니다. 로그인 후 이용해주세요.');
         navigate('/signin', { replace: true });
       })
       .catch((error) => {
         if (error.request.status === 400) {
-          alert('이미 가입된 이메일입니다. 다른 이메일로 시도해주세요.');
+          setIsEmail(false);
+          setEmailMessage(
+            '이미 가입된 이메일입니다. 다른 이메일로 시도해주세요.'
+          );
+          setNameMessage('');
+          setPasswordMessage('');
+          setPassword2Message('');
+        } else {
+          alert('잘못된 접근입니다.');
+          return;
         }
-        console.log(error);
       });
   };
 
@@ -163,7 +136,7 @@ const SignUp = () => {
       <Container>
         <TitleBox onClick={goToHome}></TitleBox>
         <Typography
-          color={primaryColor}
+          color={bgColor}
           sx={{
             fontSize: '14px',
             fontWeight: '900',
@@ -176,77 +149,83 @@ const SignUp = () => {
           component="form"
           onSubmit={onSubmit}
           sx={{
+            width: '350px',
             marginTop: 3,
           }}
         >
-          <FormControl component="fieldset">
-            <TextField
-              autoFocus
-              required
-              fullWidth
-              variant="standard"
-              color="info"
-              type="email"
-              id="email"
-              name="email"
-              label="이메일"
-              onChange={onChangeEmail}
-              error={email !== '' && !isEmail}
-            />
-            <FormHelperEmails isemail={isEmail ? 'true' : 'false'}>
-              {emailMessage}
-            </FormHelperEmails>
-            <TextField
-              required
-              fullWidth
-              variant="standard"
-              color="info"
-              type="name"
-              id="name"
-              name="name"
-              label="이름"
-              sx={{ marginTop: 3 }}
-              onChange={onChangeName}
-              error={name !== '' && !isName}
-            />
-            <FormHelperNames isname={isName ? 'true' : 'false'}>
-              {nameMessage}
-            </FormHelperNames>
-            <TextField
-              required
-              fullWidth
-              variant="standard"
-              color="info"
-              type="password"
-              id="password"
-              name="password"
-              label="비밀번호"
-              sx={{ marginTop: 3 }}
-              onChange={onChangePassword1}
-              error={password !== '' && !isPassword}
-            />
-            <FormHelperPWs ispassword={isPassword ? 'true' : 'false'}>
-              {passwordMessage}
-            </FormHelperPWs>
-            <TextField
-              required
-              fullWidth
-              variant="standard"
-              color="info"
-              type="password"
-              id="password2"
-              name="password2"
-              label="비밀번호 확인"
-              sx={{ marginTop: 3 }}
-              onChange={onChangePassword2}
-              error={password2 !== '' && !isPassword2}
-            />
-            <FormHelperPWCF ispassword2={isPassword2 ? 'true' : 'false'}>
-              {password2Message}
-            </FormHelperPWCF>
-            <br />
-            <PrimaryBtn btnName={'등록'} type="submit"></PrimaryBtn>
-          </FormControl>
+          {/* <FormControl component="fieldset"> */}
+          <TextField
+            autoFocus
+            required
+            fullWidth
+            variant="standard"
+            color="info"
+            type="email"
+            id="email"
+            name="email"
+            label="이메일"
+            onChange={onChangeEmail}
+            error={email !== '' && !isEmail}
+          />
+          <FormHelperEmails isemail={isEmail ? 'true' : 'false'}>
+            {emailMessage}
+          </FormHelperEmails>
+          <TextField
+            required
+            fullWidth
+            variant="standard"
+            color="info"
+            type="name"
+            id="name"
+            name="name"
+            label="이름"
+            sx={{ marginTop: 5 }}
+            onChange={onChangeName}
+            error={name !== '' && !isName}
+          />
+          <FormHelperNames isname={isName ? 'true' : 'false'}>
+            {nameMessage}
+          </FormHelperNames>
+          <TextField
+            required
+            fullWidth
+            variant="standard"
+            color="info"
+            type="password"
+            id="password"
+            name="password"
+            label="비밀번호"
+            sx={{ marginTop: 5 }}
+            onChange={onChangePassword1}
+            error={password !== '' && !isPassword}
+          />
+          <FormHelperPWs ispassword={isPassword ? 'true' : 'false'}>
+            {passwordMessage}
+          </FormHelperPWs>
+          <TextField
+            required
+            fullWidth
+            variant="standard"
+            color="info"
+            type="password"
+            id="password2"
+            name="password2"
+            label="비밀번호 확인"
+            sx={{ marginTop: 5 }}
+            onChange={onChangePassword2}
+            error={password2 !== '' && !isPassword2}
+          />
+          <FormHelperPWCF ispassword2={isPassword2 ? 'true' : 'false'}>
+            {password2Message}
+          </FormHelperPWCF>
+          <br /> <br />
+          <MainButton
+            type="submit"
+            // disabled={isEmail && isName && isPassword && isPassword2}
+          >
+            등록
+          </MainButton>
+          {/* </FormControl> */}
         </Box>
       </Container>
     </>

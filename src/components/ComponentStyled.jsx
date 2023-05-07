@@ -7,6 +7,7 @@ import {
   secondaryColor,
 } from '../GlobalStyle';
 import landingTitle from '../assets/images/landingTitle.png';
+import { FormHelperText } from '@mui/material';
 
 // Container---------------------------------------
 export const Container = styled.div`
@@ -54,8 +55,8 @@ export const MyPage = styled.img`
 `;
 
 export const MainButton = styled.button`
-  width: 200px;
-  height: 35px;
+  width: 350px;
+  height: 40px;
   border: 1px solid ${bgColor};
   color: ${bgColor};
   background-color: transparent;
@@ -70,6 +71,10 @@ export const MainButton = styled.button`
 
 // Refactoring 대상
 export const CursorText = styled.span`
+  color: ${bgColor};
+  font-size: 12px;
+  font-weight: 600;
+  margin: 10px 0 50px 0;
   cursor: pointer;
 `;
 
@@ -104,6 +109,40 @@ export const SubTitle404 = styled.p`
 
 export const Bracket = styled.span`
   visibility: hidden;
+`;
+
+// Sign page-------------------------------------
+export const FormHelperEmails = styled(FormHelperText)`
+  width: 100%;
+  margin-left: 0 !important;
+  font-weight: 700 !important;
+  color: ${(props) =>
+    props.isemail === 'true' ? `${primaryColor}` : `${errorColor}`} !important;
+`;
+export const FormHelperNames = styled(FormHelperText)`
+  width: 100%;
+  margin-left: 0 !important;
+  font-weight: 700 !important;
+  color: ${(props) =>
+    props.isname === 'true' ? `${primaryColor}` : `${errorColor}`} !important;
+`;
+export const FormHelperPWs = styled(FormHelperText)`
+  width: 100%;
+  margin-left: 0 !important;
+  font-weight: 700 !important;
+  color: ${(props) =>
+    props.ispassword === 'true'
+      ? `${primaryColor}`
+      : `${errorColor}`} !important;
+`;
+export const FormHelperPWCF = styled(FormHelperText)`
+  width: 100%;
+  margin-left: 0 !important;
+  font-weight: 700 !important;
+  color: ${(props) =>
+    props.ispassword2 === 'true'
+      ? `${primaryColor}`
+      : `${errorColor}`} !important;
 `;
 
 // Guide page------------------------------------
