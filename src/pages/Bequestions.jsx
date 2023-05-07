@@ -43,7 +43,7 @@ const BeQuestions = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (userName && userId) {
-      await Instance.post('http://13.209.43.178/bequestions', {
+      await Instance.post('https://callmebyyourtext.xyz/bequestions', {
         q: beQuestion,
         ownerId: ownerId,
       })

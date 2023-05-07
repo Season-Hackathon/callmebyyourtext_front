@@ -144,7 +144,7 @@ const SignUp = () => {
       password2: data.get('password2'),
     };
     await axios
-      .post('http://13.209.43.178/login/signup/', joinData)
+      .post('https://callmebyyourtext.xyz/login/signup/', joinData)
       .then((response) => {
         console.log(response);
         alert('회원가입되었습니다. 로그인 후 이용해주세요.');

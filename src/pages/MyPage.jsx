@@ -32,7 +32,7 @@ const MyPage = () => {
   const fetchData = async () => {
     try {
       const targetUserData = await Instance.get(
-        `http://13.209.43.178/login/profile/${userId}`
+        `https://callmebyyourtext.xyz/login/profile/${userId}`
       );
       setUserName(targetUserData.data.name);
     } catch (error) {

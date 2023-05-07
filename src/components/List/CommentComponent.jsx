@@ -43,7 +43,7 @@ const CommentComponent = ({
       if (window.confirm('50포인트를 소모하여 해당 답변을 확인하시겠습니까?')) {
         await axios
           .get(
-            `http://13.209.43.178/questions/${questionId}/comments/${commentId}`,
+            `https://callmebyyourtext.xyz/questions/${questionId}/comments/${commentId}`,
             {
               withCredentials: true,
               headers: {
@@ -73,34 +73,19 @@ const CommentComponent = ({
       alert('답변 공개가 제한된 질문입니다.');
     }
   };
-  // 노트북 기준
-  // 오준서
-  //
-  // 정택원
-  // http://localhost:3000/questionlist/202355164758210397
-  // http://localhost:3000/question/5
-  // 김지민
-
-  // 정택원 계정
-
-  // http://localhost:3000/questionlist/202343016325651694
-  // 질문 ID 68 ~ 70
-  // http://localhost:3000/question/68
-
-  // 김지민 계정
-  // http://localhost:3000/questionlist/2023430163220825041
-  // 질문 ID 71 ~ 73
-  // http://localhost:3000/question/73
 
   // 답변 추천
   const fireComment = async () => {
     if (loggedInName !== writer) {
-      await Instance.get(`http://13.209.43.178/comments/${commentId}/likes`, {
-        withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
+      await Instance.get(
+        `https://callmebyyourtext.xyz/comments/${commentId}/likes`,
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      )
         .then((res) => {
           setFires(res.data.like_count);
           console.log(res);
@@ -118,7 +103,7 @@ const CommentComponent = ({
       if (window.confirm('정말 해당 답변을 삭제하시겠습니까?')) {
         await axios
           .delete(
-            `http://13.209.43.178/questions/${questionId}/comments/${commentId}`,
+            `https://callmebyyourtext.xyz/questions/${questionId}/comments/${commentId}`,
             {
               withCredentials: true,
               headers: {

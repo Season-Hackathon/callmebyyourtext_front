@@ -5,10 +5,10 @@ const ACCESS_TOKEN = localStorage.getItem('access_token');
 const REFRESH_TOKEN = getCookie('refresh_token');
 
 export const Instance = axios.create({
-  baseURL: 'http://13.209.43.178',
+  baseURL: 'https://callmebyyourtext.xyz',
   headers: {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': 'http://13.209.43.178',
+    'Access-Control-Allow-Origin': 'https://callmebyyourtext.xyz',
     // 'Access-Control-Allow-Headers': '*',
     Authorization: `Bearer ${ACCESS_TOKEN}`,
     // withCredentials: true,
@@ -51,7 +51,7 @@ Instance.interceptors.response.use(
     ) {
       try {
         const reIssue = await axios.post(
-          'http://13.209.43.178/token/refresh/',
+          'https://callmebyyourtext.xyz/token/refresh/',
           {
             refresh: REFRESH_TOKEN,
           }
