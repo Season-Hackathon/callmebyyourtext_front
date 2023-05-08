@@ -10,6 +10,59 @@ import {
 import landingTitle from '../assets/images/landingTitle.png';
 import { FormHelperText } from '@mui/material';
 
+// Effect------------------------------------------
+export const Loading = keyframes`
+  0% {
+    transform: rotate(0deg) scale(1);;
+    border-radius: 0% 0% 0% 0%;
+    border-color: ${primaryColor};
+    
+  } 
+  25% {
+    transform: rotate(180deg) scale(0.5);;
+    border-radius: 70% 30% 40% 60%;
+    border-color: ${secondaryColor};
+  }
+  50% {
+    transform: rotate(360deg) scale(1);;
+    border-radius: 25% 65% 15% 50%;
+    border-color: ${pointColor};
+  }
+  75% {
+    transform: rotate(180deg) scale(1.5);;
+    border-radius: 50% 50% 0% 90%;
+    border-color: ${secondaryColor};
+  }
+  100% {
+    transform: rotate(0deg) scale(1);;
+    border-radius: 0% 0% 0% 0%;
+    border-color: ${primaryColor};
+  }
+`;
+
+export const rotateThis = keyframes`
+  from {
+      transform: rotate(0deg) scale(1);
+  }
+  to {
+      transform: rotate(360deg) scale(1);
+  }
+`;
+export const psycho = keyframes`
+  0% {
+      transform: rotate(0deg) scale(1) translate(0, 0);
+  }
+  33% {
+      transform: rotate(360deg) scale(1) translate(5px, 5px);
+  }
+  66% {
+      transform: rotate(720deg) scale(1) translate(-5px, -5px);
+  }
+  100% {
+      transform: rotate(1080deg) scale(1) translate(0, 0);
+  }
+`;
+
 // Container---------------------------------------
 export const Container = styled.div`
   width: 100vw;
@@ -44,6 +97,7 @@ export const DarkContainer = styled.div`
 export const ScrollContainer = styled.div`
   width: 100vw;
   height: auto;
+  position: relative;
   overflow-y: auto;
 `;
 
@@ -53,16 +107,44 @@ export const EffectContainer = styled.div`
 `;
 
 // Landing Guide---------------------------------
+export const Rotate = keyframes`
+  100% {
+    transform: rotate(1turn);
+  }
+`;
+
+export const FixedButton = styled.button`
+  width: 100px;
+  height: 30px;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  color: ${secondaryColor};
+  background-color: transparent;
+  border: 1px solid ${secondaryColor};
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 1;
+  transition: all 0.3s;
+  &:hover {
+    color: ${bgColor};
+    background-color: ${secondaryColor};
+  }
+  @media screen and (max-width: 420px) {
+    width: 70px;
+  }
+`;
+
 export const FirstSection = styled.section`
   width: 100%;
-  height: 50vh;
+  height: 70vh;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: ${bgColor};
-  color: ${bgTextColor};
+  background: linear-gradient(${bgColor}, 87%, transparent);
+  color: ${bgColor};
 `;
 
 export const FirstHeadLine = styled.h1`
@@ -75,6 +157,94 @@ export const FirstHeadLine = styled.h1`
   font-weight: 100;
   font-style: italic;
   opacity: 0.7;
+  overflow: hidden;
+  @media screen and (max-width: 420px) {
+    width: 369px;
+    font-size: 16px;
+  }
+`;
+
+//
+export const SecondSection = styled.section`
+  width: 100%;
+  height: 30vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: ${bgColor};
+`;
+
+export const LoadingBox = styled.section`
+  width: 100%;
+  height: 100%;
+  position: relative;
+`;
+
+export const LoadingCircle1 = styled.div`
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -25px;
+  margin-top: -25px;
+  border-radius: 100%;
+  cursor: pointer;
+  animation: ${psycho} 5s linear infinite;
+  box-shadow: 0 1px 0 0 rgba(225, 131, 194, 0.25),
+    0 -1px 0 0 rgba(165, 181, 222, 0.25), 1px 0 0 0 rgba(225, 131, 194, 0.25),
+    -1px 0 0 0 rgba(165, 181, 222, 0.25), 1px -1px 0 0 rgba(195, 156, 208, 0.5),
+    -1px 1px 0 0 rgba(195, 156, 208, 0.5), 1px 1px 0 0 rgba(255, 105, 180, 0.75),
+    -1px -1px 0 0 rgba(135, 206, 235, 0.75);
+`;
+
+export const LoadingCircle2 = styled.div`
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -25px;
+  margin-top: -25px;
+  border-radius: 100%;
+  cursor: pointer;
+  animation: ${psycho} 5s linear 0.1s infinite;
+  box-shadow: 0 1px 0 0 rgba(225, 131, 194, 0.25),
+    0 -1px 0 0 rgba(165, 181, 222, 0.25), 1px 0 0 0 rgba(225, 131, 194, 0.25),
+    -1px 0 0 0 rgba(165, 181, 222, 0.25), 1px -1px 0 0 rgba(195, 156, 208, 0.5),
+    -1px 1px 0 0 rgba(195, 156, 208, 0.5), 1px 1px 0 0 rgba(255, 105, 180, 0.75),
+    -1px -1px 0 0 rgba(135, 206, 235, 0.75);
+`;
+
+export const LoadingCircle3 = styled.div`
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -25px;
+  margin-top: -25px;
+  border-radius: 100%;
+  cursor: pointer;
+  animation: ${psycho} 5s linear 0.2s infinite;
+  box-shadow: 0 1px 0 0 rgba(225, 131, 194, 0.25),
+    0 -1px 0 0 rgba(165, 181, 222, 0.25), 1px 0 0 0 rgba(225, 131, 194, 0.25),
+    -1px 0 0 0 rgba(165, 181, 222, 0.25), 1px -1px 0 0 rgba(195, 156, 208, 0.5),
+    -1px 1px 0 0 rgba(195, 156, 208, 0.5), 1px 1px 0 0 rgba(255, 105, 180, 0.75),
+    -1px -1px 0 0 rgba(135, 206, 235, 0.75);
+`;
+
+export const ThirdSection = styled.section`
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: ${bgColor};
 `;
 
 // Mypage----------------------------------------
@@ -462,45 +632,6 @@ export const SquareSubmitButton = styled.button`
     background-color: ${primaryColor};
     cursor: pointer;
   }
-`;
-
-// Effect------------------------------------------
-export const Loading = keyframes`
-  0% {
-    transform: rotate(0deg) scale(1);;
-    border-radius: 50%;
-    border-color: ${primaryColor};
-    
-  } 
-  25% {
-    transform: rotate(180deg) scale(2);;
-    border-radius: 10px;
-    border-color: ${secondaryColor};
-  }
-  50% {
-    transform: rotate(360deg) scale(1);;
-    border-radius: 0;
-    border-color: ${pointColor};
-  }
-  75% {
-    transform: rotate(180deg) scale(1.5);;
-    border-radius: 0;
-    border-color: ${secondaryColor};
-  }
-  100% {
-    transform: rotate(0deg) scale(1);;
-    border-radius: 50%;
-    border-color: ${primaryColor};
-  }
-`;
-
-export const LoadingBox = styled.section`
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  bottom: 100px;
-  border: 1px solid ${primaryColor};
-  animation: ${Loading} 4s linear infinite;
 `;
 
 // --------------------------------------------------

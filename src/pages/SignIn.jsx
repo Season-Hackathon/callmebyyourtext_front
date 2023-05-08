@@ -92,7 +92,9 @@ const SignIn = () => {
           } else {
             setIsEmail(false);
             setIsPassword(false);
-            setEmailMessage('알 수 없는 정보입니다.');
+            setEmailMessage(
+              '일시적인 오류가 발생했습니다. 새로고침 후 다시 시도해주세요.'
+            );
           }
         });
     }
