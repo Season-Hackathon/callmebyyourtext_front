@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import {
   bgColor,
+  bgTextColor,
   errorColor,
   pointColor,
   primaryColor,
@@ -40,8 +41,40 @@ export const DarkContainer = styled.div`
   }
 `;
 
+export const ScrollContainer = styled.div`
+  width: 100vw;
+  height: auto;
+  overflow-y: auto;
+`;
+
 export const EffectContainer = styled.div`
   position: relative;
+  z-index: 1;
+`;
+
+// Landing Guide---------------------------------
+export const FirstSection = styled.section`
+  width: 100%;
+  height: 50vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: ${bgColor};
+  color: ${bgTextColor};
+`;
+
+export const FirstHeadLine = styled.h1`
+  width: 415px;
+  display: inline-block;
+  position: absolute;
+  bottom: 3px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 100;
+  font-style: italic;
+  opacity: 0.7;
 `;
 
 // Mypage----------------------------------------
@@ -433,21 +466,41 @@ export const SquareSubmitButton = styled.button`
 
 // Effect------------------------------------------
 export const Loading = keyframes`
-  from {
-    transform: rotate(0deg);
+  0% {
+    transform: rotate(0deg) scale(1);;
     border-radius: 50%;
-    border-color: ${secondaryColor};
+    border-color: ${primaryColor};
+    
   } 
-  to {
-    transform: rotate(360deg);
+  25% {
+    transform: rotate(180deg) scale(2);;
+    border-radius: 10px;
+    border-color: ${secondaryColor};
+  }
+  50% {
+    transform: rotate(360deg) scale(1);;
+    border-radius: 0;
+    border-color: ${pointColor};
+  }
+  75% {
+    transform: rotate(180deg) scale(1.5);;
+    border-radius: 0;
+    border-color: ${secondaryColor};
+  }
+  100% {
+    transform: rotate(0deg) scale(1);;
+    border-radius: 50%;
+    border-color: ${primaryColor};
   }
 `;
 
 export const LoadingBox = styled.section`
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  bottom: 100px;
   border: 1px solid ${primaryColor};
-  animation: ${Loading} 1s ease infinite alternate;
+  animation: ${Loading} 4s linear infinite;
 `;
 
 // --------------------------------------------------
