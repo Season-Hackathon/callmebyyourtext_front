@@ -247,6 +247,47 @@ export const ThirdSection = styled.section`
   color: ${bgColor};
 `;
 
+export const ThirdChild1 = styled.section`
+  width: 100%;
+  height: 33.3%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid ${primaryColor};
+`;
+
+export const ThirdChild1Header = styled.h1`
+  color: ${bgColor};
+  font-size: 28px;
+  font-family: 'AppleSDGothicNeoL' !important;
+`;
+
+export const ThirdChild2 = styled.section`
+  width: 100%;
+  height: 33.3%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: ${bgColor};
+  border: 1px solid ${primaryColor};
+`;
+
+export const ThirdChild3 = styled.section`
+  width: 100%;
+  height: 33.3%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: ${bgColor};
+  border: 1px solid ${primaryColor};
+`;
+
 // Mypage----------------------------------------
 export const MyPage = styled.img`
   width: auto;

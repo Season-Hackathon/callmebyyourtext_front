@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import AppleSDGothicNeoL from './assets/fonts/AppleSDGothicNeoL.ttf';
 import AppleSDGothicNeoB from './assets/fonts/AppleSDGothicNeoB.ttf';
 import AppleSDGothicNeoM from './assets/fonts/AppleSDGothicNeoM.ttf';
 
@@ -40,6 +41,12 @@ footer, header, hgroup, main, menu, nav, section {
 /* HTML5 hidden-attribute fix for newer browsers */
 *[hidden] {
     display: none;
+}
+@font-face {
+  font-family: "AppleSDGothicNeoL";
+  src: url(${AppleSDGothicNeoL});
+  font-weight: normal;
+  font-style: normal;
 }
 @font-face {
   font-family: "AppleSDGothicNeoM";

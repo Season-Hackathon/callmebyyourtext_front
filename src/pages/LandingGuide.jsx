@@ -8,6 +8,10 @@ import {
   LoadingCircle3,
   ScrollContainer,
   SecondSection,
+  ThirdChild1,
+  ThirdChild1Header,
+  ThirdChild2,
+  ThirdChild3,
   ThirdSection,
   TitleBox,
 } from 'components/ComponentStyled';
@@ -38,7 +42,15 @@ const LandingGuide = () => {
             <LoadingCircle3 onClick={onMoveToElement}></LoadingCircle3>
           </LoadingBox>
         </SecondSection>
-        <ThirdSection ref={element}></ThirdSection>
+        <ThirdSection ref={element}>
+          <ThirdChild1>
+            <ThirdChild1Header>
+              "당신은 당신을 얼마나 잘 알고 있나요?"
+            </ThirdChild1Header>
+          </ThirdChild1>
+          <ThirdChild2></ThirdChild2>
+          <ThirdChild3></ThirdChild3>
+        </ThirdSection>
       </ScrollContainer>
     </>
   );
