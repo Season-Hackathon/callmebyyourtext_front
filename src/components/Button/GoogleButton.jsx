@@ -1,5 +1,4 @@
-import { GoogleLogin } from '@react-oauth/google';
-import { GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import { gapi } from 'gapi-script';
 import { useEffect } from 'react';
 
@@ -20,15 +19,16 @@ const GoogleButton = () => {
 
   return (
     <>
-      <GoogleLogin
-        clientId={clientId}
-        onSuccess={(res) => {
-          console.log(res);
-        }}
-        onFailure={(err) => {
-          console.log(err);
-        }}
-      />
+      <GoogleOAuthProvider clientId={clientId}>
+        <GoogleLogin
+          onSuccess={(res) => {
+            console.log(res);
+          }}
+          onFailure={(err) => {
+            console.log(err);
+          }}
+        />
+      </GoogleOAuthProvider>
     </>
   );
 };

@@ -12,6 +12,7 @@ import {
   FormHelperPWs,
 } from 'components/ComponentStyled';
 import { getCookie, setCookie } from '../Cookie';
+import GoogleButton from 'components/Button/GoogleButton';
 
 const SignIn = () => {
   // State-------------------------------------------------------------------
@@ -157,7 +158,7 @@ const SignIn = () => {
           </Typography>
           <MainButton type="submit">Login</MainButton>
         </Box>
-        <MainButton>Google</MainButton>
+        <GoogleButton />
       </Container>
     </>
   );
