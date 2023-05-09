@@ -137,7 +137,7 @@ export const FixedButton = styled.button`
 
 export const FirstSection = styled.section`
   width: 100%;
-  height: 70vh;
+  height: 80vh;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -167,7 +167,7 @@ export const FirstHeadLine = styled.h1`
 //
 export const SecondSection = styled.section`
   width: 100%;
-  height: 30vh;
+  height: 20vh;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -255,13 +255,18 @@ export const ThirdChild1 = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid ${primaryColor};
 `;
 
 export const ThirdChild1Header = styled.h1`
+  width: 440px;
+  text-align: center;
   color: ${bgColor};
   font-size: 28px;
   font-family: 'AppleSDGothicNeoL' !important;
+  @media screen and (max-width: 450px) {
+    width: 315px;
+    font-size: 20px;
+  }
 `;
 
 export const ThirdChild2 = styled.section`

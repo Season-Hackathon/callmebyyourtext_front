@@ -19,7 +19,7 @@ const Landing = () => {
   };
   const loading = () => {
     setTimeout(() => {
-      navigate('/landing/guide');
+      navigate('/signin');
       body.style.backgroundColor = 'white';
       body.classList.remove('.fadeOut');
     }, 2000);

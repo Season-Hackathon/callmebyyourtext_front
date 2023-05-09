@@ -16,7 +16,6 @@ import {
   TitleBox,
 } from 'components/ComponentStyled';
 import useMoveScroll from 'components/Hooks/useMoveScroll';
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -44,8 +43,8 @@ const LandingGuide = () => {
         </SecondSection>
         <ThirdSection ref={element}>
           <ThirdChild1>
-            <ThirdChild1Header>
-              "당신은 당신을 얼마나 잘 알고 있나요?"
+            <ThirdChild1Header className="animate__fadeInLeft">
+              "당신은, 당신을 얼마나 잘 알고 있나요?"
             </ThirdChild1Header>
           </ThirdChild1>
           <ThirdChild2></ThirdChild2>

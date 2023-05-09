@@ -42,16 +42,12 @@ Instance.interceptors.response.use(
     // Response 에러 처리
     console.log('respone interceptor 에러', error);
     const originalRequest = error.config;
-
+    // eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgzNjU0MzM2LCJpYXQiOjE2ODM2NTQyNzYsImp0aSI6IjlmYTUwZjU4MWRmMjQ5NThiNjRjMzc2ZDgyZjQzZDdhIiwidXNlcl9pZCI6IjIwMjM1NzE5NDAzNDY5Mzg0OCJ9.WccrAIoSA8xU2wSWcREifq8Mj6YMUtWKxwHvMvLj5Bk
     // 만료된 access token이면서 refresh token이 유효한 경우
-    if (
-      error.response?.status === 401 &&
-      error.response?.statusText === 'Unauthorized'
-      // && error.response?.data.detail === 'Token expired'
-    ) {
+    if (error.response?.status === 401) {
       try {
         const reIssue = await axios.post(
-          'https://callmebyyourtext.xyz/token/refresh/',
+          'https://callmebyyourtext.xyz/login/token/refresh/',
           {
             refresh: REFRESH_TOKEN,
           }
@@ -66,6 +62,13 @@ Instance.interceptors.response.use(
         return await axios(originalRequest);
       } catch (error) {
         console.log('interceptor try catch >', error);
+        if (error.response.data.detail === 'Refresh token has expired.') {
+          // console.clear();
+          // localStorage.clear();
+          // removeCookie('refresh_token');
+          alert('세션이 만료되었습니다. 다시 로그인 후 이용해주세요.');
+          // window.location.replace('/');
+        } else return;
       }
     } else if (error.response?.status === 500) {
       alert('일시적인 서버 오류입니다. 새로고침 후 다시 시도해주세요.');
