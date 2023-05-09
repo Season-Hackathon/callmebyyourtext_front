@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import AppleSDGothicNeoL from './assets/fonts/AppleSDGothicNeoL.ttf';
 import AppleSDGothicNeoB from './assets/fonts/AppleSDGothicNeoB.ttf';
 import AppleSDGothicNeoM from './assets/fonts/AppleSDGothicNeoM.ttf';
 
@@ -8,6 +9,7 @@ export const primaryColor = '#0D87AD';
 export const secondaryColor = '#FFAF81';
 export const pointColor = '#2D2D2D';
 export const bgColor = '#133337';
+export const bgTextColor = '#fff';
 export const errorColor = '#823434';
 export const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -39,6 +41,12 @@ footer, header, hgroup, main, menu, nav, section {
 /* HTML5 hidden-attribute fix for newer browsers */
 *[hidden] {
     display: none;
+}
+@font-face {
+  font-family: "AppleSDGothicNeoL";
+  src: url(${AppleSDGothicNeoL});
+  font-weight: normal;
+  font-style: normal;
 }
 @font-face {
   font-family: "AppleSDGothicNeoM";

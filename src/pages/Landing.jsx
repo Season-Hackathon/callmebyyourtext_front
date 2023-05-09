@@ -8,7 +8,7 @@ import {
 } from '../components/ComponentStyled';
 import { bgColor } from 'GlobalStyle';
 
-const Home = () => {
+const Landing = () => {
   const body = document.querySelector('body');
   body.style.backgroundColor = bgColor;
   body.classList.add('.fadeOut');
@@ -45,4 +45,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Landing;

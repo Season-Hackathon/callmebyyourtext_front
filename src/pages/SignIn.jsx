@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { TextField, Box, Typography, FormHelperText } from '@mui/material/';
-import { errorColor, primaryColor } from 'GlobalStyle';
+import { TextField, Box, Typography } from '@mui/material/';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from 'context/AuthContext';
@@ -13,7 +12,7 @@ import {
   FormHelperPWs,
 } from 'components/ComponentStyled';
 import { getCookie, setCookie } from '../Cookie';
-import { useCallback } from 'react';
+import GoogleButton from 'components/Button/GoogleButton';
 
 const SignIn = () => {
   // State-------------------------------------------------------------------
@@ -35,16 +34,12 @@ const SignIn = () => {
   const [passwordMessage, setPasswordMessage] = useState('');
 
   // Navigation------------------------------------------------------
-  const goToSignUp = () => {
-    navigate('/signup');
-  };
-  const goToHome = () => {
-    navigate('/');
-  };
+  const goToSignUp = () => navigate('/signup');
+  const goToHome = () => navigate('/');
 
   // 렌더링 시 실행---------------------------------------------------
   useEffect(() => {
-    if (accessToken && refreshToken) {
+    if (accessToken && refreshToken && userId) {
       navigate(`/mypage/${userId}`, { replace: true });
     }
   }, [refreshToken]);
@@ -98,7 +93,9 @@ const SignIn = () => {
           } else {
             setIsEmail(false);
             setIsPassword(false);
-            setEmailMessage('알 수 없는 정보입니다.');
+            setEmailMessage(
+              '일시적인 오류가 발생했습니다. 새로고침 후 다시 시도해주세요.'
+            );
           }
         });
     }
@@ -161,7 +158,7 @@ const SignIn = () => {
           </Typography>
           <MainButton type="submit">Login</MainButton>
         </Box>
-        <MainButton>Google</MainButton>
+        <GoogleButton />
       </Container>
     </>
   );
