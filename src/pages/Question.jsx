@@ -105,17 +105,16 @@ const Question = () => {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios
-      .post(
-        `https://callmebyyourtext.xyz/questions/${questionId}/comments`,
-        comments,
-        {
-          withCredentials: true,
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      )
+    await Instance.post(
+      `https://callmebyyourtext.xyz/questions/${questionId}/comments`,
+      comments,
+      {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    )
       .then((response) => {
         console.log(response);
         setComments({
@@ -153,13 +152,15 @@ const Question = () => {
   // 질문 삭제 관리--------------------------------------------------
   const deleteQuestion = async () => {
     if (window.confirm('해당 질문을 삭제하시겠습니까?')) {
-      await axios
-        .delete(`https://callmebyyourtext.xyz/questions/${questionId}`, {
+      await Instance.delete(
+        `https://callmebyyourtext.xyz/questions/${questionId}`,
+        {
           withCredentials: true,
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
-        })
+        }
+      )
         .then((response) => {
           console.log(response);
           navigate(`/questionlist/${userId}`);
