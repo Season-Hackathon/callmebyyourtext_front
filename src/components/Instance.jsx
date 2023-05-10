@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getCookie, removeCookie } from '../Cookie';
 
-const ACCESS_TOKEN = localStorage.getItem('access_token');
+let ACCESS_TOKEN = localStorage.getItem('access_token');
 const REFRESH_TOKEN = getCookie('refresh_token');
 
 export const Instance = axios.create({
@@ -52,17 +52,20 @@ Instance.interceptors.response.use(
             refresh: REFRESH_TOKEN,
           }
         );
-        const newAccessToken = reIssue.data.access;
+        ACCESS_TOKEN = reIssue.data.access_token;
         localStorage.removeItem('access_token');
-        localStorage.setItem('access_token', newAccessToken);
+        localStorage.setItem('access_token', ACCESS_TOKEN);
         axios.defaults.headers.common[
           'Authorization'
-        ] = `Bearer ${newAccessToken}`;
-        originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
+        ] = `Bearer ${ACCESS_TOKEN}`;
+        originalRequest.headers['Authorization'] = `Bearer ${ACCESS_TOKEN}`;
         return await axios(originalRequest);
       } catch (error) {
         console.log('interceptor try catch >', error);
-        if (error.response.data.detail === 'Refresh token has expired.') {
+        if (
+          error.response.data.detail === 'Refresh token has expired.' ||
+          error.response.data.code === 'token_not_valid'
+        ) {
           // console.clear();
           // localStorage.clear();
           // removeCookie('refresh_token');
@@ -73,10 +76,11 @@ Instance.interceptors.response.use(
     } else if (error.response?.status === 500) {
       alert('일시적인 서버 오류입니다. 새로고침 후 다시 시도해주세요.');
     } else {
-      // localStorage.removeItem('access_token');
-      // removeCookie('refresh_token');
-      // navigate('/', { replace: true });
+      console.clear();
+      localStorage.clear();
+      removeCookie('refresh_token');
       alert('다시 로그인 후 시도해주세요.');
+      window.location.replace('/');
     }
     return Promise.reject(error);
   }
